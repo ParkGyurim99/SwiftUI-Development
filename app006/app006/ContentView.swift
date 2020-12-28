@@ -24,8 +24,11 @@ struct ContentView: View {
                                 .foregroundColor(.black)
                         }
                         Spacer()
-                        Image(systemName: "person.crop.circle.fill")
+                        NavigationLink(destination: myProfileView()) {
+                            Image(systemName: "person.crop.circle.fill")
                             .font(.largeTitle)
+                                .foregroundColor(.black)
+                        }
                     }.padding(20)
                     
                     Text("To Do List")
@@ -56,14 +59,14 @@ struct ContentView: View {
                     .padding(10)
                     .shadow(radius: 20)
             } // ZStack
-            
+//            .navigationBarTitle("To-do List")
             .navigationTitle("뒤로 가기")
             .navigationBarHidden(self.isNavigationBarHidden)
             .onAppear {
                 self.isNavigationBarHidden = true
             }
         } // Navigation View
-
+        
     }
 }
 

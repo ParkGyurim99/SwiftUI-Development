@@ -66,7 +66,7 @@ struct myList : View {
         .listStyle(GroupedListStyle())
         //.listStyle(PlainListStyle())
         .navigationTitle("My list")
-        //.navigationBarHidden(self.isNavigationBarHidden)
+        .navigationBarHidden(self.isNavigationBarHidden)
         .onAppear {
             self.isNavigationBarHidden = false
         }
