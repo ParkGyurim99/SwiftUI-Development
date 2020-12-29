@@ -11,8 +11,9 @@ import SwiftUI
 struct app006App: App {
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-            myGeometryReaderVstack()
+            //ContentView()
+            myCustomTabView(tIndex: .profile)
+            //myTabView()
         }
     }
 }
