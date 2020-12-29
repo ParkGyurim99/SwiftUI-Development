@@ -11,7 +11,8 @@ import SwiftUI
 struct app006App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            myGeometryReaderVstack()
         }
     }
 }

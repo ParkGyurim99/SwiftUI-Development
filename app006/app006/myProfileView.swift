@@ -13,7 +13,8 @@ struct myProfileView : View {
         
         ScrollView {
             VStack {
-                Image("Me")
+//                Image("Me")
+                Image("kakao")
                     .resizable()
                     .frame(width: 196, height: 252)
                     .opacity(0.9)
@@ -77,7 +78,6 @@ struct myProfileView : View {
                     .foregroundColor(.black)
             }
         )
-        
 //        } // Navigation View
             //-> contentView 에 넣을건데 이미 navigationView 로 감싸져있기때문에
             //      한번더 감싸줄 필요가 없다1!!

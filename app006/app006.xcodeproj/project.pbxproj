@@ -11,6 +11,8 @@
 		1A3F3D3B2599891100E9AB4E /* myNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3F3D3A2599891100E9AB4E /* myNavigationView.swift */; };
 		1A3F3D3E2599FDFA00E9AB4E /* myWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3F3D3D2599FDFA00E9AB4E /* myWebView.swift */; };
 		1A3F3D41259A0AF900E9AB4E /* myProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3F3D40259A0AF900E9AB4E /* myProfileView.swift */; };
+		1A5DF83B259B039F00BA44F8 /* myGeometryReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DF83A259B039F00BA44F8 /* myGeometryReader.swift */; };
+		1A5DF83E259B134200BA44F8 /* myGeometryReaderVstack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DF83D259B134200BA44F8 /* myGeometryReaderVstack.swift */; };
 		1A7F802C259240B400A60AE5 /* app006App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F802B259240B400A60AE5 /* app006App.swift */; };
 		1A7F802E259240B400A60AE5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F802D259240B400A60AE5 /* ContentView.swift */; };
 		1A7F8030259240B800A60AE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A7F802F259240B700A60AE5 /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 		1A3F3D3A2599891100E9AB4E /* myNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myNavigationView.swift; sourceTree = "<group>"; };
 		1A3F3D3D2599FDFA00E9AB4E /* myWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myWebView.swift; sourceTree = "<group>"; };
 		1A3F3D40259A0AF900E9AB4E /* myProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myProfileView.swift; sourceTree = "<group>"; };
+		1A5DF83A259B039F00BA44F8 /* myGeometryReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myGeometryReader.swift; sourceTree = "<group>"; };
+		1A5DF83D259B134200BA44F8 /* myGeometryReaderVstack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myGeometryReaderVstack.swift; sourceTree = "<group>"; };
 		1A7F8028259240B400A60AE5 /* app006.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = app006.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A7F802B259240B400A60AE5 /* app006App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app006App.swift; sourceTree = "<group>"; };
 		1A7F802D259240B400A60AE5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 				1A3F3D3D2599FDFA00E9AB4E /* myWebView.swift */,
 				1A3F3D3A2599891100E9AB4E /* myNavigationView.swift */,
 				1A3F3D40259A0AF900E9AB4E /* myProfileView.swift */,
+				1A5DF83A259B039F00BA44F8 /* myGeometryReader.swift */,
+				1A5DF83D259B134200BA44F8 /* myGeometryReaderVstack.swift */,
 			);
 			path = app006;
 			sourceTree = "<group>";
@@ -161,6 +167,8 @@
 			files = (
 				1A7F802E259240B400A60AE5 /* ContentView.swift in Sources */,
 				1A3F3D3E2599FDFA00E9AB4E /* myWebView.swift in Sources */,
+				1A5DF83B259B039F00BA44F8 /* myGeometryReader.swift in Sources */,
+				1A5DF83E259B134200BA44F8 /* myGeometryReaderVstack.swift in Sources */,
 				1A7F80432592434100A60AE5 /* myProjectCard.swift in Sources */,
 				1A7F8046259248D600A60AE5 /* myBasicCard.swift in Sources */,
 				1A3F3D3B2599891100E9AB4E /* myNavigationView.swift in Sources */,
