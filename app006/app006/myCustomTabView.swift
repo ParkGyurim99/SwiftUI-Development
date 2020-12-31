@@ -16,7 +16,7 @@ enum tabIndex {
 
 struct myCustomTabView : View {
     @State var tIndex : tabIndex
-    @State var largerScale : CGFloat = 1.4
+    @State var largerScale : CGFloat = 1.4 // 크기 관련된거 할땐 CGFloat 자료형
     
     func changeMyView(tIndex : tabIndex) -> myView{
         switch tIndex {
@@ -106,7 +106,7 @@ struct myCustomTabView : View {
                         }.background(Color.white)
                     } // HStack
                     
-                    Rectangle()
+                    Rectangle() // 풀 스크린 아이폰 에서 밑에 Bar랑 안겹치게 하기 위해서 !
                         //.frame(height : 20)
                         .frame(height :  UIApplication.shared.windows.first?.safeAreaInsets.bottom == 0 ? 0 : 20)
                         //UIApplication.shared.windows.first?.safeAreaInsets.bottom == 0 --> 구형 아이폰 (풀스크린 x)

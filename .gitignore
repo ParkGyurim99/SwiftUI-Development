@@ -6,3 +6,5 @@ app007/app007.xcodeproj/project.xcworkspace/xcuserdata/parkgyurim.xcuserdatad/Us
 app006/app006/myCustomTabView.swift
 app006/app006.xcodeproj/xcuserdata/parkgyurim.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
 app006/app006.xcodeproj/project.xcworkspace/xcuserdata/parkgyurim.xcuserdatad/UserInterfaceState.xcuserstate
+.DS_Store
+app006/.DS_Store
