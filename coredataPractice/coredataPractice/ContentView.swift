@@ -13,7 +13,7 @@ struct ContentView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: Order.entity(), sortDescriptors: [], predicate: NSPredicate(format: "status != %@",  Status.completed.rawValue))
-
+    
     var orders: FetchedResults<Order>
     var body: some View {
         NavigationView {
@@ -28,7 +28,8 @@ struct ContentView: View {
                         }
                         Spacer()
                         Button {
-                            print("Update order")
+                            //print("Update order")
+                            updateOrder(order : order)
                         } label : {
                             Text(order.orderStatus == .pending ? "Prepare" : "Complete")
                                 .foregroundColor(.blue)
@@ -50,6 +51,14 @@ struct ContentView: View {
             .sheet(isPresented: $showOrderSheet) {
                 OrderSheet()
             }
+        }
+    } // body
+    
+    func updateOrder(order : Order) {
+        let newStatus = order.orderStatus == .pending ? Status.preparing : Status.completed
+        viewContext.performAndWait {
+            order.orderStatus = newStatus
+            try? viewContext.save()
         }
     }
 }
@@ -104,11 +113,5 @@ struct OrderSheet: View {
             } // form
             .navigationTitle("Add Order")
         } // navigationView
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }
