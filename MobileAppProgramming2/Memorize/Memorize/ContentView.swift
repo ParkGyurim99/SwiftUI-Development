@@ -42,9 +42,11 @@ struct CardView : View {
                     .fill()
             }
         } // ZStack
-        .onTapGesture {
-            isFaceUp.toggle()
-        }
+//        .onTapGesture {
+//            withAnimation(.easeInOut) {
+//                isFaceUp.toggle()
+//            }
+//        }
     }
 }
 
