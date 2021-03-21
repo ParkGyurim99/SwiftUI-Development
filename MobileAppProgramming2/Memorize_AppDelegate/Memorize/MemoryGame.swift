@@ -19,6 +19,7 @@ struct MemoryGame<CardContent> {
             cards.append(Card(content: content, id : pairIndex * 2 + 1))
             // 1 pair 가 두장이기때문에
         }
+        cards.shuffle()
     }
     
     func choose(card : Card) {
