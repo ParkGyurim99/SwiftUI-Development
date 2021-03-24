@@ -15,19 +15,27 @@ struct ContentView: View {
 //            return Text("Hello There, world!").padding()
 //        }
 //        return ZStack(content : {
-        
-        HStack {
-            ForEach(viewModel.cards) { card in
-                CardView(card : card)
-                    .onTapGesture {
-                        viewModel.choose(card: card)
-                    }
-            } // ForEach
-        } // HStack
-        .padding()
-        .foregroundColor(Color.orange)
-        // Overwritting to blue - fall down
-        .font(.largeTitle)
+
+        //HStack {
+        ScrollView{
+            LazyVGrid(columns : [
+                        GridItem(.flexible()),
+                        GridItem(.flexible()),
+                        GridItem(.flexible())
+            ]) {
+                ForEach(viewModel.cards) { card in
+                    CardView(card : card)
+                        .onTapGesture {
+                            viewModel.choose(card: card)
+                        }
+                        .frame(height : 150)
+                } // ForEach
+            } // HStack -> LazyVGrid
+            .padding()
+            .foregroundColor(Color.orange)
+            // Overwritting to blue - fall down
+            .font(.largeTitle)
+        } // ScrollView
     }
 }
 
