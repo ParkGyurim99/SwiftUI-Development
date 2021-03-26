@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  EmojiMemoryGameView.swift -> view
 //  Memorize
 //
 //  Created by Park Gyurim on 2021/03/12.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var viewModel : EmojiMemoryGame
-    
+struct EmojiMemoryGameView: View {
+    @ObservedObject var viewModel : EmojiMemoryGame
+
     var body: some View {
 //        get {
 //            return Text("Hello There, world!").padding()
@@ -42,35 +42,51 @@ struct ContentView: View {
 struct CardView : View {
     //@State var isFaceUp : Bool
     var card : MemoryGame<String>.Card
+
+    var body: some View {
+        GeometryReader { geometry in
+            self.body(for : geometry.size)
+        }
+    }
     
-    var body : some View {
+    func body(for size : CGSize) -> some View {
         ZStack {
             //if isFaceUp {
             if card.isFaceUp {
-                RoundedRectangle(cornerRadius: 10.0)
+                RoundedRectangle(cornerRadius: cornerRadius)
                     .fill(Color.white)
-                RoundedRectangle(cornerRadius: 10.0)
-                    .stroke(lineWidth: 3.0) // 외곽선 따기
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(lineWidth: endLineWidth) // 외곽선 따기
                 //Text("👻")
                 Text(card.content)
-                    .font(.largeTitle)
             }
             else {
-                RoundedRectangle(cornerRadius: 10.0)
+                RoundedRectangle(cornerRadius: cornerRadius)
                     .fill()
             }
         } // ZStack
+        .font(.system(size : fontSize(for: size)))
 //        .onTapGesture {
 //            withAnimation(.easeInOut) {
 //                isFaceUp.toggle()
 //            }
 //        }
+    } // func body
+    
+    // MARK: - Drawing Constants
+    let cornerRadius : CGFloat = 10.0
+    let endLineWidth : CGFloat = 3.0
+    let fontScaleFactor : CGFloat = 0.75
+    func fontSize(for size : CGSize) -> CGFloat {
+        min(size.height, size.width) * fontScaleFactor
     }
 }
 
 
-struct ContentView_Previews: PreviewProvider {
+
+
+struct EmojiMemoryGameView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(viewModel: EmojiMemoryGame())
+        EmojiMemoryGameView(viewModel: EmojiMemoryGame())
     }
 }

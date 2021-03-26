@@ -1,5 +1,5 @@
 //
-//  EmojiMemoryGame.swift
+//  EmojiMemoryGame.swift -> View Model
 //  Memorize
 //
 //  Created by Park Gyurim on 2021/03/19.
@@ -11,8 +11,8 @@ import SwiftUI
 //    return "😁"
 //} model 선언시 클로저로
 
-class EmojiMemoryGame {
-    private var model : MemoryGame<String> // Generic type CardContent 가 String 타입으로 결정되었음
+class EmojiMemoryGame : ObservableObject {
+    @Published private var model : MemoryGame<String> // Generic type CardContent 가 String 타입으로 결정되었음
     // class 로 선언하면 접근이 쉽기 때문에 private으로 선언하고 (set) 설정으로 read-only 상태 (glass door)
         //= MemoryGame<String>(numberOfPairsOfCard : 2, cardContentFactory: createCardContent)
         //= MemoryGame<String>(numberOfPairsOfCard : 2) { _ in "😁" } // lecture2 page 22 closure
