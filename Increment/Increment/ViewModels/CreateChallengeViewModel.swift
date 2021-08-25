@@ -14,6 +14,50 @@ final class CreateChallengeViewModel : ObservableObject {
         .init(type : .increase),
         .init(type : .length)
     ]
+    
+    enum Action {
+        case selectOption(index : Int)
+    }
+    
+    // computed property (get only)
+    var selectedDropdownIndex : Int? {
+        dropdowns.enumerated().first(where : { $0.element.isSelected })?.offset
+    }
+    
+    var hasSelectedDropdown : Bool {
+        //dropdowns.first(where : { $0.isSelected }) != nil
+        selectedDropdownIndex != nil
+    }
+    
+    var displayOptions : [DropdownOption] {
+        guard let selectedDropdownIndex = selectedDropdownIndex else { return [] }
+        
+        return dropdowns[selectedDropdownIndex].options
+    }
+    
+    func send(action : Action) {
+        switch action {
+        case let . selectOption(index) :
+            guard let selectedDropdownIndex = selectedDropdownIndex else { return }
+            clearSelectedOption()
+            dropdowns[selectedDropdownIndex].options[index].isSelected = true
+            clearSelectedDropdown()
+        }
+    }
+    
+    func clearSelectedOption() {
+        guard let selectedDropdownIndex = selectedDropdownIndex else { return }
+
+        dropdowns[selectedDropdownIndex].options.indices.forEach { index in
+            dropdowns[selectedDropdownIndex].options[index].isSelected = false
+        }
+    }
+    
+    func clearSelectedDropdown() {
+        guard let selectedDropdownIndex = selectedDropdownIndex else { return }
+
+        dropdowns[selectedDropdownIndex].isSelected = false
+    }
 }
 
 extension CreateChallengeViewModel {
@@ -37,8 +81,8 @@ extension CreateChallengeViewModel {
             case .length :
                 self.options = LengthOption.allCases.map {$0.toDropdownOption}
             }
-            self.type = type
             
+            self.type = type
         }
         
         enum ChallengePartType : String, CaseIterable {

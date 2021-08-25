@@ -15,7 +15,7 @@ struct LandingView: View {
             GeometryReader { proxy in
                 VStack {
                     Spacer()
-                        .frame(height : proxy.size.height * 0.25)
+                        .frame(height : proxy.size.height * 0.1)
                     Text("Increment")
                         .font(.system(size : 64, weight : .medium))
                         .foregroundColor(.white)
@@ -34,10 +34,7 @@ struct LandingView: View {
                         .padding()
                     }
                 } // VStack
-                .frame(
-                    maxWidth : .infinity,
-                    maxHeight: .infinity
-                )
+                .frame(maxWidth : .infinity, maxHeight: .infinity)
                 .background(
                     Image("pullup")
                         .resizable()

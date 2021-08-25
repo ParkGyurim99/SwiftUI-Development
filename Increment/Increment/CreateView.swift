@@ -17,6 +17,19 @@ struct CreateView: View {
         }
     }
     
+    var actionSheet : ActionSheet {
+        ActionSheet(
+            title: Text("Select"),
+            buttons: viewModel.displayOptions.indices.map { index in
+                let option = viewModel.displayOptions[index]
+                return ActionSheet.Button.default(
+                    Text(option.formatted),
+                    action : { viewModel.send(action : .selectOption(index: index)) }
+                )
+            }
+        )
+    }
+    
     var body: some View {
         //ScrollView {
         VStack {
@@ -31,6 +44,8 @@ struct CreateView: View {
                         Text("Next")
                             .font(.system(size : 24, weight : .medium))
                     }
+                    .actionSheet(isPresented: Binding<Bool>(get : { viewModel.hasSelectedDropdown }, set : { _ in }))
+                        { actionSheet }
                     .buttonStyle(PrimaryButtonStyle(fillColor: Color.primaryButton))
                     .padding(20)
                 }
