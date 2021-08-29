@@ -23,6 +23,7 @@
 		1A2F077A26D64CAF006844B0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1A2F077926D64CAF006844B0 /* FirebaseAuth */; };
 		1A2F077C26D64CAF006844B0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A2F077B26D64CAF006844B0 /* FirebaseFirestore */; };
 		1A2F077E26D650ED006844B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A2F077D26D650ED006844B0 /* GoogleService-Info.plist */; };
+		1A2F078126DBCE04006844B0 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F078026DBCE04006844B0 /* UserServices.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		1A2F076E26D53FEC006844B0 /* CreateChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeViewModel.swift; sourceTree = "<group>"; };
 		1A2F077026D54178006844B0 /* DropdownItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownItemProtocol.swift; sourceTree = "<group>"; };
 		1A2F077D26D650ED006844B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1A2F078026DBCE04006844B0 /* UserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 		1A2F075326D51AEF006844B0 /* Increment */ = {
 			isa = PBXGroup;
 			children = (
+				1A2F077F26DBCDF7006844B0 /* Services */,
 				1A2F076D26D53FDA006844B0 /* ViewModels */,
 				1A2F075426D51AEF006844B0 /* IncrementApp.swift */,
 				1A2F075626D51AEF006844B0 /* LandingView.swift */,
@@ -107,6 +110,14 @@
 				1A2F077026D54178006844B0 /* DropdownItemProtocol.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1A2F077F26DBCDF7006844B0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1A2F078026DBCE04006844B0 /* UserServices.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +201,7 @@
 			files = (
 				1A2F076426D51DFD006844B0 /* PrimaryButtonStyle.swift in Sources */,
 				1A2F075726D51AEF006844B0 /* LandingView.swift in Sources */,
+				1A2F078126DBCE04006844B0 /* UserServices.swift in Sources */,
 				1A2F075526D51AEF006844B0 /* IncrementApp.swift in Sources */,
 				1A2F077126D54178006844B0 /* DropdownItemProtocol.swift in Sources */,
 				1A2F076626D51EF6006844B0 /* Color+Extension.swift in Sources */,
