@@ -24,6 +24,8 @@
 		1A2F077C26D64CAF006844B0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A2F077B26D64CAF006844B0 /* FirebaseFirestore */; };
 		1A2F077E26D650ED006844B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A2F077D26D650ED006844B0 /* GoogleService-Info.plist */; };
 		1A2F078126DBCE04006844B0 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F078026DBCE04006844B0 /* UserServices.swift */; };
+		1A2F078426DCD0ED006844B0 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F078326DCD0ED006844B0 /* Challenge.swift */; };
+		1A2F078626DCD4E4006844B0 /* ChallengeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F078526DCD4E4006844B0 /* ChallengeService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		1A2F077026D54178006844B0 /* DropdownItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownItemProtocol.swift; sourceTree = "<group>"; };
 		1A2F077D26D650ED006844B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1A2F078026DBCE04006844B0 /* UserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
+		1A2F078326DCD0ED006844B0 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
+		1A2F078526DCD4E4006844B0 /* ChallengeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,7 @@
 		1A2F075326D51AEF006844B0 /* Increment */ = {
 			isa = PBXGroup;
 			children = (
+				1A2F078226DCD0A9006844B0 /* Models */,
 				1A2F077F26DBCDF7006844B0 /* Services */,
 				1A2F076D26D53FDA006844B0 /* ViewModels */,
 				1A2F075426D51AEF006844B0 /* IncrementApp.swift */,
@@ -116,8 +121,17 @@
 			isa = PBXGroup;
 			children = (
 				1A2F078026DBCE04006844B0 /* UserServices.swift */,
+				1A2F078526DCD4E4006844B0 /* ChallengeService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		1A2F078226DCD0A9006844B0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1A2F078326DCD0ED006844B0 /* Challenge.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,10 +217,12 @@
 				1A2F075726D51AEF006844B0 /* LandingView.swift in Sources */,
 				1A2F078126DBCE04006844B0 /* UserServices.swift in Sources */,
 				1A2F075526D51AEF006844B0 /* IncrementApp.swift in Sources */,
+				1A2F078426DCD0ED006844B0 /* Challenge.swift in Sources */,
 				1A2F077126D54178006844B0 /* DropdownItemProtocol.swift in Sources */,
 				1A2F076626D51EF6006844B0 /* Color+Extension.swift in Sources */,
 				1A2F076F26D53FEC006844B0 /* CreateChallengeViewModel.swift in Sources */,
 				1A2F076C26D53CB5006844B0 /* RemindView.swift in Sources */,
+				1A2F078626DCD4E4006844B0 /* ChallengeService.swift in Sources */,
 				1A2F076826D53768006844B0 /* CreateView.swift in Sources */,
 				1A2F076A26D537AC006844B0 /* DropdownView.swift in Sources */,
 			);
