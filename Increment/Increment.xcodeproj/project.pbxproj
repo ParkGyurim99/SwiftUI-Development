@@ -26,6 +26,7 @@
 		1A2F078126DBCE04006844B0 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F078026DBCE04006844B0 /* UserServices.swift */; };
 		1A2F078426DCD0ED006844B0 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F078326DCD0ED006844B0 /* Challenge.swift */; };
 		1A2F078626DCD4E4006844B0 /* ChallengeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F078526DCD4E4006844B0 /* ChallengeService.swift */; };
+		1A2F078826DD1C05006844B0 /* IncrementError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F078726DD1C05006844B0 /* IncrementError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		1A2F078026DBCE04006844B0 /* UserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
 		1A2F078326DCD0ED006844B0 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		1A2F078526DCD4E4006844B0 /* ChallengeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeService.swift; sourceTree = "<group>"; };
+		1A2F078726DD1C05006844B0 /* IncrementError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				1A2F075A26D51B03006844B0 /* Preview Content */,
 				1A2F076326D51DFD006844B0 /* PrimaryButtonStyle.swift */,
 				1A2F076526D51EF6006844B0 /* Color+Extension.swift */,
+				1A2F078726DD1C05006844B0 /* IncrementError.swift */,
 			);
 			path = Increment;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				1A2F078626DCD4E4006844B0 /* ChallengeService.swift in Sources */,
 				1A2F076826D53768006844B0 /* CreateView.swift in Sources */,
 				1A2F076A26D537AC006844B0 /* DropdownView.swift in Sources */,
+				1A2F078826DD1C05006844B0 /* IncrementError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

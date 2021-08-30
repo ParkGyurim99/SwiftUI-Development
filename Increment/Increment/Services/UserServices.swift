@@ -13,7 +13,7 @@ protocol UserServiceProtocol {
     func currentUser() -> AnyPublisher<User?, Never>
     
     // sign in the user anonymously
-    func signInAnonymously() -> AnyPublisher<User, Error>
+    func signInAnonymously() -> AnyPublisher<User, IncrementError>
 }
 
 final class UserService : UserServiceProtocol {
@@ -21,12 +21,12 @@ final class UserService : UserServiceProtocol {
         Just(Auth.auth().currentUser).eraseToAnyPublisher() // to type erase it to AnyPublisher
     }
     
-    func signInAnonymously() -> AnyPublisher<User, Error> {
-        return Future<User, Error> { promise in
+    func signInAnonymously() -> AnyPublisher<User, IncrementError> {
+        return Future<User, IncrementError> { promise in
             Auth.auth().signInAnonymously { result, error in
                 // if we have an error?
                 if let error = error {
-                    return promise(.failure(error))
+                    return promise(.failure(.auth(description: error.localizedDescription)))
                 } else if let user = result?.user {
                     return promise(.success(user))
                 }
