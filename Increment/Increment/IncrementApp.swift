@@ -10,13 +10,35 @@ import Firebase
 
 @main
 struct IncrementApp: App {
+    @StateObject private var appState = AppState()
+    
     init() {
         FirebaseApp.configure()
     }
     
     var body: some Scene {
         WindowGroup {
-            LandingView()
+            if appState.isLoggedIn {
+                TabContainerView()
+            } else {
+                LandingView()
+            }
         }
+    }
+}
+
+class AppState : ObservableObject {
+    @Published private(set) var isLoggedIn = false
+    private let userService : UserServiceProtocol
+    
+    init(userService : UserServiceProtocol = UserService()) {
+        self.userService = userService
+        //try? Auth.auth().signOut( )
+        
+        // observing publisher here
+        userService
+            .observeAuthChanges()
+            .map { $0 != nil } // mapping true or false Boolean value
+            .assign(to: &$isLoggedIn) // $isLoggedIn 는 Published<Bool>Publisher type
     }
 }

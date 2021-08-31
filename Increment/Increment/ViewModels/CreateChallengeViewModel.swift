@@ -85,19 +85,19 @@ final class CreateChallengeViewModel : ObservableObject {
         
         // convert this into another publisher that give us the user id
         return userService.currentUser().flatMap { user -> AnyPublisher<UserId, IncrementError> in
-            return Fail(error : .auth(description : "some firebase auth error")).eraseToAnyPublisher()
-//            if let UserId = user?.uid {
-//                print("user is logged in...")
-//                return Just(UserId)
-//                    .setFailureType(to : IncrementError.self)
-//                    .eraseToAnyPublisher()
-//            } else {
-//                print("user is being logged in anonymously...")
-//                return self.userService
-//                    .signInAnonymously()
-//                    .map { $0.uid }
-//                    .eraseToAnyPublisher()
-//            }
+            //return Fail(error : .auth(description : "some firebase auth error")).eraseToAnyPublisher()
+            if let UserId = user?.uid {
+                print("user is logged in...")
+                return Just(UserId)
+                    .setFailureType(to : IncrementError.self)
+                    .eraseToAnyPublisher()
+            } else {
+                print("user is being logged in anonymously...")
+                return self.userService
+                    .signInAnonymously()
+                    .map { $0.uid }
+                    .eraseToAnyPublisher()
+            }
         }.eraseToAnyPublisher()
     }
 }
