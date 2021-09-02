@@ -70,7 +70,7 @@ final class CreateChallengeViewModel : ObservableObject {
         let challenge = Challenge(
             exercise: exercise,
             startAmount: startAmount,
-            increae: increase,
+            increase: increase,
             length: length,
             userId: userId,
             startDate: Date()

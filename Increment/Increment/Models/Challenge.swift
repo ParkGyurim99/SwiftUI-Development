@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct Challenge : Codable {
+struct Challenge : Codable, Hashable {
     let exercise : String
     let startAmount : Int
-    let increae : Int
+    let increase : Int
     let length : Int
     let userId : String
     let startDate : Date
