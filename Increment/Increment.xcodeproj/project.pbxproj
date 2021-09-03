@@ -96,24 +96,18 @@
 		1A2F075326D51AEF006844B0 /* Increment */ = {
 			isa = PBXGroup;
 			children = (
-				1A2F078926DE0E82006844B0 /* Publishers */,
+				1A2F079926E29C88006844B0 /* Errors */,
+				1A2F079726E29C3C006844B0 /* Extensions */,
+				1A2F079626E29C09006844B0 /* Views */,
 				1A2F078226DCD0A9006844B0 /* Models */,
-				1A2F077F26DBCDF7006844B0 /* Services */,
 				1A2F076D26D53FDA006844B0 /* ViewModels */,
-				1A2F075426D51AEF006844B0 /* IncrementApp.swift */,
-				1A2F075626D51AEF006844B0 /* LandingView.swift */,
-				1A2F076726D53768006844B0 /* CreateView.swift */,
-				1A2F076926D537AC006844B0 /* DropdownView.swift */,
-				1A2F076B26D53CB5006844B0 /* RemindView.swift */,
-				1A2F075826D51B03006844B0 /* Assets.xcassets */,
-				1A2F077D26D650ED006844B0 /* GoogleService-Info.plist */,
+				1A2F078926DE0E82006844B0 /* Publishers */,
+				1A2F077F26DBCDF7006844B0 /* Services */,
 				1A2F075D26D51B03006844B0 /* Info.plist */,
+				1A2F077D26D650ED006844B0 /* GoogleService-Info.plist */,
+				1A2F075426D51AEF006844B0 /* IncrementApp.swift */,
+				1A2F075826D51B03006844B0 /* Assets.xcassets */,
 				1A2F075A26D51B03006844B0 /* Preview Content */,
-				1A2F076326D51DFD006844B0 /* PrimaryButtonStyle.swift */,
-				1A2F076526D51EF6006844B0 /* Color+Extension.swift */,
-				1A2F078726DD1C05006844B0 /* IncrementError.swift */,
-				1A2F078C26DE5751006844B0 /* TabContainerView.swift */,
-				1A2F078E26DE7801006844B0 /* ChallengeListView.swift */,
 			);
 			path = Increment;
 			sourceTree = "<group>";
@@ -161,6 +155,44 @@
 				1A2F079226DE78F4006844B0 /* QuerySnapshotPublisher.swift */,
 			);
 			path = Publishers;
+			sourceTree = "<group>";
+		};
+		1A2F079626E29C09006844B0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1A2F079826E29C74006844B0 /* Styles */,
+				1A2F075626D51AEF006844B0 /* LandingView.swift */,
+				1A2F078E26DE7801006844B0 /* ChallengeListView.swift */,
+				1A2F076726D53768006844B0 /* CreateView.swift */,
+				1A2F076926D537AC006844B0 /* DropdownView.swift */,
+				1A2F076B26D53CB5006844B0 /* RemindView.swift */,
+				1A2F078C26DE5751006844B0 /* TabContainerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1A2F079726E29C3C006844B0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1A2F076526D51EF6006844B0 /* Color+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1A2F079826E29C74006844B0 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				1A2F076326D51DFD006844B0 /* PrimaryButtonStyle.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		1A2F079926E29C88006844B0 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				1A2F078726DD1C05006844B0 /* IncrementError.swift */,
+			);
+			path = Errors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
