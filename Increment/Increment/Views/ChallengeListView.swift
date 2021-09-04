@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ChallengeListView : View {
     @StateObject private var viewModel : ChallengeListViewModel = ChallengeListViewModel()
-    
+    @AppStorage("isDarkMode") private var isDarkMode = false
+
     var body : some View {
         ZStack {
             if viewModel.isLoading {
@@ -43,6 +44,15 @@ struct ChallengeListView : View {
         .sheet(isPresented : $viewModel.showingCreateModel) {
             NavigationView {
                 CreateView()
+                    .preferredColorScheme(isDarkMode ? .dark : .light)
+                    .padding(.horizontal, 10)
+                    .navigationBarItems(trailing: Button {
+                        viewModel.showingCreateModel = false
+                    } label : {
+                        Image(systemName : "xmark")
+                            .imageScale(.large)
+                            .foregroundColor(isDarkMode ? .white : .black)
+                    })
             }
         }
         .navigationBarItems(trailing : Button {

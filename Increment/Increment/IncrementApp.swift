@@ -11,6 +11,7 @@ import Firebase
 @main
 struct IncrementApp: App {
     @StateObject private var appState = AppState()
+    @AppStorage("isDarkMode") private var isDarkMode = false
     
     init() {
         FirebaseApp.configure()
@@ -20,6 +21,7 @@ struct IncrementApp: App {
         WindowGroup {
             if appState.isLoggedIn {
                 TabContainerView()
+                    .preferredColorScheme(isDarkMode ? .dark : .light)
             } else {
                 LandingView()
             }

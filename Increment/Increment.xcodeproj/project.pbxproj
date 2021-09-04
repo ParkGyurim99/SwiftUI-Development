@@ -33,6 +33,9 @@
 		1A2F079126DE7811006844B0 /* ChallengeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F079026DE7810006844B0 /* ChallengeListViewModel.swift */; };
 		1A2F079326DE78F4006844B0 /* QuerySnapshotPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F079226DE78F4006844B0 /* QuerySnapshotPublisher.swift */; };
 		1A2F079526E110EF006844B0 /* ChallengeItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F079426E110EE006844B0 /* ChallengeItemViewModel.swift */; };
+		1A2F079B26E3AEEF006844B0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F079A26E3AEEF006844B0 /* SettingsView.swift */; };
+		1A2F079D26E3AF00006844B0 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F079C26E3AF00006844B0 /* SettingsViewModel.swift */; };
+		1A2F079F26E3AF20006844B0 /* SettingsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F079E26E3AF20006844B0 /* SettingsItemViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +63,9 @@
 		1A2F079026DE7810006844B0 /* ChallengeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeListViewModel.swift; sourceTree = "<group>"; };
 		1A2F079226DE78F4006844B0 /* QuerySnapshotPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuerySnapshotPublisher.swift; sourceTree = "<group>"; };
 		1A2F079426E110EE006844B0 /* ChallengeItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeItemViewModel.swift; sourceTree = "<group>"; };
+		1A2F079A26E3AEEF006844B0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1A2F079C26E3AF00006844B0 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		1A2F079E26E3AF20006844B0 /* SettingsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,8 @@
 				1A2F077026D54178006844B0 /* DropdownItemProtocol.swift */,
 				1A2F079026DE7810006844B0 /* ChallengeListViewModel.swift */,
 				1A2F079426E110EE006844B0 /* ChallengeItemViewModel.swift */,
+				1A2F079C26E3AF00006844B0 /* SettingsViewModel.swift */,
+				1A2F079E26E3AF20006844B0 /* SettingsItemViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -167,6 +175,7 @@
 				1A2F076926D537AC006844B0 /* DropdownView.swift */,
 				1A2F076B26D53CB5006844B0 /* RemindView.swift */,
 				1A2F078C26DE5751006844B0 /* TabContainerView.swift */,
+				1A2F079A26E3AEEF006844B0 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -279,6 +288,8 @@
 				1A2F075726D51AEF006844B0 /* LandingView.swift in Sources */,
 				1A2F078126DBCE04006844B0 /* UserServices.swift in Sources */,
 				1A2F075526D51AEF006844B0 /* IncrementApp.swift in Sources */,
+				1A2F079B26E3AEEF006844B0 /* SettingsView.swift in Sources */,
+				1A2F079F26E3AF20006844B0 /* SettingsItemViewModel.swift in Sources */,
 				1A2F078426DCD0ED006844B0 /* Challenge.swift in Sources */,
 				1A2F077126D54178006844B0 /* DropdownItemProtocol.swift in Sources */,
 				1A2F079326DE78F4006844B0 /* QuerySnapshotPublisher.swift in Sources */,
@@ -293,6 +304,7 @@
 				1A2F076826D53768006844B0 /* CreateView.swift in Sources */,
 				1A2F076A26D537AC006844B0 /* DropdownView.swift in Sources */,
 				1A2F078826DD1C05006844B0 /* IncrementError.swift in Sources */,
+				1A2F079D26E3AF00006844B0 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
