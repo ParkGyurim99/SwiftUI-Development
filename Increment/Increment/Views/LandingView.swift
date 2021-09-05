@@ -8,7 +8,42 @@
 import SwiftUI
 
 struct LandingView: View {
-    @State private var isActive : Bool = false
+    @StateObject private var viewModel = LandingViewModel()
+    
+    var title : some View {
+        Text("Increment")
+            .font(.system(size : 64, weight : .medium))
+            .foregroundColor(.white)
+    }
+    
+    var createButton : some View {
+        Button {
+            viewModel.createPushed = true
+        } label : {
+            HStack(alignment : .center, spacing : 15) {
+                Image(systemName : "plus.circle")
+                Text("Create a Challenge")
+            }
+            .font(.system(size : 24, weight: .semibold))
+            .foregroundColor(.white)
+        }
+        .buttonStyle(PrimaryButtonStyle(fillColor : .primaryButton))
+        .padding()
+    }
+    
+    var alreadyButton : some View {
+        Button("I already have an account") {
+            // Button action
+            viewModel.loginSignupPushed = true
+        }.foregroundColor(.white)
+    }
+    
+    var backgroundImage : some View {
+        Image("pullup")
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .overlay(Color.black.opacity(0.4))
+    }
     
     var body: some View {
         NavigationView {
@@ -16,31 +51,23 @@ struct LandingView: View {
                 VStack {
                     Spacer()
                         .frame(height : proxy.size.height * 0.1)
-                    Text("Increment")
-                        .font(.system(size : 64, weight : .medium))
-                        .foregroundColor(.white)
+                    title
                     Spacer()
-                    NavigationLink(destination : CreateView(), isActive : $isActive) {
-                        Button { isActive = true } label : {
-                            HStack(alignment : .center, spacing : 15) {
-                                Image(systemName : "plus.circle")
-                                Text("Create a Challenge")
-                            }
-                            .frame(width : proxy.size.width * 0.7)
-                            .font(.system(size : 24, weight: .semibold))
-                            .foregroundColor(.white)
-                        }
-                        .buttonStyle(PrimaryButtonStyle(fillColor : .primaryButton))
-                        .padding()
+                    NavigationLink(destination : CreateView(), isActive : $viewModel.createPushed) {
+                        createButton
+                    }
+                    NavigationLink(
+                        destination : LoginSignupView(viewModel: .init(mode : .login)),
+                        isActive : $viewModel.loginSignupPushed)
+                    {
+                        alreadyButton
                     }
                 } // VStack
+                .padding(.bottom, 15)
                 .frame(maxWidth : .infinity, maxHeight: .infinity)
                 .background(
-                    Image("pullup")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
+                    backgroundImage
                         .frame(width : proxy.size.width)
-                        .overlay(Color.black.opacity(0.4))
                         .edgesIgnoringSafeArea(.all)
                 )
             } // Geometry Reader
