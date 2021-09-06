@@ -11,23 +11,29 @@ struct LoginSignupView : View {
     @ObservedObject var viewModel : LoginSignupViewModel
     // automatically initialize viewModel when we call this view with parameter viewModel
     var emailTextField : some View {
-        TextField("Email", text : $viewModel.emailText)
+        TextField(viewModel.emailPlaceholderText, text : $viewModel.emailText)
             .modifier(TextFieldCustomRoundedStyle())
+            .autocapitalization(.none)
     }
+    
     var passwordTextField : some View {
-        SecureField("Password", text: $viewModel.passwordText)
+        SecureField(viewModel.passwordPlaceholderText, text: $viewModel.passwordText)
             .modifier(TextFieldCustomRoundedStyle())
+            .autocapitalization(.none)
     }
+    
     var actionButton : some View {
         Button(viewModel.buttonTitle) {
-            
-        }.padding()
+            viewModel.tappedActionButton()
+        }
+        .padding()
         .frame(maxWidth : .infinity)
         .foregroundColor(.white)
         .background(Color(.systemPink))
         .cornerRadius(15)
         .padding()
     }
+    
     var body : some View {
         VStack {
             Text(viewModel.title)
@@ -46,10 +52,11 @@ struct LoginSignupView : View {
         }.padding()
     }
 }
+
 struct LoginSignupView_Previews : PreviewProvider {
     static var previews : some View {
         NavigationView {
-            LoginSignupView(viewModel: .init(mode: .login))
+            LoginSignupView(viewModel: .init(mode: .login, isPushed: .constant(false)))
                 .preferredColorScheme(.dark)
         }
     }
