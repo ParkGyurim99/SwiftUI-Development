@@ -43,7 +43,7 @@ final class ChallengeListViewModel : ObservableObject {
         // grab the current user id and pass it into a ChallengesService.observeChallenge
         isLoading = true
         
-        userService.currentUser()
+        userService.currentUserPublisher()
             .compactMap { $0?.uid }
             .flatMap { [weak self] userId -> AnyPublisher<[Challenge], IncrementError> in
                 guard let self = self else { return Fail(error : .default()).eraseToAnyPublisher() }

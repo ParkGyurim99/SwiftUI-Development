@@ -40,6 +40,8 @@
 		1A2F07A326E4B0B4006844B0 /* LoginSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F07A226E4B0B4006844B0 /* LoginSignupView.swift */; };
 		1A2F07A526E4B105006844B0 /* LoginSignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F07A426E4B105006844B0 /* LoginSignupViewModel.swift */; };
 		1A2F07A826E4BC0E006844B0 /* TextFieldCustomRoundedStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F07A726E4BC0E006844B0 /* TextFieldCustomRoundedStyle.swift */; };
+		1A2F07AA26E7B5D4006844B0 /* ProgressCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F07A926E7B5D2006844B0 /* ProgressCircleView.swift */; };
+		1A2F07AC26E7B676006844B0 /* ProgressCircleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F07AB26E7B676006844B0 /* ProgressCircleViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,8 @@
 		1A2F07A226E4B0B4006844B0 /* LoginSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignupView.swift; sourceTree = "<group>"; };
 		1A2F07A426E4B105006844B0 /* LoginSignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignupViewModel.swift; sourceTree = "<group>"; };
 		1A2F07A726E4BC0E006844B0 /* TextFieldCustomRoundedStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCustomRoundedStyle.swift; sourceTree = "<group>"; };
+		1A2F07A926E7B5D2006844B0 /* ProgressCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircleView.swift; sourceTree = "<group>"; };
+		1A2F07AB26E7B676006844B0 /* ProgressCircleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircleViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +150,7 @@
 				1A2F079E26E3AF20006844B0 /* SettingsItemViewModel.swift */,
 				1A2F07A026E4AE6D006844B0 /* LandingViewModel.swift */,
 				1A2F07A426E4B105006844B0 /* LoginSignupViewModel.swift */,
+				1A2F07AB26E7B676006844B0 /* ProgressCircleViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				1A2F078C26DE5751006844B0 /* TabContainerView.swift */,
 				1A2F079A26E3AEEF006844B0 /* SettingsView.swift */,
 				1A2F07A226E4B0B4006844B0 /* LoginSignupView.swift */,
+				1A2F07A926E7B5D2006844B0 /* ProgressCircleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -325,6 +331,8 @@
 				1A2F079526E110EF006844B0 /* ChallengeItemViewModel.swift in Sources */,
 				1A2F07A326E4B0B4006844B0 /* LoginSignupView.swift in Sources */,
 				1A2F078F26DE7801006844B0 /* ChallengeListView.swift in Sources */,
+				1A2F07AA26E7B5D4006844B0 /* ProgressCircleView.swift in Sources */,
+				1A2F07AC26E7B676006844B0 /* ProgressCircleViewModel.swift in Sources */,
 				1A2F076826D53768006844B0 /* CreateView.swift in Sources */,
 				1A2F076A26D537AC006844B0 /* DropdownView.swift in Sources */,
 				1A2F078826DD1C05006844B0 /* IncrementError.swift in Sources */,

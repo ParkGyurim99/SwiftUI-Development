@@ -35,7 +35,7 @@ class AppState : ObservableObject {
     
     init(userService : UserServiceProtocol = UserService()) {
         self.userService = userService
-        try? Auth.auth().signOut( )
+        //try? Auth.auth().signOut( )
         
         // observing publisher here
         userService

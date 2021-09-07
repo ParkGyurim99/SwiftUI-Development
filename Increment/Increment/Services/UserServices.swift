@@ -9,17 +9,22 @@ import Combine
 import FirebaseAuth
 
 protocol UserServiceProtocol {
+    var currentUser : User? { get }
     // func that publisher to get the current user, look at firebase and return current user
-    func currentUser() -> AnyPublisher<User?, Never>
+    func currentUserPublisher() -> AnyPublisher<User?, Never>
     
     // sign in the user anonymously
     func signInAnonymously() -> AnyPublisher<User, IncrementError>
     func observeAuthChanges() -> AnyPublisher<User?, Never>
     func linkAccount(email : String, password : String) -> AnyPublisher<Void, IncrementError>
+    func logout() -> AnyPublisher<Void, IncrementError>
+    func login(email : String, password : String) -> AnyPublisher<Void, IncrementError>
 }
 
 final class UserService : UserServiceProtocol {
-    func currentUser() -> AnyPublisher<User?, Never> {
+    let currentUser = Auth.auth().currentUser
+    
+    func currentUserPublisher() -> AnyPublisher<User?, Never> {
         Just(Auth.auth().currentUser).eraseToAnyPublisher() // to type erase it to AnyPublisher
     }
     
@@ -54,6 +59,29 @@ final class UserService : UserServiceProtocol {
                             return promise(.success(()))
                         }
                     }
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func logout() -> AnyPublisher<Void, IncrementError> {
+        return Future<Void, IncrementError> { promise in
+            do {
+                try Auth.auth().signOut()
+                promise(.success(()))
+            } catch {
+                promise(.failure(.default(description: error.localizedDescription)))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func login(email : String, password : String) -> AnyPublisher<Void, IncrementError> {
+        return Future<Void, IncrementError> { promise in
+            Auth.auth().signIn(withEmail: email, password: password) { result, error in
+                if let error = error {
+                    promise(.failure(.default(description: error.localizedDescription)))
+                } else {
+                    promise(.success(()))
                 }
             }
         }.eraseToAnyPublisher()
