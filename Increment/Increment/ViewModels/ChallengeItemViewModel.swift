@@ -7,11 +7,18 @@
 
 import Foundation
 
-struct ChallengeItemViewModel : Hashable {
+struct ChallengeItemViewModel : Identifiable {
     private let challenge : Challenge
     
-    init(_ challenge : Challenge) {
+    var id : String {
+        challenge.id!
+    }
+    
+    private let onDelete : (String) -> Void
+    
+    init(_ challenge : Challenge, onDelete : @escaping (String) -> Void) {
         self.challenge = challenge
+        self.onDelete = onDelete
     }
     
     var progressCircleViewModel : ProgressCircleViewModel {
@@ -46,5 +53,13 @@ struct ChallengeItemViewModel : Hashable {
     
     var dailyIncreaseText : String {
         return "+\(challenge.increase) daily"
+    }
+    
+    func tappedDelete() {
+        // execute callback , will pass challenge's id back to the parent viewmodel (ChallengelistviewModel)
+        // then, call challenge service to delete this challenge.
+        if let id = challenge.id {
+            onDelete(id)
+        }
     }
 }

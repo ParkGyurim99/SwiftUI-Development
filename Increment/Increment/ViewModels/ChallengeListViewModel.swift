@@ -64,7 +64,23 @@ final class ChallengeListViewModel : ObservableObject {
                 self.error = nil
                 self.showingCreateModel = false
                 print(challenges)
-                self.itemViewModels = challenges.map{ .init($0) }
+                self.itemViewModels = challenges.map{
+                    .init($0) { [weak self] id in // onDelete parameter를 trailing closer로 받음. callback function 받음
+                        self?.deleteChallenge(id)
+                    }
+                }
             }.store(in : &cancellables)
+    }
+    
+    private func deleteChallenge(_ challengeId : String) {
+        challengeService.delete(challengeId).sink { completion in
+            switch completion {
+            case let .failure(error) :
+                print(error.localizedDescription)
+            case .finished : break
+            }
+        } receiveValue: { _ in }
+        .store(in : &cancellables)
+
     }
 }

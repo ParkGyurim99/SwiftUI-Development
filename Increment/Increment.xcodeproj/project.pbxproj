@@ -42,6 +42,7 @@
 		1A2F07A826E4BC0E006844B0 /* TextFieldCustomRoundedStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F07A726E4BC0E006844B0 /* TextFieldCustomRoundedStyle.swift */; };
 		1A2F07AA26E7B5D4006844B0 /* ProgressCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F07A926E7B5D2006844B0 /* ProgressCircleView.swift */; };
 		1A2F07AC26E7B676006844B0 /* ProgressCircleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F07AB26E7B676006844B0 /* ProgressCircleViewModel.swift */; };
+		1AA5338B26EA449C00C8147C /* ChallengeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA5338A26EA449C00C8147C /* ChallengeItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		1A2F07A726E4BC0E006844B0 /* TextFieldCustomRoundedStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCustomRoundedStyle.swift; sourceTree = "<group>"; };
 		1A2F07A926E7B5D2006844B0 /* ProgressCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircleView.swift; sourceTree = "<group>"; };
 		1A2F07AB26E7B676006844B0 /* ProgressCircleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircleViewModel.swift; sourceTree = "<group>"; };
+		1AA5338A26EA449C00C8147C /* ChallengeItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 				1A2F079826E29C74006844B0 /* Styles */,
 				1A2F075626D51AEF006844B0 /* LandingView.swift */,
 				1A2F078E26DE7801006844B0 /* ChallengeListView.swift */,
+				1AA5338A26EA449C00C8147C /* ChallengeItemView.swift */,
 				1A2F076726D53768006844B0 /* CreateView.swift */,
 				1A2F076926D537AC006844B0 /* DropdownView.swift */,
 				1A2F076B26D53CB5006844B0 /* RemindView.swift */,
@@ -323,6 +326,7 @@
 				1A2F079326DE78F4006844B0 /* QuerySnapshotPublisher.swift in Sources */,
 				1A2F076626D51EF6006844B0 /* Color+Extension.swift in Sources */,
 				1A2F076F26D53FEC006844B0 /* CreateChallengeViewModel.swift in Sources */,
+				1AA5338B26EA449C00C8147C /* ChallengeItemView.swift in Sources */,
 				1A2F07A126E4AE6D006844B0 /* LandingViewModel.swift in Sources */,
 				1A2F078D26DE5751006844B0 /* TabContainerView.swift in Sources */,
 				1A2F079126DE7811006844B0 /* ChallengeListViewModel.swift in Sources */,
