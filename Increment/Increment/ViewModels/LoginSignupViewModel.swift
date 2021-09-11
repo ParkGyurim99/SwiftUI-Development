@@ -88,6 +88,7 @@ final class LoginSignupViewModel : ObservableObject {
         }
     }
 }
+
 extension LoginSignupViewModel {
     func isValidEmail(_ email : String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Z0-9a-z._%+-]+\\.[A-Za-z]{2,64}" // regular expression
@@ -100,6 +101,7 @@ extension LoginSignupViewModel {
         return password.count > 5
     }
 }
+
 extension LoginSignupViewModel {
     enum Mode {
         case login

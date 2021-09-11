@@ -10,5 +10,4 @@ import Foundation
 final class LandingViewModel : ObservableObject {
     @Published var loginSignupPushed = false
     @Published var createPushed = false
-    
 }

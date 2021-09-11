@@ -16,7 +16,7 @@ final class ChallengeListViewModel : ObservableObject {
     @Published private(set) var itemViewModels : [ChallengeItemViewModel] = []
     @Published private(set) var error : IncrementError?
     @Published private(set) var isLoading : Bool = false
-    @Published var showingCreateModel : Bool = false
+    @Published var showingCreateModal : Bool = false
     
     enum Action {
         case retry
@@ -35,7 +35,7 @@ final class ChallengeListViewModel : ObservableObject {
         case .retry :
             observeChallenges()
         case .create :
-            showingCreateModel = true
+            showingCreateModal = true
         case .timeChange :
             cancellables.removeAll()
             observeChallenges()
@@ -66,7 +66,7 @@ final class ChallengeListViewModel : ObservableObject {
                 guard let self = self else { return }
                 self.isLoading = false
                 self.error = nil
-                self.showingCreateModel = false
+                self.showingCreateModal = false
                 print(challenges)
                 self.itemViewModels = challenges.map{ challenge in
                     .init(

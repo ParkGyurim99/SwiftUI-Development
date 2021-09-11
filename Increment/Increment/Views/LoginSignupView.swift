@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct LoginSignupView : View {
-    @ObservedObject var viewModel : LoginSignupViewModel
+    @StateObject var viewModel : LoginSignupViewModel
     // automatically initialize viewModel when we call this view with parameter viewModel
+    
     var emailTextField : some View {
         TextField(viewModel.emailPlaceholderText, text : $viewModel.emailText)
             .modifier(TextFieldCustomRoundedStyle())
@@ -51,7 +52,12 @@ struct LoginSignupView : View {
             passwordTextField
             actionButton
             Spacer()
-        }.padding()
+        }
+//        .onReceive(viewModel.$isPushed, perform: { isPushed in
+//            //self.isPushed = isPushed
+//            self.isPushed = viewModel.isPushed
+//        })
+        .padding()
     }
 }
 

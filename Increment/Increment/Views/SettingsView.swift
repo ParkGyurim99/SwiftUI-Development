@@ -20,6 +20,7 @@ struct SettingsView : View {
                 }
             }
         }
+        // navigationLink via background : if isActive change, it animated reversely as navigation link animate.. looks nice
         .background(
             NavigationLink(
                 destination: LoginSignupView(viewModel : .init(mode : .signup, isPushed: $viewModel.loginsignupPushed)),

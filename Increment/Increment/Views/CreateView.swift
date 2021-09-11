@@ -62,6 +62,6 @@ struct CreateView: View {
             )
         } 
         .navigationBarTitle("Create")
-        .navigationBarBackButtonHidden(true)
+        //.navigationBarBackButtonHidden(true)
     }
 }

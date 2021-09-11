@@ -26,7 +26,9 @@ struct TabContainerView : View {
     func tabView(for tabItemType : TabItemViewModel.TabItemType) -> some View {
         switch tabItemType {
         case .log :
-            Text("log")
+            NavigationView {
+                LogView()
+            }
         case .challengeList :
             NavigationView {
                 ChallengeListView()

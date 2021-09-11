@@ -44,13 +44,13 @@ struct ChallengeListView : View {
                 Spacer()
             }
         }
-        .sheet(isPresented : $viewModel.showingCreateModel) {
+        .sheet(isPresented : $viewModel.showingCreateModal) {
             NavigationView {
                 CreateView()
                     .preferredColorScheme(isDarkMode ? .dark : .light)
                     .padding(.horizontal, 10)
                     .navigationBarItems(trailing: Button {
-                        viewModel.showingCreateModel = false
+                        viewModel.showingCreateModal = false
                     } label : {
                         Image(systemName : "xmark")
                             .imageScale(.large)
