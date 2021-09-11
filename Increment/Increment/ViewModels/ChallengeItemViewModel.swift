@@ -15,10 +15,16 @@ struct ChallengeItemViewModel : Identifiable {
     }
     
     private let onDelete : (String) -> Void
+    private let onToggleComplete : (String, [Activity]) -> Void
     
-    init(_ challenge : Challenge, onDelete : @escaping (String) -> Void) {
+    init(
+        _ challenge : Challenge,
+        onDelete : @escaping (String) -> Void,
+        onToggleComplete : @escaping (String, [Activity]) -> Void
+    ) {
         self.challenge = challenge
         self.onDelete = onDelete
+        self.onToggleComplete = onToggleComplete
     }
     
     var progressCircleViewModel : ProgressCircleViewModel {
@@ -41,7 +47,7 @@ struct ChallengeItemViewModel : Identifiable {
         return abs(daysFromStart)
     }
     
-    private var isComplete : Bool {
+    var isComplete : Bool {
         return daysFromStart >= challenge.length
     }
     
@@ -55,11 +61,53 @@ struct ChallengeItemViewModel : Identifiable {
         return "+\(challenge.increase) daily"
     }
     
-    func tappedDelete() {
-        // execute callback , will pass challenge's id back to the parent viewmodel (ChallengelistviewModel)
-        // then, call challenge service to delete this challenge.
-        if let id = challenge.id {
-            onDelete(id)
+    let todayTitle = "Today"
+    var todayRepTitle : String {
+        let repNumber = challenge.startAmount + (daysFromStart * challenge.increase)
+        let execercise : String
+
+        if repNumber == 1 {
+            var challengeExecercise = challenge.exercise
+            challengeExecercise.removeLast()
+            execercise = challengeExecercise
+        } else {
+            execercise = challenge.exercise
         }
+        
+        return isComplete ? "Completed" : "\(repNumber) " + execercise
+    }
+    
+    var shouldShowTodayView : Bool { !isComplete }
+    
+    var isDayComplete : Bool {
+        let today = Calendar.current.startOfDay(for: Date())
+        
+        return challenge.activities.first(where: { $0.date == today })?.isComplete == true
+    }
+    
+    func send(action : Action) {
+        guard let id = challenge.id else { return }
+        //challenge.activities[daysFromStart - 1].isComplete = true
+        switch action {
+        case .delete :
+            onDelete(id)
+        case .toggleComplete :
+            let today = Calendar.current.startOfDay(for: Date())
+            let activities = challenge.activities.map { activity -> Activity in
+                if today == activity.date {
+                    return .init(date : today, isComplete : !activity.isComplete)
+                } else {
+                    return activity
+                }
+            }
+            onToggleComplete(id, activities)
+        }
+    }
+}
+
+extension ChallengeItemViewModel {
+    enum Action {
+        case delete
+        case toggleComplete
     }
 }
