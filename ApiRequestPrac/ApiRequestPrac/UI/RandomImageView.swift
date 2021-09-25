@@ -26,10 +26,10 @@ struct RandomImageView : View {
     }
 }
 
-struct RandomImageView_Previews: PreviewProvider {
-    static var previews: some View {
-        let url : URL = URL(string : "https://randomuser.me/api/portraits/men/11.jpg")!
-        
-        RandomImageView(imageURL: url)
-    }
-}
+//struct RandomImageView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let url : URL = URL(string : "https://randomuser.me/api/portraits/men/11.jpg")!
+//        
+//        RandomImageView(imageURL: url)
+//    }
+//}

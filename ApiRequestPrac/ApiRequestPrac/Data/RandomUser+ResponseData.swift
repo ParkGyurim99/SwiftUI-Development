@@ -19,10 +19,6 @@ struct RandomUser : Codable, Identifiable, CustomStringConvertible {
         case photo = "picture" // JSON 파일 상의 이름이 picture 이지만 photo로 사용한다고 명시하는 것
     }
     
-    static func getDummy() -> Self {
-        return RandomUser(name: .getDummy(), photo: .getDummy())
-    }
-    
     var profileImageUrl : URL {
         get {
             URL(string : photo.medium)!
@@ -32,6 +28,11 @@ struct RandomUser : Codable, Identifiable, CustomStringConvertible {
     var description: String {
         return name.description
     }
+
+    //    static func getDummy() -> Self {
+    //        return RandomUser(name: .getDummy(), photo: .getDummy())
+    //    }
+
 }
 
 struct Name : Codable, CustomStringConvertible {
@@ -44,9 +45,9 @@ struct Name : Codable, CustomStringConvertible {
         return "\(title). \(first) \(last)"
     }
     
-    static func getDummy() -> Self {
-        return Name(title: "KING", first: "GYURIM", last: "PARK")
-    }
+//    static func getDummy() -> Self {
+//        return Name(title: "KING", first: "GYURIM", last: "PARK")
+//    }
 }
 
 struct Photo : Codable{
@@ -54,13 +55,13 @@ struct Photo : Codable{
     var medium : String
     var thumbnail : String
     
-    static func getDummy() -> Self {
-        return Photo(
-            large: "https://www.hapskorea.com/wp-content/uploads/2021/03/bigmac-korea.jpg",
-            medium: "https://www.hapskorea.com/wp-content/uploads/2021/03/bigmac-korea.jpg",
-            thumbnail: "https://www.hapskorea.com/wp-content/uploads/2021/03/bigmac-korea.jpg"
-        )
-    }
+//    static func getDummy() -> Self {
+//        return Photo(
+//            large: "https://www.hapskorea.com/wp-content/uploads/2021/03/bigmac-korea.jpg",
+//            medium: "https://www.hapskorea.com/wp-content/uploads/2021/03/bigmac-korea.jpg",
+//            thumbnail: "https://www.hapskorea.com/wp-content/uploads/2021/03/bigmac-korea.jpg"
+//        )
+//    }
 }
 
 struct Info : Codable{

@@ -27,8 +27,8 @@ struct RandomUserRowView : View {
     }
 }
 
-struct RandomUserRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        RandomUserRowView(RandomUser.getDummy())
-    }
-}
+//struct RandomUserRowView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RandomUserRowView(RandomUser.getDummy())
+//    }
+//}

@@ -11,8 +11,24 @@ struct ContentView: View {
     @StateObject var viewModel = RandomUserViewModel()
     
     var body: some View {
-        List(viewModel.randomUsers) { user in
-            RandomUserRowView(user)
+        VStack {
+            Button("Get New Data") {
+                viewModel.fetchRandomUsers()
+            }
+            .frame(height : UIScreen.main.bounds.height * 0.05)
+            .foregroundColor(.black)
+            
+            if #available(iOS 15.0, *) {
+                List(viewModel.randomUsers) { user in
+                    RandomUserRowView(user)
+                }.refreshable { // require iOS 15 or upper
+                    viewModel.fetchRandomUsers()
+                }
+            } else {
+                List(viewModel.randomUsers) { user in
+                    RandomUserRowView(user)
+                }
+            }
         }
         
 //        List(0...100, id : \.self) { index in
@@ -22,8 +38,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
