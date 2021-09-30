@@ -35,7 +35,7 @@ class viewModel : ObservableObject {
             .sink { _ in //completion in
                 //print("datastream done")
             } receiveValue: { receivedValue in
-                print(receivedValue)
+                print(receivedValue.type)
             }
             .store(in: &subscription)
     }
