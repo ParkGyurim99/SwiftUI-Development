@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A572DD9270B39D0009E2465 /* apiTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A572DD8270B39D0009E2465 /* apiTest.swift */; };
 		1A80FB362705A38900A48792 /* MultipartApiTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A80FB352705A38900A48792 /* MultipartApiTestApp.swift */; };
 		1A80FB382705A38900A48792 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A80FB372705A38900A48792 /* ContentView.swift */; };
 		1A80FB3A2705A39300A48792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A80FB392705A39300A48792 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A572DD8270B39D0009E2465 /* apiTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apiTest.swift; sourceTree = "<group>"; };
 		1A80FB322705A38900A48792 /* MultipartApiTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultipartApiTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A80FB352705A38900A48792 /* MultipartApiTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartApiTestApp.swift; sourceTree = "<group>"; };
 		1A80FB372705A38900A48792 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				1A80FB482705A4CD00A48792 /* Post+RequestModel.swift */,
 				1A80FB372705A38900A48792 /* ContentView.swift */,
 				1A80FB462705A42A00A48792 /* ContentViewModel.swift */,
+				1A572DD8270B39D0009E2465 /* apiTest.swift */,
 				1A80FB392705A39300A48792 /* Assets.xcassets */,
 				1A80FB3B2705A39300A48792 /* Preview Content */,
 			);
@@ -154,6 +157,7 @@
 				1A80FB382705A38900A48792 /* ContentView.swift in Sources */,
 				1A80FB492705A4CD00A48792 /* Post+RequestModel.swift in Sources */,
 				1A80FB362705A38900A48792 /* MultipartApiTestApp.swift in Sources */,
+				1A572DD9270B39D0009E2465 /* apiTest.swift in Sources */,
 				1A80FB472705A42A00A48792 /* ContentViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
