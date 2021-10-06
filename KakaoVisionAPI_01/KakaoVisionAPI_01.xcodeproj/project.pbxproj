@@ -1,0 +1,416 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A572DED270DBBA9009E2465 /* KakaoVisionAPI_01App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A572DEC270DBBA9009E2465 /* KakaoVisionAPI_01App.swift */; };
+		1A572DEF270DBBA9009E2465 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A572DEE270DBBA9009E2465 /* ContentView.swift */; };
+		1A572DF1270DBBB0009E2465 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A572DF0270DBBB0009E2465 /* Assets.xcassets */; };
+		1A572DF4270DBBB0009E2465 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A572DF3270DBBB0009E2465 /* Preview Assets.xcassets */; };
+		1A572DFB270DBCAD009E2465 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A572DFA270DBCAD009E2465 /* ViewModel.swift */; };
+		1A572DFE270DBCEB009E2465 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1A572DFD270DBCEB009E2465 /* Alamofire */; };
+		1A572E00270DC6E2009E2465 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A572DFF270DC6E2009E2465 /* Model.swift */; };
+		1A572E02270DD1AE009E2465 /* DetectionResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A572E01270DD1AE009E2465 /* DetectionResultView.swift */; };
+		1A572E05270DD20D009E2465 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1A572E04270DD20D009E2465 /* URLImage */; };
+		1A572E07270DD20D009E2465 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A572E06270DD20D009E2465 /* URLImageStore */; };
+		1A572E09270DE2E4009E2465 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A572E08270DE2E4009E2465 /* ImagePicker.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A572DE9270DBBA9009E2465 /* KakaoVisionAPI_01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KakaoVisionAPI_01.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A572DEC270DBBA9009E2465 /* KakaoVisionAPI_01App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoVisionAPI_01App.swift; sourceTree = "<group>"; };
+		1A572DEE270DBBA9009E2465 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1A572DF0270DBBB0009E2465 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1A572DF3270DBBB0009E2465 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1A572DFA270DBCAD009E2465 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		1A572DFF270DC6E2009E2465 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		1A572E01270DD1AE009E2465 /* DetectionResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectionResultView.swift; sourceTree = "<group>"; };
+		1A572E08270DE2E4009E2465 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A572DE6270DBBA9009E2465 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A572E05270DD20D009E2465 /* URLImage in Frameworks */,
+				1A572E07270DD20D009E2465 /* URLImageStore in Frameworks */,
+				1A572DFE270DBCEB009E2465 /* Alamofire in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A572DE0270DBBA9009E2465 = {
+			isa = PBXGroup;
+			children = (
+				1A572DEB270DBBA9009E2465 /* KakaoVisionAPI_01 */,
+				1A572DEA270DBBA9009E2465 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1A572DEA270DBBA9009E2465 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A572DE9270DBBA9009E2465 /* KakaoVisionAPI_01.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A572DEB270DBBA9009E2465 /* KakaoVisionAPI_01 */ = {
+			isa = PBXGroup;
+			children = (
+				1A572DEC270DBBA9009E2465 /* KakaoVisionAPI_01App.swift */,
+				1A572DEE270DBBA9009E2465 /* ContentView.swift */,
+				1A572DFA270DBCAD009E2465 /* ViewModel.swift */,
+				1A572DFF270DC6E2009E2465 /* Model.swift */,
+				1A572E01270DD1AE009E2465 /* DetectionResultView.swift */,
+				1A572E08270DE2E4009E2465 /* ImagePicker.swift */,
+				1A572DF0270DBBB0009E2465 /* Assets.xcassets */,
+				1A572DF2270DBBB0009E2465 /* Preview Content */,
+			);
+			path = KakaoVisionAPI_01;
+			sourceTree = "<group>";
+		};
+		1A572DF2270DBBB0009E2465 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1A572DF3270DBBB0009E2465 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A572DE8270DBBA9009E2465 /* KakaoVisionAPI_01 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A572DF7270DBBB0009E2465 /* Build configuration list for PBXNativeTarget "KakaoVisionAPI_01" */;
+			buildPhases = (
+				1A572DE5270DBBA9009E2465 /* Sources */,
+				1A572DE6270DBBA9009E2465 /* Frameworks */,
+				1A572DE7270DBBA9009E2465 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KakaoVisionAPI_01;
+			packageProductDependencies = (
+				1A572DFD270DBCEB009E2465 /* Alamofire */,
+				1A572E04270DD20D009E2465 /* URLImage */,
+				1A572E06270DD20D009E2465 /* URLImageStore */,
+			);
+			productName = KakaoVisionAPI_01;
+			productReference = 1A572DE9270DBBA9009E2465 /* KakaoVisionAPI_01.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A572DE1270DBBA9009E2465 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					1A572DE8270DBBA9009E2465 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+				};
+			};
+			buildConfigurationList = 1A572DE4270DBBA9009E2465 /* Build configuration list for PBXProject "KakaoVisionAPI_01" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1A572DE0270DBBA9009E2465;
+			packageReferences = (
+				1A572DFC270DBCEB009E2465 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				1A572E03270DD20D009E2465 /* XCRemoteSwiftPackageReference "url-image" */,
+			);
+			productRefGroup = 1A572DEA270DBBA9009E2465 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A572DE8270DBBA9009E2465 /* KakaoVisionAPI_01 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A572DE7270DBBA9009E2465 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A572DF4270DBBB0009E2465 /* Preview Assets.xcassets in Resources */,
+				1A572DF1270DBBB0009E2465 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A572DE5270DBBA9009E2465 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A572DEF270DBBA9009E2465 /* ContentView.swift in Sources */,
+				1A572E02270DD1AE009E2465 /* DetectionResultView.swift in Sources */,
+				1A572DFB270DBCAD009E2465 /* ViewModel.swift in Sources */,
+				1A572E09270DE2E4009E2465 /* ImagePicker.swift in Sources */,
+				1A572E00270DC6E2009E2465 /* Model.swift in Sources */,
+				1A572DED270DBBA9009E2465 /* KakaoVisionAPI_01App.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1A572DF5270DBBB0009E2465 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1A572DF6270DBBB0009E2465 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1A572DF8270DBBB0009E2465 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"KakaoVisionAPI_01/Preview Content\"";
+				DEVELOPMENT_TEAM = ZKRH5N6RGG;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "personal.parkgyurim.development.KakaoVisionAPI-01";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1A572DF9270DBBB0009E2465 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"KakaoVisionAPI_01/Preview Content\"";
+				DEVELOPMENT_TEAM = ZKRH5N6RGG;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "personal.parkgyurim.development.KakaoVisionAPI-01";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A572DE4270DBBA9009E2465 /* Build configuration list for PBXProject "KakaoVisionAPI_01" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A572DF5270DBBB0009E2465 /* Debug */,
+				1A572DF6270DBBB0009E2465 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A572DF7270DBBB0009E2465 /* Build configuration list for PBXNativeTarget "KakaoVisionAPI_01" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A572DF8270DBBB0009E2465 /* Debug */,
+				1A572DF9270DBBB0009E2465 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1A572DFC270DBCEB009E2465 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		1A572E03270DD20D009E2465 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1A572DFD270DBCEB009E2465 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A572DFC270DBCEB009E2465 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		1A572E04270DD20D009E2465 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A572E03270DD20D009E2465 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+		1A572E06270DD20D009E2465 /* URLImageStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A572E03270DD20D009E2465 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImageStore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 1A572DE1270DBBA9009E2465 /* Project object */;
+}
