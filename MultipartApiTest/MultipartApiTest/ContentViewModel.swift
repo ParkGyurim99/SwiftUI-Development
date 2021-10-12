@@ -13,7 +13,7 @@ final class ContentViewModel : ObservableObject {
     private let url = "http://3.36.233.180:8080/used-posts"
     private let header : HTTPHeaders = [
         "Content-Type": "multipart/form-data",
-        "X-AUTH-TOKEN": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzM3MDg0NzEsImV4cCI6MTYzMzcxMDI3MX0.MAEvIvM_eUvwsPvYTcO2BkBGF_7ngn9WOoFxF-aTFVU"
+        "X-AUTH-TOKEN": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzM3OTUwNjMsImV4cCI6MTYzMzc5Njg2M30.bavOcJ0k4Gts5olro6aVBR_x1o5zj2z5GpjB9TAEJ-M"
     ]
     
     private let file1 = UIImage(named: "testImg")!.pngData()! // Type : Data
