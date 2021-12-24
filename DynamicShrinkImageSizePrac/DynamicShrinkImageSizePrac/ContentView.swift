@@ -20,10 +20,12 @@ struct ItemView : View {
     var body : some View {
         ZStack(alignment: .bottom) {
             VStack {
-                Image("testImg")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.4 + offset.height)
+                if offset.height > -50 {
+                    Image("testImg")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.4 + offset.height)
+                }
                     
                 
                 Spacer()
@@ -47,12 +49,15 @@ struct ItemView : View {
                         print(gesture.translation)
                     }
 
-                    .onEnded { _ in
-//                        if abs(self.offset.width) > 100 {
-//                            // remove the card
-//                        } else {
-                        withAnimation {
-                            self.offset = .zero
+                    .onEnded { gesture in
+                        if gesture.translation.height <= -50 {
+                            withAnimation {
+                                offset.height = -UIScreen.main.bounds.height * 0.4
+                            }
+                        } else {
+                            withAnimation {
+                                self.offset = .zero
+                            }
                         }
 //                        }
                     }
