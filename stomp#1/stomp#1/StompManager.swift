@@ -19,7 +19,7 @@ class StompManager {
             request: NSURLRequest(url: url as URL),
             delegate: self,
             connectionHeaders: [
-                "X-AUTH-TOKEN" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA2MTUxNTIsImV4cCI6MTY0MDYxNjk1Mn0.Xe7dSVcEIdSYlszs39sX2XteFtVeuFIn_QsD5C0j8WI"]
+                "X-AUTH-TOKEN" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA2NjMzOTEsImV4cCI6MTY0MDY2NTE5MX0.40vVvbz95WgznUQ-CCRbuutNCA-uAsyJIGGacP8uxWY"]
         )
     }
     
