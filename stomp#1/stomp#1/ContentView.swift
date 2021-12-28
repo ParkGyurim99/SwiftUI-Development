@@ -109,6 +109,9 @@ struct ContentView: View {
                 Button("Connect") {
                     StompManager.shared.registerSockect()
                 }
+                Button("Send Message") {
+                    StompManager.shared.sendMessage()
+                }
                 Button("Disconnect") {
                     StompManager.shared.disconnect()
                 }

@@ -11,6 +11,16 @@ import StompClientLib
 class StompManager {
     static let shared : StompManager = StompManager()
     private let url = NSURL(string : "ws://3.36.233.180:8080/stomp/chat/websocket")!
+    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA3MDg5MDYsImV4cCI6MTY0MDcxMDcwNn0.yW85yx_Y-W7X9NnRENL2s9uxrzHsj4h7yvyTQXxdNpE"
+    
+    private let payloadObject = [
+        "memberId" : "5",
+        "chatId" : "43",
+        "message" : "STOMP TEST IN iOS",
+        //"image" : "",
+        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA3MDg5MDYsImV4cCI6MTY0MDcxMDcwNn0.yW85yx_Y-W7X9NnRENL2s9uxrzHsj4h7yvyTQXxdNpE"
+    ]
+    
     //var socketClient : StompClientLib? = nil
     var socketClient = StompClientLib()
     
@@ -18,42 +28,36 @@ class StompManager {
         socketClient.openSocketWithURLRequest(
             request: NSURLRequest(url: url as URL),
             delegate: self,
-            connectionHeaders: [
-                "X-AUTH-TOKEN" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA2NjMzOTEsImV4cCI6MTY0MDY2NTE5MX0.40vVvbz95WgznUQ-CCRbuutNCA-uAsyJIGGacP8uxWY"]
+            connectionHeaders: [ "X-AUTH-TOKEN" : accessToken ]
         )
     }
     
+    // Subscribe
     func subscribe() {
-        print("Subscribe Topic")
-        socketClient.subscribe(destination: "/sub/chat/room/71")
+        socketClient.subscribe(destination: "/sub/chat/room/43")
+        print("Subscribe topic - /sub/chat/room/43")
     }
     
+    // Send Message
+    func sendMessage() {
+        socketClient.sendJSONForDict(dict: payloadObject as AnyObject, toDestination: "/pub/chat/message")
+        
+        //socketClient.sendMessage(
+        //    message : payload,
+        //    toDestination: "/sub/chat/room/43",
+        //    withHeaders: [ "X-AUTH-TOKEN" : accessToken ],
+        //    withReceipt: nil
+        //)
+    }
+    
+    // Unsubscribe
     func disconnect() {
         socketClient.disconnect()
     }
 }
 
+// Delegate
 extension StompManager : StompClientLibDelegate {
-//    func stompClient(
-//            client: StompClientLib!,
-//            didReceiveMessageWithJSONBody jsonBody: AnyObject?,
-//            akaStringBody stringBody: String?,
-//            withHeader header: [String : String]?,
-//            withDestination destination: String
-//    ) {
-//        print("Destination : " + destination)
-//        print(jsonBody as Any)
-//
-//        if stringBody == nil {
-//            return
-//        }
-//
-//        guard let data = stringBody!.data(using: .utf8) else {
-//            return
-//        }
-//        print(data)
-//    }
-    
     // didReceiveMessageWithJSONBody ( Message Received via STOMP )
     func stompClient(
             client: StompClientLib!,
@@ -62,9 +66,10 @@ extension StompManager : StompClientLibDelegate {
             withHeader header: [String : String]?,
             withDestination destination: String
         ) {
-        print("Destination : \(destination)")
-        print("JSON Body : \(String(describing: jsonBody))")
-        print("String Body : \(stringBody ?? "nil")")
+            print("DESTINATION : \(destination)")
+            print("HEADER : \(header ?? ["nil":"nil"])")
+            print("JSON BODY : \(String(describing: jsonBody))")
+            //print("String Body : \(stringBody ?? "nil")")
     }
     
     // didReceiveMessageWithJSONBody ( Message Received via STOMP as String )
@@ -74,14 +79,16 @@ extension StompManager : StompClientLibDelegate {
             withHeader header: [String : String]?,
             withDestination destination: String
         ) {
-      print("DESTINATION : \(destination)")
-      print("String JSON BODY : \(String(describing: jsonBody))")
+          print("DESTINATION : \(destination)")
+          print("String JSON BODY : \(String(describing: jsonBody))")
     }
     
+    // Callback : Unsubscribe Topic
     func stompClientDidDisconnect(client: StompClientLib!) {
         print("Stomp socket is disconnected")
     }
     
+    // Callback : Subscribe Topic
     func stompClientDidConnect(client: StompClientLib!) {
         print("Stomp socket is connected")
         subscribe()
