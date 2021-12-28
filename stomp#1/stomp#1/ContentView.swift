@@ -15,6 +15,15 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
+                // Title
+                HStack {
+                    Text("Chatting")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Spacer()
+                    Image(systemName : "bell.fill")
+                }.padding(.horizontal, 20)
+                
                 // Search Bar
                 HStack {
                     Image(systemName: "magnifyingglass")
@@ -37,7 +46,7 @@ struct ContentView: View {
                         ForEach(viewModel.ChatList, id : \.self) { chatroom in
                             NavigationLink(
                                 destination:
-                                    Text("Chatroom \(chatroom.chatId)")
+                                    ChatroomView(viewModel: ChatroomViewModel(chatroom.chatId), with: chatroom.memberTo?.username ?? "Unknown")
                             ) {
                                 HStack {
                                     // Image
@@ -116,8 +125,8 @@ struct ContentView: View {
                     StompManager.shared.disconnect()
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle(Text("Message"))
+            .navigationBarHidden(true)
+            .navigationTitle(Text(""))
         }
     }
 }

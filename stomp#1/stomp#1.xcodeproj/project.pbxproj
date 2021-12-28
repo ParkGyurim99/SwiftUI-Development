@@ -17,6 +17,9 @@
 		1AE27795277AC95A00A28650 /* Chat+ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE27794277AC95A00A28650 /* Chat+ResponseData.swift */; };
 		1AE27798277AE03100A28650 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1AE27797277AE03100A28650 /* URLImage */; };
 		1AE2779A277AE03100A28650 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 1AE27799277AE03100A28650 /* URLImageStore */; };
+		1AE2779C277B77EE00A28650 /* ChatroomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE2779B277B77ED00A28650 /* ChatroomView.swift */; };
+		1AE2779E277B781300A28650 /* ChatroomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE2779D277B781300A28650 /* ChatroomViewModel.swift */; };
+		1AE277A0277B7EBE00A28650 /* ChatContents+ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE2779F277B7EBE00A28650 /* ChatContents+ResponseData.swift */; };
 		36301908676C53272CCD6158 /* Pods_stomp_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0576D5EFD19294D2D1BE1D /* Pods_stomp_1.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +32,9 @@
 		1AE277892779E60E00A28650 /* StompManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompManager.swift; sourceTree = "<group>"; };
 		1AE27792277AC76D00A28650 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		1AE27794277AC95A00A28650 /* Chat+ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+ResponseData.swift"; sourceTree = "<group>"; };
+		1AE2779B277B77ED00A28650 /* ChatroomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatroomView.swift; sourceTree = "<group>"; };
+		1AE2779D277B781300A28650 /* ChatroomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatroomViewModel.swift; sourceTree = "<group>"; };
+		1AE2779F277B7EBE00A28650 /* ChatContents+ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatContents+ResponseData.swift"; sourceTree = "<group>"; };
 		8B3EBBC7C98602D6009BF2BC /* Pods-stomp#1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-stomp#1.debug.xcconfig"; path = "Target Support Files/Pods-stomp#1/Pods-stomp#1.debug.xcconfig"; sourceTree = "<group>"; };
 		EE31F7A6C96396AF143E2060 /* Pods-stomp#1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-stomp#1.release.xcconfig"; path = "Target Support Files/Pods-stomp#1/Pods-stomp#1.release.xcconfig"; sourceTree = "<group>"; };
 		FD0576D5EFD19294D2D1BE1D /* Pods_stomp_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_stomp_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,10 +86,13 @@
 			isa = PBXGroup;
 			children = (
 				1AE2777B2779DDA300A28650 /* stomp_1App.swift */,
-				1AE2777D2779DDA300A28650 /* ContentView.swift */,
 				1AE27794277AC95A00A28650 /* Chat+ResponseData.swift */,
-				1AE27792277AC76D00A28650 /* ContentViewModel.swift */,
+				1AE2779F277B7EBE00A28650 /* ChatContents+ResponseData.swift */,
 				1AE277892779E60E00A28650 /* StompManager.swift */,
+				1AE2777D2779DDA300A28650 /* ContentView.swift */,
+				1AE27792277AC76D00A28650 /* ContentViewModel.swift */,
+				1AE2779B277B77ED00A28650 /* ChatroomView.swift */,
+				1AE2779D277B781300A28650 /* ChatroomViewModel.swift */,
 				1AE2777F2779DDA600A28650 /* Assets.xcassets */,
 				1AE277812779DDA600A28650 /* Preview Content */,
 			);
@@ -229,10 +238,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AE2779E277B781300A28650 /* ChatroomViewModel.swift in Sources */,
 				1AE27793277AC76D00A28650 /* ContentViewModel.swift in Sources */,
 				1AE2777E2779DDA300A28650 /* ContentView.swift in Sources */,
 				1AE2778A2779E60E00A28650 /* StompManager.swift in Sources */,
+				1AE277A0277B7EBE00A28650 /* ChatContents+ResponseData.swift in Sources */,
 				1AE27795277AC95A00A28650 /* Chat+ResponseData.swift in Sources */,
+				1AE2779C277B77EE00A28650 /* ChatroomView.swift in Sources */,
 				1AE2777C2779DDA300A28650 /* stomp_1App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,7 +303,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -346,7 +358,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

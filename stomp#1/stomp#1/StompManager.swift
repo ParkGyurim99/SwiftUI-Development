@@ -11,14 +11,14 @@ import StompClientLib
 class StompManager {
     static let shared : StompManager = StompManager()
     private let url = NSURL(string : "ws://3.36.233.180:8080/stomp/chat/websocket")!
-    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA3MDg5MDYsImV4cCI6MTY0MDcxMDcwNn0.yW85yx_Y-W7X9NnRENL2s9uxrzHsj4h7yvyTQXxdNpE"
+    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA3MTQ2NzUsImV4cCI6MTY0MDcxNjQ3NX0.u3fZka_nN4V-6KLLYCG93rEXiVu61qEzI5GGmtHzGNM"
     
     private let payloadObject = [
         "memberId" : "5",
-        "chatId" : "43",
+        "chatId" : "71",
         "message" : "STOMP TEST IN iOS",
         //"image" : "",
-        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA3MDg5MDYsImV4cCI6MTY0MDcxMDcwNn0.yW85yx_Y-W7X9NnRENL2s9uxrzHsj4h7yvyTQXxdNpE"
+        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA3MTQ2NzUsImV4cCI6MTY0MDcxNjQ3NX0.u3fZka_nN4V-6KLLYCG93rEXiVu61qEzI5GGmtHzGNM"
     ]
     
     //var socketClient : StompClientLib? = nil
