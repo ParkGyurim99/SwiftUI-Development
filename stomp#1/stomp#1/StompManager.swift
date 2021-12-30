@@ -9,21 +9,25 @@ import Foundation
 import StompClientLib
 
 class StompManager {
+    // Singleton Pattern
     static let shared : StompManager = StompManager()
-    private let url = NSURL(string : "ws://3.36.233.180:8080/stomp/chat/websocket")!
-    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA3MTQ2NzUsImV4cCI6MTY0MDcxNjQ3NX0.u3fZka_nN4V-6KLLYCG93rEXiVu61qEzI5GGmtHzGNM"
     
+    private let url = NSURL(string : "ws://3.36.233.180:8080/stomp/chat/websocket")!
+    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA4NzE1MjMsImV4cCI6MTY0MDg3MzMyM30.qQoPFkVFiCgNC4sxi_OPte-rX6gfhf0gOy6-60frBOo"
+    
+    // Publish Payload (Data)
     private let payloadObject = [
         "memberId" : "5",
-        "chatId" : "71",
+        "chatId" : "43",
         "message" : "STOMP TEST IN iOS",
         //"image" : "",
-        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA3MTQ2NzUsImV4cCI6MTY0MDcxNjQ3NX0.u3fZka_nN4V-6KLLYCG93rEXiVu61qEzI5GGmtHzGNM"
+        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA4NzE1MjMsImV4cCI6MTY0MDg3MzMyM30.qQoPFkVFiCgNC4sxi_OPte-rX6gfhf0gOy6-60frBOo"
     ]
     
-    //var socketClient : StompClientLib? = nil
+    // Socket instance
     var socketClient = StompClientLib()
     
+    // Socket Connection
     func registerSockect() {
         socketClient.openSocketWithURLRequest(
             request: NSURLRequest(url: url as URL),
@@ -38,7 +42,7 @@ class StompManager {
         print("Subscribe topic - /sub/chat/room/43")
     }
     
-    // Send Message
+    // Send Message - Publish
     func sendMessage() {
         socketClient.sendJSONForDict(dict: payloadObject as AnyObject, toDestination: "/pub/chat/message")
         
@@ -56,9 +60,10 @@ class StompManager {
     }
 }
 
-// Delegate
+// Delegate - CALLBACK Functions
 extension StompManager : StompClientLibDelegate {
     // didReceiveMessageWithJSONBody ( Message Received via STOMP )
+    // STOMP 통해서 구독중인 채널에서 메시지가 오면 처리함..
     func stompClient(
             client: StompClientLib!,
             didReceiveMessageWithJSONBody jsonBody: AnyObject?,
@@ -83,17 +88,18 @@ extension StompManager : StompClientLibDelegate {
           print("String JSON BODY : \(String(describing: jsonBody))")
     }
     
-    // Callback : Unsubscribe Topic
+    // Unsubscribe Topic
     func stompClientDidDisconnect(client: StompClientLib!) {
         print("Stomp socket is disconnected")
     }
     
-    // Callback : Subscribe Topic
+    // Subscribe Topic
     func stompClientDidConnect(client: StompClientLib!) {
         print("Stomp socket is connected")
         subscribe()
     }
     
+    // Error - disconnect and reconnect socket
     func serverDidSendError(client: StompClientLib!, withErrorMessage description: String, detailedErrorMessage message: String?) {
         print("Error send : " + description)
         
