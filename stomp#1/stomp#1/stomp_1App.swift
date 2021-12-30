@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import URLImageStore
+import URLImage
 
 @main
 struct stomp_1App: App {
+    let urlImageService = URLImageService(fileStore: nil, inMemoryStore: URLImageInMemoryStore())
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.urlImageService, urlImageService)
                 .preferredColorScheme(.light)
         }
     }

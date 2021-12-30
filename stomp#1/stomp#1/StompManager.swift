@@ -13,7 +13,7 @@ class StompManager {
     static let shared : StompManager = StompManager()
     
     private let url = NSURL(string : "ws://3.36.233.180:8080/stomp/chat/websocket")!
-    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA4NzE1MjMsImV4cCI6MTY0MDg3MzMyM30.qQoPFkVFiCgNC4sxi_OPte-rX6gfhf0gOy6-60frBOo"
+    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA4ODU2NDksImV4cCI6MTY0MDg4NzQ0OX0.u7kzIvolxxnxetkjo-Cypy8OGya8GsBrOYfrrDNiPvE"
     
     // Publish Payload (Data)
     private let payloadObject = [
@@ -21,7 +21,7 @@ class StompManager {
         "chatId" : "43",
         "message" : "STOMP TEST IN iOS",
         //"image" : "",
-        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA4NzE1MjMsImV4cCI6MTY0MDg3MzMyM30.qQoPFkVFiCgNC4sxi_OPte-rX6gfhf0gOy6-60frBOo"
+        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA4ODU2NDksImV4cCI6MTY0MDg4NzQ0OX0.u7kzIvolxxnxetkjo-Cypy8OGya8GsBrOYfrrDNiPvE"
     ]
     
     // Socket instance

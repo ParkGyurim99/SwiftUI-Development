@@ -13,7 +13,7 @@ final class ContentViewModel : ObservableObject {
     @Published var ChatList : [Chat] = []
     
     private let url = "http://3.36.233.180:8080/chats"
-    private let token : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA4NzE1MjMsImV4cCI6MTY0MDg3MzMyM30.qQoPFkVFiCgNC4sxi_OPte-rX6gfhf0gOy6-60frBOo"
+    private let token : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA4ODU2NDksImV4cCI6MTY0MDg4NzQ0OX0.u7kzIvolxxnxetkjo-Cypy8OGya8GsBrOYfrrDNiPvE"
     
     private var subscription = Set<AnyCancellable>()
 

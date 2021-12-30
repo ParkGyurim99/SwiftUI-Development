@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct ChatroomView: View {
     @StateObject private var viewModel : ChatroomViewModel
     
     @State var text : String = ""
+    @State var date : String = ""
     
     var userWith : String
     
@@ -22,25 +24,27 @@ struct ChatroomView: View {
     var body: some View {
         VStack {
             ScrollView {
-                LazyVStack {
-                    ForEach(viewModel.MessageList.reversed(), id : \.self) { message in // reversed() -> 최신순
-                        HStack {
-                            if message.member.username != userWith { // 내가 보낸 메시지
-                                Spacer()
-                                Text(message.message.message)
-                                    .padding()
-                                    .background(Color(red: 247/255, green: 247/255, blue: 247/255))
-                                    .cornerRadius(10)
-                            } else { // 상대가 보낸 메시지
-                                Text(message.message.message)
-                                    .padding()
-                                    .background(Color(red: 247/255, green: 247/255, blue: 247/255))
-                                    .cornerRadius(10)
-                                Spacer()
-                            }
-                        }
-                    }
-                } // LazyVStack
+                ScrollViewReader { proxy in
+                    LazyVStack {
+                        ForEach(viewModel.MessageList.reversed(), id : \.self) { message in // reversed() -> 최신순
+                            HStack {
+                                if let user = message.member {
+                                    if user.username == userWith { // 상대방이 보낸 메시지
+                                        MessageBox(message.message)
+                                        Spacer()
+                                    } else { // 내가 보낸 메시지
+                                        Spacer()
+                                        MessageBox(message.message, mine : true)
+                                    }
+                                } else { // Anonymous 익명 메시지
+                                    MessageBox(message.message)
+                                    Spacer()
+                                }
+                            }.id(message.message.messageId)
+                        } // ForEach
+                    } // LazyVStack
+                    .onAppear { proxy.scrollTo(viewModel.lastMessageId) }
+                } // ScrollViewReader
             } // ScrollView
             .padding(.horizontal, 10)
             
@@ -53,10 +57,6 @@ struct ChatroomView: View {
                     .frame(height : UIScreen.main.bounds.height * 0.04)
                     .background(Color.white)
                     .cornerRadius(10)
-//                    .frame(
-//                        width: UIScreen.main.bounds.width * 0.7,
-//                        height : UIScreen.main.bounds.height * 0.05
-//                    )
                 Button {
                     print("Publish message " + text)
                 } label : {
@@ -71,8 +71,6 @@ struct ChatroomView: View {
             .padding()
             .foregroundColor(.gray)
             .background(Color(red: 247/255, green: 247/255, blue: 247/255))
-//            .frame(width : UIScreen.main.bounds.width * 0.95, height : UIScreen.main.bounds.height * 0.05)
-//            .cornerRadius(10)
         } // VStack
         //.edgesIgnoringSafeArea(.bottom)
         .navigationTitle(Text(userWith))
@@ -85,5 +83,45 @@ struct ChatroomView: View {
                     Image(systemName: "ellipsis")
                 }
         )
+    }
+}
+
+struct MessageBox : View {
+    var message : MessageContents
+    var mine : Bool = false
+    
+    init(_ message : MessageContents) {
+        self.message = message
+    }
+    init(_ message : MessageContents, mine : Bool) {
+        self.message = message
+        self.mine = mine
+    }
+    
+    var body : some View {
+        VStack(alignment : mine ? .trailing : .leading, spacing : 3) {
+            VStack(alignment : .trailing) {
+                if message.message != "" {
+                    Text(message.message)
+                }
+                if message.image != "null" {
+                    URLImage(
+                        URL(string : message.image)!
+                    ) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(maxWidth : UIScreen.main.bounds.width * 0.6)
+                    }.cornerRadius(10)
+                }
+            }
+            .padding()
+            .background(Color(red: 247/255, green: 247/255, blue: 247/255))
+            .cornerRadius(10)
+        
+            Text(convertReturnedDateString(message.createdAt))
+                .foregroundColor(.black.opacity(0.7))
+                .font(.system(size : 10))
+        }
     }
 }

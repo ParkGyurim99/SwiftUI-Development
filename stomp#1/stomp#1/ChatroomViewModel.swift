@@ -11,9 +11,10 @@ import Combine
 
 final class ChatroomViewModel : ObservableObject {
     @Published var MessageList : [Message] = []
+    @Published var lastMessageId : Int64 = 0
     
     //private var url : String
-    private let token : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA4NzE1MjMsImV4cCI6MTY0MDg3MzMyM30.qQoPFkVFiCgNC4sxi_OPte-rX6gfhf0gOy6-60frBOo"
+    private let token : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA4ODU2NDksImV4cCI6MTY0MDg4NzQ0OX0.u7kzIvolxxnxetkjo-Cypy8OGya8GsBrOYfrrDNiPvE"
     
     private var subscription = Set<AnyCancellable>()
 
@@ -46,8 +47,9 @@ final class ChatroomViewModel : ObservableObject {
                     print("Get Chat Contents Finished")
                 }
             } receiveValue: { [weak self] (receivedValue : [Message]) in
-                print(receivedValue)
+                //print(receivedValue)
                 self?.MessageList = receivedValue
+                if !receivedValue.isEmpty { self?.lastMessageId = receivedValue[0].message.messageId }
             }.store(in: &subscription)
     }
 }
