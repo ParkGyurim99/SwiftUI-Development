@@ -13,19 +13,17 @@ final class ChatroomViewModel : ObservableObject {
     @Published var MessageList : [Message] = []
     @Published var lastMessageId : Int64 = 0
     
-    //private var url : String
-    private let token : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA4ODU2NDksImV4cCI6MTY0MDg4NzQ0OX0.u7kzIvolxxnxetkjo-Cypy8OGya8GsBrOYfrrDNiPvE"
+    var stompManager : StompManager = StompManager()
+    
+    private let token : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDEwNDE4NDcsImV4cCI6MTY0MTA0MzY0N30.OnrqHrQP5OUzcVqoYdLo7zGtY7K1bFKIBuTi97B2RVc"
     
     private var subscription = Set<AnyCancellable>()
 
     init(_ chatId : Int) {
-        //url = "http://3.36.233.180:8080/chats/\(chatId)/messages?lastMessageId=0"
         getChatContents(chatId)
+        stompManager.registerSockect()
+        stompManager.subscribe(chatId: "\(chatId)")
     }
-    
-//    init(_ chatId : Int, lastMessageId : Int) { // 에전 메시지 조회
-//        url = "http://3.36.233.180:8080/chats/\(chatId)/messages?lastMessageId=\(lastMessageId)"
-//    }
     
     func getChatContents(_ chatId : Int) {
         let header : HTTPHeaders = [ "X-AUTH-TOKEN" : token ]

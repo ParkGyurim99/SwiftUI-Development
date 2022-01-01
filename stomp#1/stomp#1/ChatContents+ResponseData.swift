@@ -41,7 +41,8 @@ func convertReturnedDateString(_ timeString : String) -> String {
     let timetravel = korNow.timeIntervalSince(str.toDate() ?? Date())
     
     if Int(timetravel) < 60 {
-        return "\(Int(timetravel)) Seconds ago"
+        //return "\(Int(timetravel)) Seconds ago"
+        return "Just now"
     } else if (60 <= Int(timetravel)) && (Int(timetravel) < 3600) {
         return "\(Int(timetravel) / 60) Minutes ago"
     } else if (3600 <= Int(timetravel)) && (Int(timetravel) < 86400) {

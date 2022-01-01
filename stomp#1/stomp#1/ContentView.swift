@@ -10,10 +10,14 @@ import Alamofire
 import URLImage
 
 // 채팅방이 생성되고 채팅이 보내지지 않은 채팅방,, 좀비 채팅방 처리 ? 백 or 프론트
-// 익명채팅간에 수신자 발신자
+// 익명 채팅에서 수신자 발신자 구분
+// image 에 null 보냈을때 자동으로 채워지는 이미지링크.
 
 struct ContentView: View {
     @StateObject private var viewModel = ContentViewModel()
+    
+    @State var chatId : String = ""
+    @State var message : String = ""
     
     var body: some View {
         NavigationView {
@@ -25,7 +29,8 @@ struct ContentView: View {
                         .fontWeight(.bold)
                     Spacer()
                     Image(systemName : "bell.fill")
-                }.padding(.horizontal, 20)
+                }//.padding(.horizontal, 20)
+                .padding(20)
                 
                 // Search Bar
                 HStack {
@@ -47,14 +52,17 @@ struct ContentView: View {
                 ScrollView {
                     LazyVStack {
                         ForEach(viewModel.ChatList, id : \.self) { chatroom in
-                            if chatroom.message != nil {
+                            if chatroom.message != nil { // zombie chat room
                                 
                                 NavigationLink(
                                     destination:
-                                        ChatroomView(viewModel: ChatroomViewModel(chatroom.chatId), with: chatroom.memberTo?.username ?? "Anonymous")
+                                        ChatroomView(
+                                            viewModel: ChatroomViewModel(chatroom.chatId),
+                                            with: chatroom.memberTo?.username ?? "Anonymous"
+                                        )
                                 ) {
                                     HStack {
-                                        // Image
+                                        // 1. Profile Image
                                         URLImage(
                                             URL(string : chatroom.memberTo?.profileImage ?? "https://www.gravatar.com/avatar/3b37be7c3ac00a1237fe8d4252fd4540.jpg?size=240&d=https%3A%2F%2Fwww.artstation.com%2Fassets%2Fdefault_avatar.jpg")!
                                         ) { image in
@@ -70,17 +78,20 @@ struct ContentView: View {
                                         .shadow(radius : 1)
                                         .padding(.horizontal, 5)
                                         
-                                        // Text
+                                        // 2. Text Area
                                         VStack(alignment : .leading, spacing : 5) {
                                             Text(chatroom.memberTo?.username ?? "Anonymous")
-                                                .font(.system(size: 16, weight : .bold))
+                                                .font(.system(size: 18, weight : .bold))
                                                 .foregroundColor(.black)
-                                            Spacer()
-                                            Text(chatroom.message?.message ?? "Unknown")
-                                                .font(.system(size: 13, weight : .bold))
-                                                .foregroundColor(.gray)
+                                            
+                                            if let msg = chatroom.message {
+                                                Text(msg.message.isEmpty ? "📷 Image" : msg.message)
+                                                    .font(.system(size: 13, weight : .bold))
+                                                    .foregroundColor(.gray)
+                                            }
+                                            
                                             Text(convertReturnedDateString(chatroom.message?.createdAt ?? "2021-10-01 00:00:00"))
-                                                .font(.system(size: 13))
+                                                .font(.system(size: 12))
                                                 .foregroundColor(.gray)
                                         }
                                         .padding(5)
@@ -88,7 +99,7 @@ struct ContentView: View {
                                         
                                         Spacer()
                                         
-                                        // PostImage
+                                        // 3. PostImage
                                         URLImage(
                                             URL(string : chatroom.post.image)!
                                         ) { image in
@@ -101,7 +112,6 @@ struct ContentView: View {
                                             height: UIScreen.main.bounds.width * 0.2
                                         )
                                         .cornerRadius(20)
-                                        //.shadow(radius : 1)
                                     }
                                     .padding(10)
                                     .frame(width : UIScreen.main.bounds.width * 0.95)
@@ -110,27 +120,39 @@ struct ContentView: View {
                                     .shadow(radius: 1)
                                     .padding(.horizontal, 10)
                                     .padding(.vertical, 3)
-                                }//.buttonStyle(.plain)
-                                
-                            }
-                        } // Foreach
+                                }
+                            } // if
+                        } // ForEach
                     } // LazyVStack
                 } // ScrollView
                 
                 // Socket Test
-                Spacer()
                 Divider()
-                Text("Socket")
-                    .bold()
-                Button("Connect") {
-                    StompManager.shared.registerSockect()
-                }
-                Button("Send Message") {
-                    StompManager.shared.sendMessage()
-                }
-                Button("Disconnect") {
-                    StompManager.shared.disconnect()
-                }
+                VStack {
+                    Text("Socket")
+                        .bold()
+                    Button("Connect") {
+                        StompManager.shared.registerSockect()
+                    }
+                    
+                    HStack {
+                        TextField("chat ID", text: $chatId)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Button("Subscribe") {
+                            StompManager.shared.subscribe(chatId: chatId)
+                        }
+                    }
+                    HStack {
+                        TextField("Message", text: $message)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Button("Send Message") {
+                            StompManager.shared.sendMessage(message : message)
+                        }
+                    }
+                    Button("Disconnect") {
+                        StompManager.shared.disconnect()
+                    }
+                }.padding(.horizontal, 20)
             }
             .navigationBarHidden(true)
             .navigationTitle(Text(""))

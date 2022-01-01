@@ -44,9 +44,14 @@ struct ChatroomView: View {
                         } // ForEach
                     } // LazyVStack
                     .onAppear { proxy.scrollTo(viewModel.lastMessageId) }
+                    .onChange(of: viewModel.lastMessageId) { _ in
+                        withAnimation {
+                            proxy.scrollTo(viewModel.lastMessageId)
+                        }
+                    }
                 } // ScrollViewReader
             } // ScrollView
-            .padding(.horizontal, 10)
+            //.padding(.horizontal, 10)
             
             // Text Bar
             HStack {
@@ -59,6 +64,28 @@ struct ChatroomView: View {
                     .cornerRadius(10)
                 Button {
                     print("Publish message " + text)
+                    viewModel.stompManager.sendMessage(message: text)
+                    
+                    let newMsg = Message(
+                        member:
+                            Sender(
+                                memberId: 5,
+                                username: "test",
+                                description: "test",
+                                profileImage: ""
+                            ),
+                        message:
+                            MessageContents(
+                                messageId: viewModel.lastMessageId + 1,
+                                message: text,
+                                image: "null",
+                                createdAt: "\(Date(timeIntervalSinceNow: 32400))"
+                            )
+                    )
+                    //viewModel.MessageList.append(newMsg)
+                    viewModel.lastMessageId += 1
+                    viewModel.MessageList.insert(newMsg, at: viewModel.MessageList.startIndex)
+                    text = ""
                 } label : {
                     Image(systemName : "arrow.up")
                         .padding(10)
@@ -86,6 +113,7 @@ struct ChatroomView: View {
     }
 }
 
+// Each line of Message
 struct MessageBox : View {
     var message : MessageContents
     var mine : Bool = false
@@ -122,6 +150,6 @@ struct MessageBox : View {
             Text(convertReturnedDateString(message.createdAt))
                 .foregroundColor(.black.opacity(0.7))
                 .font(.system(size : 10))
-        }
+        }.padding(.horizontal, 10)
     }
 }

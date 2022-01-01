@@ -13,15 +13,15 @@ class StompManager {
     static let shared : StompManager = StompManager()
     
     private let url = NSURL(string : "ws://3.36.233.180:8080/stomp/chat/websocket")!
-    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA4ODU2NDksImV4cCI6MTY0MDg4NzQ0OX0.u7kzIvolxxnxetkjo-Cypy8OGya8GsBrOYfrrDNiPvE"
+    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDEwNDE4NDcsImV4cCI6MTY0MTA0MzY0N30.OnrqHrQP5OUzcVqoYdLo7zGtY7K1bFKIBuTi97B2RVc"
     
     // Publish Payload (Data)
-    private let payloadObject = [
+    private var payloadObject = [
         "memberId" : "5",
-        "chatId" : "43",
-        "message" : "STOMP TEST IN iOS",
-        //"image" : "",
-        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDA4ODU2NDksImV4cCI6MTY0MDg4NzQ0OX0.u7kzIvolxxnxetkjo-Cypy8OGya8GsBrOYfrrDNiPvE"
+        "chatId" : "",
+        "message" : "null",
+        //"image" : "null",
+        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDEwNDE4NDcsImV4cCI6MTY0MTA0MzY0N30.OnrqHrQP5OUzcVqoYdLo7zGtY7K1bFKIBuTi97B2RVc"
     ]
     
     // Socket instance
@@ -37,13 +37,17 @@ class StompManager {
     }
     
     // Subscribe
-    func subscribe() {
-        socketClient.subscribe(destination: "/sub/chat/room/43")
-        print("Subscribe topic - /sub/chat/room/43")
+    func subscribe(chatId : String) {
+        socketClient.subscribe(destination: "/sub/chat/room/"  + chatId)
+        print("Subscribe topic - /sub/chat/room/" + chatId)
+        payloadObject["chatId"] = chatId
     }
     
     // Send Message - Publish
-    func sendMessage() {
+    func sendMessage(message : String) {
+        payloadObject["message"] = message
+        //payloadObject["image"] = "null"
+        
         socketClient.sendJSONForDict(dict: payloadObject as AnyObject, toDestination: "/pub/chat/message")
         
         //socketClient.sendMessage(
@@ -96,7 +100,9 @@ extension StompManager : StompClientLibDelegate {
     // Subscribe Topic
     func stompClientDidConnect(client: StompClientLib!) {
         print("Stomp socket is connected")
-        subscribe()
+        
+        //subscribe()
+        // -> register 랑 subscribe 분리
     }
     
     // Error - disconnect and reconnect socket
