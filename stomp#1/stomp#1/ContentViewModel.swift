@@ -12,15 +12,11 @@ import SwiftUI
 
 final class ContentViewModel : ObservableObject {
     @Published var ChatList : [Chat] = []
-    var stompManagers : [Int : StompManager] = [:]
-    
-//    var stompManager1 : StompManager = StompManager()
-//    var stompManager2 : StompManager = StompManager()
     
     private var subscription = Set<AnyCancellable>()
     
     private let url = "http://3.36.233.180:8080/chats"
-    private let token : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjIzODAwLCJleHAiOjE2NDEyMjU2MDB9.M9tbDDdckxpOTntaD_GZDcLZFEKzSPws_rujXaWvivY"
+    private let token : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjI3OTk3LCJleHAiOjE2NDEyMjk3OTd9.OTKZA1SWtcSGUV6ughhfGgTiJfRS2vOLn8IwRLvnQy0"
 
     init() {
         getChats()
@@ -47,21 +43,7 @@ final class ContentViewModel : ObservableObject {
             } receiveValue: { [weak self] receivedValue in
                 //print(receivedValue[0])
                 self?.ChatList = receivedValue
-                //self?.stompClientLink()
                 //print(self?.ChatList)
             }.store(in: &subscription)
-    }
-    
-    func stompClientLink() {
-        print("stomp link _ \(ChatList.count)")
-        
-        for chat in ChatList {
-            let stompClient = StompManager()
-            
-            stompClient.registerSockect()
-            //stompClient.subscribe(chatId: "\(chat.chatId)")
-            //stompManagers.append([chat.chatId : stompClient])
-            stompManagers[chat.chatId] = stompClient
-        }
     }
 }

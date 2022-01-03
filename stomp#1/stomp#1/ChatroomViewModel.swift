@@ -14,19 +14,20 @@ final class ChatroomViewModel : ObservableObject {
     @Published var MessageList : [Message] = []
     @Published var lastMessageId : Int64 = 0
     
-    var stompManager : StompManager = StompManager()
+    var stompManager : StompManager //= StompManager(40) //TEMP
     
     let chatId : Int
     
-    private let token : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjIzODAwLCJleHAiOjE2NDEyMjU2MDB9.M9tbDDdckxpOTntaD_GZDcLZFEKzSPws_rujXaWvivY"
+    private let token : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjI3OTk3LCJleHAiOjE2NDEyMjk3OTd9.OTKZA1SWtcSGUV6ughhfGgTiJfRS2vOLn8IwRLvnQy0"
     
     private var subscription = Set<AnyCancellable>()
 
     init(_ chatId : Int) {
         self.chatId = chatId
         //getChatContents(chatId)
-        stompManager.registerSockect()
-        stompManager.subscribe(chatId: "\(chatId)")
+        stompManager = StompManager(chatId)
+        //stompManager.registerSockect()
+        //stompManager.subscribe(chatId: "\(chatId)")
     }
     
     func getChatContents(_ chatId : Int) {

@@ -9,12 +9,14 @@ import Foundation
 import StompClientLib
 
 class StompManager {
+    let chatId : Int
+    
     // Singleton Pattern
-    static let shared : StompManager = StompManager()
+    static let shared : StompManager = StompManager(40) // TEMP
 
     //private let url = NSURL(string : "ws://3.36.233.180:8080/stomp/chat/websocket")!
     private let url = URL(string: "ws://3.36.233.180:8080/stomp/chat/websocket")!
-    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjIzODAwLCJleHAiOjE2NDEyMjU2MDB9.M9tbDDdckxpOTntaD_GZDcLZFEKzSPws_rujXaWvivY"
+    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjI3OTk3LCJleHAiOjE2NDEyMjk3OTd9.OTKZA1SWtcSGUV6ughhfGgTiJfRS2vOLn8IwRLvnQy0"
     
     // Publish Payload (Data)
     private var payloadObject = [
@@ -22,36 +24,42 @@ class StompManager {
         "chatId" : "",
         "message" : "null",
         //"image" : "null",
-        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjIzODAwLCJleHAiOjE2NDEyMjU2MDB9.M9tbDDdckxpOTntaD_GZDcLZFEKzSPws_rujXaWvivY"
+        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjI3OTk3LCJleHAiOjE2NDEyMjk3OTd9.OTKZA1SWtcSGUV6ughhfGgTiJfRS2vOLn8IwRLvnQy0"
     ]
     
     // Socket instance
     var socketClient = StompClientLib()
+    
+    init(_ chatRoomNumber : Int) {
+        chatId = chatRoomNumber
+        registerSockect()
+    }
     
     // Socket Connection
     func registerSockect() {
         socketClient.openSocketWithURLRequest(
             request: NSURLRequest(url: url), // as URL),
             delegate: self,
-            connectionHeaders: [ "X-AUTH-TOKEN" : accessToken ]
+            connectionHeaders: [ "X-AUTH-TOKEN" : accessToken ] // , "heart-beat": "0,10000"
         )
     }
     
     // Subscribe
-    func subscribe(chatId : String) {
+    //func subscribe(chatId : String) {
+    func subscribe() {
         //socketClient.subscribe(destination: "/sub/chat/room/"  + chatId)
         
-        let destination : String = "/sub/chat/room/"  + chatId
+        let destination : String = "/sub/chat/room/\(chatId)"//  + chatId
         let ack = "ack_\(destination)" // It can be any unique string
         let subsId = "subscription_\(destination)" // It can be any unique string
         let header = ["destination": destination, "ack": ack, "id": subsId]
 
         socketClient.subscribeWithHeader(destination: destination, withHeader: header)
-        print("Subscribe topic - /sub/chat/room/" + chatId)
+        print("Subscribe topic - /sub/chat/room/\(chatId)")// + chatId)
         print("-- Subscribe with header : ")
         print(header)
         
-        payloadObject["chatId"] = chatId
+        payloadObject["chatId"] = "\(chatId)"
     }
     
     // Send Message - Publish
@@ -97,14 +105,14 @@ extension StompManager : StompClientLibDelegate {
     
     // Unsubscribe Topic
     func stompClientDidDisconnect(client: StompClientLib!) {
-        print("Stomp socket is disconnected")
+        print("Stomp socket \(chatId) is disconnected")
     }
     
     // Subscribe Topic
     func stompClientDidConnect(client: StompClientLib!) {
-        print("Stomp socket is connected")
-        
-        //subscribe()
+        print("Stomp socket \(chatId) is connected")
+    
+        subscribe()
         // -> register 랑 subscribe 분리
     }
     
