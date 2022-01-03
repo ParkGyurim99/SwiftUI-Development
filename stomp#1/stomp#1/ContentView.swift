@@ -12,8 +12,13 @@ import URLImage
 struct ContentView: View {
     @StateObject private var viewModel = ContentViewModel()
     
-    @State var chatId : String = ""
+    @State var chatId : String = "40"
+    @State var chatId2 : String = "43"
     @State var message : String = ""
+    @State var message2 : String = ""
+    
+    var stompManager1 : StompManager = StompManager()
+    var stompManager2 : StompManager = StompManager()
     
     var body: some View {
         NavigationView {
@@ -44,6 +49,7 @@ struct ContentView: View {
                 .cornerRadius(15)
                 
                 // Chat list
+                /*
                 ScrollView {
                     LazyVStack {
                         ForEach(viewModel.ChatList, id : \.self) { chatroom in
@@ -120,34 +126,71 @@ struct ContentView: View {
                         } // ForEach
                     } // LazyVStack
                 } // ScrollView
+                */
                 
                 // Socket Test
-//                Divider()
-//                VStack {
-//                    Text("Socket")
-//                        .bold()
-//                    Button("Connect") {
-//                        StompManager.shared.registerSockect()
-//                    }
-//
-//                    HStack {
-//                        TextField("chat ID", text: $chatId)
-//                            .textFieldStyle(RoundedBorderTextFieldStyle())
-//                        Button("Subscribe") {
-//                            StompManager.shared.subscribe(chatId: chatId)
-//                        }
-//                    }
-//                    HStack {
-//                        TextField("Message", text: $message)
-//                            .textFieldStyle(RoundedBorderTextFieldStyle())
-//                        Button("Send Message") {
-//                            StompManager.shared.sendMessage(message : message)
-//                        }
-//                    }
-//                    Button("Disconnect") {
-//                        StompManager.shared.disconnect()
-//                    }
-//                }.padding(.horizontal, 20)
+                Spacer()
+                Divider()
+                VStack {
+                    Text("Socket - 1")
+                        .bold()
+                    Button("Connect") {
+                        //StompManager.shared.registerSockect()
+                        stompManager1.registerSockect()
+                    }
+
+                    HStack {
+                        TextField("chat ID", text: $chatId)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Button("Subscribe") {
+                            //StompManager.shared.subscribe(chatId: chatId)
+                            stompManager1.subscribe(chatId: chatId)
+                        }
+                    }
+                    HStack {
+                        TextField("Message", text: $message)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Button("Send Message") {
+                            //StompManager.shared.sendMessage(message : message)
+                            stompManager1.sendMessage(message: message)
+                        }
+                    }
+                    Button("Disconnect") {
+                        //StompManager.shared.disconnect()
+                        stompManager1.disconnect()
+                    }
+                }.padding(.horizontal, 20)
+                Spacer()
+                Divider()
+                VStack {
+                    Text("Socket - 2")
+                        .bold()
+                    Button("Connect") {
+                        //StompManager.shared.registerSockect()
+                        stompManager2.registerSockect()
+                    }
+
+                    HStack {
+                        TextField("chat ID", text: $chatId)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Button("Subscribe") {
+                            //StompManager.shared.subscribe(chatId: chatId)
+                            stompManager2.subscribe(chatId: chatId2)
+                        }
+                    }
+                    HStack {
+                        TextField("Message", text: $message)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Button("Send Message") {
+                            //StompManager.shared.sendMessage(message : message)
+                            stompManager2.sendMessage(message: message2)
+                        }
+                    }
+                    Button("Disconnect") {
+                        //StompManager.shared.disconnect()
+                        stompManager2.disconnect()
+                    }
+                }.padding(.horizontal, 20)
             }
             .navigationBarHidden(true)
             .navigationTitle(Text(""))

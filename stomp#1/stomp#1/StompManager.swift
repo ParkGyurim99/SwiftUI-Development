@@ -10,11 +10,11 @@ import StompClientLib
 
 class StompManager {
     // Singleton Pattern
-    //static let shared : StompManager = StompManager()
+    static let shared : StompManager = StompManager()
 
     //private let url = NSURL(string : "ws://3.36.233.180:8080/stomp/chat/websocket")!
     private let url = URL(string: "ws://3.36.233.180:8080/stomp/chat/websocket")!
-    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjAwNTY2LCJleHAiOjE2NDEyMDIzNjZ9.lGXqNUHg6pKm74h5hWQ6bItYoCWDSu8Y596dxKXDEbk"
+    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjE3MDI4LCJleHAiOjE2NDEyMTg4Mjh9.891b6zlKqWzcvZ2I07li0bd8V3qYKdg5f9YFYDwKT_g"
     
     // Publish Payload (Data)
     private var payloadObject = [
@@ -22,7 +22,7 @@ class StompManager {
         "chatId" : "",
         "message" : "null",
         //"image" : "null",
-        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjAwNTY2LCJleHAiOjE2NDEyMDIzNjZ9.lGXqNUHg6pKm74h5hWQ6bItYoCWDSu8Y596dxKXDEbk"
+        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjE3MDI4LCJleHAiOjE2NDEyMTg4Mjh9.891b6zlKqWzcvZ2I07li0bd8V3qYKdg5f9YFYDwKT_g"
     ]
     
     // Socket instance
@@ -39,8 +39,17 @@ class StompManager {
     
     // Subscribe
     func subscribe(chatId : String) {
-        socketClient.subscribe(destination: "/sub/chat/room/"  + chatId)
+        //socketClient.subscribe(destination: "/sub/chat/room/"  + chatId)
+        
+        let destination : String = "/sub/chat/room/"  + chatId
+        let ack = "ack_\(destination)" // It can be any unique string
+        let subsId = "subscription_\(destination)" // It can be any unique string
+        let header = ["destination": destination, "ack": ack, "id": subsId]
+
+        socketClient.subscribeWithHeader(destination: destination, withHeader: header)
         print("Subscribe topic - /sub/chat/room/" + chatId)
+        print("-- Subscribe with header : ")
+        print(header)
         
         payloadObject["chatId"] = chatId
     }
