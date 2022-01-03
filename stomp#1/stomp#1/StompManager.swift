@@ -10,10 +10,11 @@ import StompClientLib
 
 class StompManager {
     // Singleton Pattern
-    static let shared : StompManager = StompManager()
-    
-    private let url = NSURL(string : "ws://3.36.233.180:8080/stomp/chat/websocket")!
-    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDEwNDE4NDcsImV4cCI6MTY0MTA0MzY0N30.OnrqHrQP5OUzcVqoYdLo7zGtY7K1bFKIBuTi97B2RVc"
+    //static let shared : StompManager = StompManager()
+
+    //private let url = NSURL(string : "ws://3.36.233.180:8080/stomp/chat/websocket")!
+    private let url = URL(string: "ws://3.36.233.180:8080/stomp/chat/websocket")!
+    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjAwNTY2LCJleHAiOjE2NDEyMDIzNjZ9.lGXqNUHg6pKm74h5hWQ6bItYoCWDSu8Y596dxKXDEbk"
     
     // Publish Payload (Data)
     private var payloadObject = [
@@ -21,7 +22,7 @@ class StompManager {
         "chatId" : "",
         "message" : "null",
         //"image" : "null",
-        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDEwNDE4NDcsImV4cCI6MTY0MTA0MzY0N30.OnrqHrQP5OUzcVqoYdLo7zGtY7K1bFKIBuTi97B2RVc"
+        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjAwNTY2LCJleHAiOjE2NDEyMDIzNjZ9.lGXqNUHg6pKm74h5hWQ6bItYoCWDSu8Y596dxKXDEbk"
     ]
     
     // Socket instance
@@ -30,7 +31,7 @@ class StompManager {
     // Socket Connection
     func registerSockect() {
         socketClient.openSocketWithURLRequest(
-            request: NSURLRequest(url: url as URL),
+            request: NSURLRequest(url: url), // as URL),
             delegate: self,
             connectionHeaders: [ "X-AUTH-TOKEN" : accessToken ]
         )
@@ -40,6 +41,7 @@ class StompManager {
     func subscribe(chatId : String) {
         socketClient.subscribe(destination: "/sub/chat/room/"  + chatId)
         print("Subscribe topic - /sub/chat/room/" + chatId)
+        
         payloadObject["chatId"] = chatId
     }
     
@@ -49,13 +51,6 @@ class StompManager {
         //payloadObject["image"] = "null"
         
         socketClient.sendJSONForDict(dict: payloadObject as AnyObject, toDestination: "/pub/chat/message")
-        
-        //socketClient.sendMessage(
-        //    message : payload,
-        //    toDestination: "/sub/chat/room/43",
-        //    withHeaders: [ "X-AUTH-TOKEN" : accessToken ],
-        //    withReceipt: nil
-        //)
     }
     
     // Unsubscribe
@@ -67,7 +62,6 @@ class StompManager {
 // Delegate - CALLBACK Functions
 extension StompManager : StompClientLibDelegate {
     // didReceiveMessageWithJSONBody ( Message Received via STOMP )
-    // STOMP 통해서 구독중인 채널에서 메시지가 오면 처리함..
     func stompClient(
             client: StompClientLib!,
             didReceiveMessageWithJSONBody jsonBody: AnyObject?,

@@ -43,7 +43,10 @@ struct ChatroomView: View {
                             }.id(message.message.messageId)
                         } // ForEach
                     } // LazyVStack
-                    .onAppear { proxy.scrollTo(viewModel.lastMessageId) }
+                    .onAppear {
+                        viewModel.getChatContents(viewModel.chatId)
+                        proxy.scrollTo(viewModel.lastMessageId)
+                    }
                     .onChange(of: viewModel.lastMessageId) { _ in
                         withAnimation {
                             proxy.scrollTo(viewModel.lastMessageId)

@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 import Combine
+import SwiftUI
 
 final class ChatroomViewModel : ObservableObject {
     @Published var MessageList : [Message] = []
@@ -15,12 +16,15 @@ final class ChatroomViewModel : ObservableObject {
     
     var stompManager : StompManager = StompManager()
     
-    private let token : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDEwNDE4NDcsImV4cCI6MTY0MTA0MzY0N30.OnrqHrQP5OUzcVqoYdLo7zGtY7K1bFKIBuTi97B2RVc"
+    let chatId : Int
+    
+    private let token : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjAwNTY2LCJleHAiOjE2NDEyMDIzNjZ9.lGXqNUHg6pKm74h5hWQ6bItYoCWDSu8Y596dxKXDEbk"
     
     private var subscription = Set<AnyCancellable>()
 
     init(_ chatId : Int) {
-        getChatContents(chatId)
+        self.chatId = chatId
+        //getChatContents(chatId)
         stompManager.registerSockect()
         stompManager.subscribe(chatId: "\(chatId)")
     }

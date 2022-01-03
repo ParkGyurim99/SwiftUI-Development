@@ -9,10 +9,6 @@ import SwiftUI
 import Alamofire
 import URLImage
 
-// 채팅방이 생성되고 채팅이 보내지지 않은 채팅방,, 좀비 채팅방 처리 ? 백 or 프론트
-// 익명 채팅에서 수신자 발신자 구분
-// image 에 null 보냈을때 자동으로 채워지는 이미지링크.
-
 struct ContentView: View {
     @StateObject private var viewModel = ContentViewModel()
     
@@ -29,8 +25,7 @@ struct ContentView: View {
                         .fontWeight(.bold)
                     Spacer()
                     Image(systemName : "bell.fill")
-                }//.padding(.horizontal, 20)
-                .padding(20)
+                }.padding(20)
                 
                 // Search Bar
                 HStack {
@@ -127,32 +122,32 @@ struct ContentView: View {
                 } // ScrollView
                 
                 // Socket Test
-                Divider()
-                VStack {
-                    Text("Socket")
-                        .bold()
-                    Button("Connect") {
-                        StompManager.shared.registerSockect()
-                    }
-                    
-                    HStack {
-                        TextField("chat ID", text: $chatId)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        Button("Subscribe") {
-                            StompManager.shared.subscribe(chatId: chatId)
-                        }
-                    }
-                    HStack {
-                        TextField("Message", text: $message)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        Button("Send Message") {
-                            StompManager.shared.sendMessage(message : message)
-                        }
-                    }
-                    Button("Disconnect") {
-                        StompManager.shared.disconnect()
-                    }
-                }.padding(.horizontal, 20)
+//                Divider()
+//                VStack {
+//                    Text("Socket")
+//                        .bold()
+//                    Button("Connect") {
+//                        StompManager.shared.registerSockect()
+//                    }
+//
+//                    HStack {
+//                        TextField("chat ID", text: $chatId)
+//                            .textFieldStyle(RoundedBorderTextFieldStyle())
+//                        Button("Subscribe") {
+//                            StompManager.shared.subscribe(chatId: chatId)
+//                        }
+//                    }
+//                    HStack {
+//                        TextField("Message", text: $message)
+//                            .textFieldStyle(RoundedBorderTextFieldStyle())
+//                        Button("Send Message") {
+//                            StompManager.shared.sendMessage(message : message)
+//                        }
+//                    }
+//                    Button("Disconnect") {
+//                        StompManager.shared.disconnect()
+//                    }
+//                }.padding(.horizontal, 20)
             }
             .navigationBarHidden(true)
             .navigationTitle(Text(""))
