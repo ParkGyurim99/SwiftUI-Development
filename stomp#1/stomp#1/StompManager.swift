@@ -14,7 +14,7 @@ class StompManager {
 
     //private let url = NSURL(string : "ws://3.36.233.180:8080/stomp/chat/websocket")!
     private let url = URL(string: "ws://3.36.233.180:8080/stomp/chat/websocket")!
-    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjE3MDI4LCJleHAiOjE2NDEyMTg4Mjh9.891b6zlKqWzcvZ2I07li0bd8V3qYKdg5f9YFYDwKT_g"
+    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjIzODAwLCJleHAiOjE2NDEyMjU2MDB9.M9tbDDdckxpOTntaD_GZDcLZFEKzSPws_rujXaWvivY"
     
     // Publish Payload (Data)
     private var payloadObject = [
@@ -22,7 +22,7 @@ class StompManager {
         "chatId" : "",
         "message" : "null",
         //"image" : "null",
-        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjE3MDI4LCJleHAiOjE2NDEyMTg4Mjh9.891b6zlKqWzcvZ2I07li0bd8V3qYKdg5f9YFYDwKT_g"
+        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjIzODAwLCJleHAiOjE2NDEyMjU2MDB9.M9tbDDdckxpOTntaD_GZDcLZFEKzSPws_rujXaWvivY"
     ]
     
     // Socket instance

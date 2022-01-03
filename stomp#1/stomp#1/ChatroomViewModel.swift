@@ -18,7 +18,7 @@ final class ChatroomViewModel : ObservableObject {
     
     let chatId : Int
     
-    private let token : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjE3MDI4LCJleHAiOjE2NDEyMTg4Mjh9.891b6zlKqWzcvZ2I07li0bd8V3qYKdg5f9YFYDwKT_g"
+    private let token : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjIzODAwLCJleHAiOjE2NDEyMjU2MDB9.M9tbDDdckxpOTntaD_GZDcLZFEKzSPws_rujXaWvivY"
     
     private var subscription = Set<AnyCancellable>()
 
