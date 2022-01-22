@@ -13,21 +13,16 @@ import SwiftUI
 final class ChatroomViewModel : ObservableObject {
     @Published var MessageList : [Message] = []
     @Published var lastMessageId : Int64 = 0
-    
-    var stompManager : StompManager //= StompManager(40) //TEMP
-    
-    let chatId : Int
-    
-    private let token : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjI3OTk3LCJleHAiOjE2NDEyMjk3OTd9.OTKZA1SWtcSGUV6ughhfGgTiJfRS2vOLn8IwRLvnQy0"
-    
     private var subscription = Set<AnyCancellable>()
-
-    init(_ chatId : Int) {
+    var stompManager : StompManager
+    let chatId : Int
+    let token : String
+    
+    init(_ chatId : Int, token : String) {
         self.chatId = chatId
-        //getChatContents(chatId)
-        stompManager = StompManager(chatId)
-        //stompManager.registerSockect()
-        //stompManager.subscribe(chatId: "\(chatId)")
+        self.token = token
+        
+        stompManager = StompManager(chatId, token: token)
     }
     
     func getChatContents(_ chatId : Int) {

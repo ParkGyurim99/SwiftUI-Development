@@ -12,11 +12,11 @@ class StompManager {
     let chatId : Int
     
     // Singleton Pattern
-    static let shared : StompManager = StompManager(40) // TEMP
+    //static let shared : StompManager = StompManager(40) // TEMP
 
     //private let url = NSURL(string : "ws://3.36.233.180:8080/stomp/chat/websocket")!
     private let url = URL(string: "ws://3.36.233.180:8080/stomp/chat/websocket")!
-    private let accessToken : String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjI3OTk3LCJleHAiOjE2NDEyMjk3OTd9.OTKZA1SWtcSGUV6ughhfGgTiJfRS2vOLn8IwRLvnQy0"
+    private let accessToken : String
     
     // Publish Payload (Data)
     private var payloadObject = [
@@ -24,14 +24,15 @@ class StompManager {
         "chatId" : "",
         "message" : "null",
         //"image" : "null",
-        "accessToken" :  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMjI3OTk3LCJleHAiOjE2NDEyMjk3OTd9.OTKZA1SWtcSGUV6ughhfGgTiJfRS2vOLn8IwRLvnQy0"
+        "accessToken" : "accessToken"  //"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjQxMzY2NDQwLCJleHAiOjE2NDEzNjgyNDB9.jCKBJNQWFc3yOKwSKrmpc9qEt9ynsZyuiD-3CYZZKn8"
     ]
     
     // Socket instance
     var socketClient = StompClientLib()
     
-    init(_ chatRoomNumber : Int) {
+    init(_ chatRoomNumber : Int, token : String) {
         chatId = chatRoomNumber
+        accessToken = token
         registerSockect()
     }
     
@@ -66,6 +67,7 @@ class StompManager {
     func sendMessage(message : String) {
         payloadObject["message"] = message
         //payloadObject["image"] = "null"
+        payloadObject["accessToken"] = accessToken
         
         socketClient.sendJSONForDict(dict: payloadObject as AnyObject, toDestination: "/pub/chat/message")
     }

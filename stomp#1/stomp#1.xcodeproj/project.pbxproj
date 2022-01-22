@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AB1853A278DAFF600764165 /* SignIn+ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB18539278DAFF600764165 /* SignIn+ResponseData.swift */; };
 		1AE2777C2779DDA300A28650 /* stomp_1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE2777B2779DDA300A28650 /* stomp_1App.swift */; };
 		1AE2777E2779DDA300A28650 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE2777D2779DDA300A28650 /* ContentView.swift */; };
 		1AE277802779DDA600A28650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AE2777F2779DDA600A28650 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1AB18539278DAFF600764165 /* SignIn+ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignIn+ResponseData.swift"; sourceTree = "<group>"; };
 		1AE277782779DDA300A28650 /* stomp#1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "stomp#1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AE2777B2779DDA300A28650 /* stomp_1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stomp_1App.swift; sourceTree = "<group>"; };
 		1AE2777D2779DDA300A28650 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,6 +66,34 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		1A74AEAE279045A600F97046 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1AE27792277AC76D00A28650 /* ContentViewModel.swift */,
+				1AE2779D277B781300A28650 /* ChatroomViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1A74AEAF279045B600F97046 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1AE27794277AC95A00A28650 /* Chat+ResponseData.swift */,
+				1AE2779F277B7EBE00A28650 /* ChatContents+ResponseData.swift */,
+				1AB18539278DAFF600764165 /* SignIn+ResponseData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1A74AEB0279045CB00F97046 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1AE2777D2779DDA300A28650 /* ContentView.swift */,
+				1AE2779B277B77ED00A28650 /* ChatroomView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		1AE2776F2779DDA300A28650 = {
 			isa = PBXGroup;
 			children = (
@@ -86,13 +116,10 @@
 			isa = PBXGroup;
 			children = (
 				1AE2777B2779DDA300A28650 /* stomp_1App.swift */,
-				1AE27794277AC95A00A28650 /* Chat+ResponseData.swift */,
-				1AE2779F277B7EBE00A28650 /* ChatContents+ResponseData.swift */,
 				1AE277892779E60E00A28650 /* StompManager.swift */,
-				1AE2777D2779DDA300A28650 /* ContentView.swift */,
-				1AE27792277AC76D00A28650 /* ContentViewModel.swift */,
-				1AE2779B277B77ED00A28650 /* ChatroomView.swift */,
-				1AE2779D277B781300A28650 /* ChatroomViewModel.swift */,
+				1A74AEAF279045B600F97046 /* Models */,
+				1A74AEB0279045CB00F97046 /* Views */,
+				1A74AEAE279045A600F97046 /* ViewModels */,
 				1AE2777F2779DDA600A28650 /* Assets.xcassets */,
 				1AE277812779DDA600A28650 /* Preview Content */,
 			);
@@ -244,6 +271,7 @@
 				1AE2778A2779E60E00A28650 /* StompManager.swift in Sources */,
 				1AE277A0277B7EBE00A28650 /* ChatContents+ResponseData.swift in Sources */,
 				1AE27795277AC95A00A28650 /* Chat+ResponseData.swift in Sources */,
+				1AB1853A278DAFF600764165 /* SignIn+ResponseData.swift in Sources */,
 				1AE2779C277B77EE00A28650 /* ChatroomView.swift in Sources */,
 				1AE2777C2779DDA300A28650 /* stomp_1App.swift in Sources */,
 			);
