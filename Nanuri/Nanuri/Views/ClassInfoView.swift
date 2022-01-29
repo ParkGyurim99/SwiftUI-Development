@@ -56,13 +56,12 @@ struct ClassInfoView: View {
     
     var body: some View {
         VStack {
-//            Image("testImg")
-//                .resizable()
-//                .aspectRatio(contentMode: .fill)
-            Color.systemDefaultGray
+            Image("testImg")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+//            Color.systemDefaultGray
                 .frame(width: UIScreen.main.bounds.width,
                        height: UIScreen.main.bounds.height * 0.45)
-                .overlay { Text("[사진]") }
             
             Title
             MemberInfo

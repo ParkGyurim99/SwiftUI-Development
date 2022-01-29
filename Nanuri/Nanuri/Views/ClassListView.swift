@@ -64,6 +64,7 @@ struct ClassListView: View {
                         searchingText = ""
                     } label : {
                         Text("취소")
+                            .fontWeight(.semibold)
                     }
                 }.padding(5)
                 .padding(.horizontal, 10)
@@ -78,28 +79,62 @@ struct ClassListView: View {
             }) {
                 //ScrollViewReader { proxy in
                 LazyVStack {
+                    Button {
+                        
+                    } label : {
+                        HStack(spacing : 3) {
+                            Spacer()
+                            Image(systemName : "arrow.up.arrow.down")
+                            Text("정렬").fontWeight(.semibold)
+                        }.foregroundColor(.black)
+                        .font(.system(size : 11))
+                        .padding(.horizontal)
+                    }
                     ForEach(0..<20, id : \.self) { i in
                         NavigationLink(destination: ClassInfoView()) {
-                            HStack {
-                                Color.systemDefaultGray.frame(width: 100, height: 80)
+                            ZStack {
+                                Image("testImg")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .overlay {
+                                        //Color.black.opacity(0.3)
+                                        LinearGradient(
+                                            colors: [.black.opacity(0.01), .black.opacity(0.7)],
+                                            startPoint: .top,
+                                            endPoint: .bottom
+                                        )
+                                    }
                                 
-                                VStack(alignment : .leading, spacing : 10) {
-                                    Text("Class #\(i)")
-                                        .font(.title3)
-                                        .fontWeight(.semibold)
+                                VStack {
+                                    HStack {
+                                        Text(i % 2 == 0 ? "모집완료" : "모집중")
+                                            .font(.footnote)
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.white)
+                                            .padding(5)
+                                            .background(i % 2 == 0 ? Color.red.opacity(0.7) : Color.green.opacity(0.7))
+                                            .cornerRadius(20)
+                                        Spacer()
+                                    }
                                     
-//                                    추가 기능 : 당근 마켓처럼 인근 동네까지 볼 수 있게
-//                                    Text("[##동]")
-//                                        .foregroundColor(.gray)
-//                                        .font(.caption)
-                                    
-                                    Text("Class Description")
-                                }.foregroundColor(.black)
-                                Spacer()
-                            }.frame(width: UIScreen.main.bounds.width * 0.9)
+                                    Spacer()
+                                    HStack {
+                                        Spacer()
+                                        Text("[Class Description]")
+                                    }
+                                    HStack {
+                                        Spacer()
+                                        Text("[Class #\(i)]")
+                                            .font(.system(size: 45, weight : .semibold))
+                                            .lineLimit(1)
+                                            .minimumScaleFactor(0.4)
+                                    }
+                                }.foregroundColor(.white)
+                                .frame(width :UIScreen.main.bounds.width * 0.85, height : UIScreen.main.bounds.height * 0.26)
+                            }.frame(width: UIScreen.main.bounds.width * 0.95, height : UIScreen.main.bounds.height * 0.3)
+                            .cornerRadius(20)
+                            .padding(5)
                         }
-                        Color.systemDefaultGray
-                            .frame(width: UIScreen.main.bounds.width * 0.9, height: 2)
                     }
                 }
                 //}
