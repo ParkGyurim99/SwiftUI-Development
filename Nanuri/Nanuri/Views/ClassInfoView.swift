@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct ClassInfoView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @State var seeMore : Bool = false
+    @State var viewOffset : CGFloat = 0
+    @State var isImageTap : Bool = false
     
     var Title : some View {
         HStack {
@@ -59,9 +63,42 @@ struct ClassInfoView: View {
             Image("testImg")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-//            Color.systemDefaultGray
-                .frame(width: UIScreen.main.bounds.width,
-                       height: UIScreen.main.bounds.height * 0.45)
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.45)
+                .overlay {
+                    VStack {
+                        Spacer().frame(height : UIScreen.main.bounds.height * 0.04)
+                        HStack {
+                            Spacer()
+                            Button {
+                                presentationMode.wrappedValue.dismiss()
+                            } label : {
+                                Image(systemName: "xmark")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(.white)
+                                    .padding(7)
+                                    .background(Color.systemDefaultGray)
+                                    .clipShape(Circle())
+                                    .opacity(0.5)
+                            }.padding()
+                        }
+                        Spacer()
+                    }
+                }.onTapGesture { isImageTap = true }
+                .fullScreenCover(isPresented: $isImageTap) {
+                    Image("testImg")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: UIScreen.main.bounds.width)
+                        .gesture(
+                            DragGesture()
+                                .onEnded { gesture in
+                                    if gesture.translation.height > 70 {
+                                        isImageTap = false
+                                    }
+                                }
+                        )
+                }
+            
             
             Title
             MemberInfo
@@ -99,10 +136,24 @@ struct ClassInfoView: View {
                     .background(Color.blue)
                     .cornerRadius(20)
             }
-        }.edgesIgnoringSafeArea(.top)
+        }.offset(y : viewOffset)
+        .edgesIgnoringSafeArea(.top)
         .navigationBarTitleDisplayMode(.inline)
-        //.navigationTitle(Text("[Class Name]"))
-        //.toolbar { Button { } label : { } }
+        .gesture(
+            DragGesture()
+                .onChanged { gesture in
+                    if 0 < gesture.translation.height && gesture.translation.height < 50 {
+                        withAnimation(.spring()) { viewOffset = gesture.translation.height }
+                    }
+                }
+                .onEnded { gesture in
+                    if gesture.translation.height > 70 {
+                        withAnimation(.spring()) { presentationMode.wrappedValue.dismiss() }
+                    } else {
+                        withAnimation(.spring())  { viewOffset = 0 }
+                    }
+                }
+        )
     }
 }
 

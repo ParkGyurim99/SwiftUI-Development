@@ -15,6 +15,8 @@ struct ClassListView: View {
     
     @State var isSearching : Bool = false
     @State var searchingText : String = ""
+    @State var selectedClassId = 0
+    @State var detailViewShow : Bool = false
     
     init(locationButtonClicked : Binding<Bool>, selectedDistrict : Binding<String>, selectedTab : Binding<Int>) {
         _locationButton = locationButtonClicked
@@ -37,16 +39,16 @@ struct ClassListView: View {
                         .fontWeight(.semibold)
                 }
                 Spacer()
+                NavigationLink {
+                    Text("클래스 개설 페이지 ")
+                } label : {
+                    Image(systemName: "plus")
+                        .foregroundColor(.black)
+                }
                 Button {
                     withAnimation { isSearching.toggle() }
                 } label : {
                     Image(systemName : "magnifyingglass")
-                        .foregroundColor(.black)
-                }
-                Button {
-                    
-                } label : {
-                    Image(systemName : "ellipsis")
                         .foregroundColor(.black)
                 }
             }.padding(.horizontal, 20)
@@ -91,13 +93,15 @@ struct ClassListView: View {
                         .padding(.horizontal)
                     }
                     ForEach(0..<20, id : \.self) { i in
-                        NavigationLink(destination: ClassInfoView()) {
+                        //NavigationLink(destination: ClassInfoView()) {
+                        Button {
+                            detailViewShow = true
+                        } label : {
                             ZStack {
                                 Image("testImg")
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .overlay {
-                                        //Color.black.opacity(0.3)
                                         LinearGradient(
                                             colors: [.black.opacity(0.01), .black.opacity(0.7)],
                                             startPoint: .top,
@@ -141,5 +145,6 @@ struct ClassListView: View {
             }
         }.padding(.top)
         .navigationBarHidden(true)
+        .fullScreenCover(isPresented: $detailViewShow) { ClassInfoView() }
     }
 }
