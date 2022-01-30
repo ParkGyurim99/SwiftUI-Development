@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("District") var selectedDistrict = "District #1"
+    
     @State var isLocationBtnClicked : Bool = false
-    @State var selectedDistrict : String = "District #1"
+    //@State var selectedDistrict : String = "District #1"
     @State var selectedTab : Int = 0
     
-    let districtList : [String] = ["District #1", "District #2", "District #3", "District #4",
-                                   "District #5", "District #6", "District #7", "District #8",
-                                   "District #9", "District #10", "District #11", "District #12"]
     var body: some View {
         NavigationView {
             ZStack {
                 VStack(spacing : 0) {
                     TabView(selection : $selectedTab.animation(.spring())) {
-                        ClassListView(locationButtonClicked: $isLocationBtnClicked,
+                        LessonListView(locationButtonClicked: $isLocationBtnClicked,
                                       selectedDistrict: $selectedDistrict,
                                       selectedTab: $selectedTab)
                                         .tag(0)
@@ -45,7 +44,7 @@ struct ContentView: View {
                             VStack(spacing : 10) {
                                 Image(systemName: "list.dash")
                                     .font(.system(size: 20))
-                                Text("Class")
+                                Text("클래스")
                                     .font(.caption)
                                     .fontWeight(.semibold)
                             }
@@ -58,7 +57,7 @@ struct ContentView: View {
                             VStack(spacing : 5) {
                                 Image(systemName: "person.circle")
                                     .font(.system(size: 20))
-                                Text("My Page")
+                                Text("마이 페이지")
                                     .font(.caption)
                                     .fontWeight(.semibold)
                             }

@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import URLImage
+import URLImageStore
 
 @main
 struct NanuriApp: App {
+    let urlImageService = URLImageService(fileStore: nil, inMemoryStore: URLImageInMemoryStore())
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.urlImageService, urlImageService)
                 .preferredColorScheme(.light)
         }
     }
