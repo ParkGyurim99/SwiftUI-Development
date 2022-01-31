@@ -27,6 +27,10 @@
 		1A50674927A6E1AE00D215AF /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A50674827A6E1AE00D215AF /* URLImageStore */; };
 		1A50674C27A6ED2900D215AF /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50674B27A6ED2900D215AF /* PhotoPicker.swift */; };
 		1A50674E27A6EE1D00D215AF /* LessonCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50674D27A6EE1C00D215AF /* LessonCreateViewModel.swift */; };
+		1A50675027A709BC00D215AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A50674F27A709BC00D215AF /* GoogleService-Info.plist */; };
+		1A7F243327A8055B00C20F26 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F243227A8055B00C20F26 /* MyPageViewModel.swift */; };
+		1A7F243527A831BE00C20F26 /* LessonInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F243427A831BE00C20F26 /* LessonInfoViewModel.swift */; };
+		308EC39D055DA14CADDFE650 /* Pods_Nanuri.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48250DD62AA88D447B2E79D0 /* Pods_Nanuri.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +65,12 @@
 		1A50674327A6DEDB00D215AF /* LessonCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCreateView.swift; sourceTree = "<group>"; };
 		1A50674B27A6ED2900D215AF /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		1A50674D27A6EE1C00D215AF /* LessonCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCreateViewModel.swift; sourceTree = "<group>"; };
+		1A50674F27A709BC00D215AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1A7F243227A8055B00C20F26 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
+		1A7F243427A831BE00C20F26 /* LessonInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonInfoViewModel.swift; sourceTree = "<group>"; };
+		48250DD62AA88D447B2E79D0 /* Pods_Nanuri.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nanuri.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E41246325191EFB35B4B5D0 /* Pods-Nanuri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nanuri.release.xcconfig"; path = "Target Support Files/Pods-Nanuri/Pods-Nanuri.release.xcconfig"; sourceTree = "<group>"; };
+		9E9E74D8B018F552DD8C15BA /* Pods-Nanuri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nanuri.debug.xcconfig"; path = "Target Support Files/Pods-Nanuri/Pods-Nanuri.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +82,7 @@
 				1A42CA0D27A4199500ACAEF6 /* SwiftUIPullToRefresh in Frameworks */,
 				1A50674727A6E1AE00D215AF /* URLImage in Frameworks */,
 				1A50672727A6C85E00D215AF /* Alamofire in Frameworks */,
+				308EC39D055DA14CADDFE650 /* Pods_Nanuri.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +94,8 @@
 			children = (
 				1A42C9EC27A3CBED00ACAEF6 /* Nanuri */,
 				1A42C9EB27A3CBED00ACAEF6 /* Products */,
+				426D22574031D2E3E27C6016 /* Pods */,
+				E7F53B00C7A17F8A9F812F8C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +110,7 @@
 		1A42C9EC27A3CBED00ACAEF6 /* Nanuri */ = {
 			isa = PBXGroup;
 			children = (
+				1A50674F27A709BC00D215AF /* GoogleService-Info.plist */,
 				1A50673E27A6CED700D215AF /* Info.plist */,
 				1A42C9ED27A3CBED00ACAEF6 /* NanuriApp.swift */,
 				1A42CA0627A3DD2A00ACAEF6 /* Extension */,
@@ -123,9 +137,9 @@
 				1A50674A27A6ED1400D215AF /* Components */,
 				1A42C9EF27A3CBED00ACAEF6 /* ContentView.swift */,
 				1A42CA0127A3CD6300ACAEF6 /* LessonListView.swift */,
-				1A42C9FF27A3CD5D00ACAEF6 /* MyPageView.swift */,
 				1A42CA0E27A429F500ACAEF6 /* LessonInfoView.swift */,
 				1A50674327A6DEDB00D215AF /* LessonCreateView.swift */,
+				1A42C9FF27A3CD5D00ACAEF6 /* MyPageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -154,6 +168,8 @@
 			children = (
 				1A50672C27A6C9D500D215AF /* LessonListViewModel.swift */,
 				1A50674D27A6EE1C00D215AF /* LessonCreateViewModel.swift */,
+				1A7F243427A831BE00C20F26 /* LessonInfoViewModel.swift */,
+				1A7F243227A8055B00C20F26 /* MyPageViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -166,6 +182,23 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		426D22574031D2E3E27C6016 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9E9E74D8B018F552DD8C15BA /* Pods-Nanuri.debug.xcconfig */,
+				6E41246325191EFB35B4B5D0 /* Pods-Nanuri.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E7F53B00C7A17F8A9F812F8C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				48250DD62AA88D447B2E79D0 /* Pods_Nanuri.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -173,10 +206,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A42C9F827A3CBEE00ACAEF6 /* Build configuration list for PBXNativeTarget "Nanuri" */;
 			buildPhases = (
+				6F677C21C5BFA30A77A524DF /* [CP] Check Pods Manifest.lock */,
 				1A42C9E627A3CBED00ACAEF6 /* Sources */,
 				1A42C9E727A3CBED00ACAEF6 /* Frameworks */,
 				1A42C9E827A3CBED00ACAEF6 /* Resources */,
 				1A50673D27A6CE5E00D215AF /* Embed App Extensions */,
+				CF535FD6E1E8CBBD6161CA78 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -238,18 +273,63 @@
 			files = (
 				1A42C9F527A3CBEE00ACAEF6 /* Preview Assets.xcassets in Resources */,
 				1A42C9F227A3CBEE00ACAEF6 /* Assets.xcassets in Resources */,
+				1A50675027A709BC00D215AF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6F677C21C5BFA30A77A524DF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Nanuri-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF535FD6E1E8CBBD6161CA78 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nanuri/Pods-Nanuri-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nanuri/Pods-Nanuri-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nanuri/Pods-Nanuri-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1A42C9E627A3CBED00ACAEF6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A7F243527A831BE00C20F26 /* LessonInfoViewModel.swift in Sources */,
 				1A42CA0827A3DD3600ACAEF6 /* Color+Extension.swift in Sources */,
 				1A50672D27A6C9D500D215AF /* LessonListViewModel.swift in Sources */,
+				1A7F243327A8055B00C20F26 /* MyPageViewModel.swift in Sources */,
 				1A50674E27A6EE1D00D215AF /* LessonCreateViewModel.swift in Sources */,
 				1A42CA0F27A429F500ACAEF6 /* LessonInfoView.swift in Sources */,
 				1A50674227A6DD1000D215AF /* LessonModel.swift in Sources */,
@@ -390,6 +470,7 @@
 		};
 		1A42C9F927A3CBEE00ACAEF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E9E74D8B018F552DD8C15BA /* Pods-Nanuri.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -403,8 +484,10 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -420,6 +503,7 @@
 		};
 		1A42C9FA27A3CBEE00ACAEF6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E41246325191EFB35B4B5D0 /* Pods-Nanuri.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -433,8 +517,10 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

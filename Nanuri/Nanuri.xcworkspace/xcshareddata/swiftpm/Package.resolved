@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
+        "state": {
+          "branch": null,
+          "revision": "d120af1e8638c7da36c8481fd61a66c0c08dc4fc",
+          "version": "5.4.4"
+        }
+      },
+      {
+        "package": "KakaoOpenSDK",
+        "repositoryURL": "https://github.com/kakao/kakao-ios-sdk",
+        "state": {
+          "branch": "master",
+          "revision": "8790f04c5b286ca92ac8e3133fe28b1d37a76f5b",
+          "version": null
+        }
+      },
+      {
+        "package": "SwiftUIPullToRefresh",
+        "repositoryURL": "https://github.com/globulus/swiftui-pull-to-refresh",
+        "state": {
+          "branch": null,
+          "revision": "5a1e0f8f239381df7e75a63e6d01e42633d0903f",
+          "version": "1.1.5"
+        }
+      },
+      {
+        "package": "URLImage",
+        "repositoryURL": "https://github.com/dmytro-anokhin/url-image",
+        "state": {
+          "branch": null,
+          "revision": "4042f955f1fdff00ced85545e1eecdbf969b5cd0",
+          "version": "3.1.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

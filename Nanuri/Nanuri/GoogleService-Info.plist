@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1037408649020-bjnn5rv32farg88nod3io3g64v066q4j.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1037408649020-bjnn5rv32farg88nod3io3g64v066q4j</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBmMCmRqTynpztvariFNqFNhcNgUQWC4W0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1037408649020</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>personal.parkgyurim.development.Nanuri</string>
+	<key>PROJECT_ID</key>
+	<string>nanuri-2abfb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nanuri-2abfb.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1037408649020:ios:0825cffa5f9a379f0ca839</string>
+</dict>
+</plist>

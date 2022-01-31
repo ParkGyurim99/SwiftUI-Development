@@ -27,7 +27,7 @@ struct LessonCreateView: View {
                     .frame(width : 65, height : 65)
                     .background(Color.systemDefaultGray)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                }
+                }.disabled(viewModel.selectedImages.count == 4)
                 
                 ForEach(viewModel.selectedImages.indices, id : \.self) { index in
                     Image(uiImage: viewModel.selectedImages[index])
@@ -61,12 +61,8 @@ struct LessonCreateView: View {
                 .padding()
                 .frame(width: UIScreen.main.bounds.width * 0.95, height: 50)
             Divider().padding(.horizontal)
-            TextField("카테고리", text : $viewModel.categoryText)
-                .padding()
-                .frame(width: UIScreen.main.bounds.width * 0.95, height: 50)
-            Divider().padding(.horizontal)
             HStack {
-                TextField("클래스 장소", text : $viewModel.locationText)
+                TextField("카테고리", text : $viewModel.categoryText)
                     .padding()
                     .frame(width: UIScreen.main.bounds.width * 0.6, height: 50)
                 Spacer()
@@ -76,9 +72,46 @@ struct LessonCreateView: View {
                     .frame(width: UIScreen.main.bounds.width * 0.3, height: 50)
             }.frame(maxWidth: UIScreen.main.bounds.width * 0.95)
             Divider().padding(.horizontal)
-            TextField("내용", text : $viewModel.contentText)
+            NavigationLink {
+                VStack {
+                    Text("선택 지역 : " + viewModel.locationText)
+                        .fontWeight(.semibold)
+                        //.frame(maxWidth : .infinity, alignment: .leading)
+                        .padding()
+                    
+                    List {
+                        ForEach(districtList, id : \.self) { district in
+                            HStack {
+                                Text(district)
+                                    .fontWeight(.semibold)
+                                Spacer()
+                                if district == viewModel.locationText {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(.blue)
+                                }
+                            }.padding(.horizontal)
+                            .onTapGesture { viewModel.locationText = district }
+                        }
+                    }.listStyle(.plain)
+                }.navigationTitle(Text("클래스 지역 선택 (ㄱ-ㅎ)"))
+                .navigationBarTitleDisplayMode(.inline)
+            } label : {
+                HStack {
+                    Text("클래스 지역 : " + viewModel.locationText)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                }.foregroundColor(.black)
                 .padding()
-                .frame(width: UIScreen.main.bounds.width * 0.95, height: 50)
+                .frame(width: UIScreen.main.bounds.width * 0.95, height: 50, alignment: .leading)
+            }
+            Divider().padding(.horizontal)
+            Text("내용")
+                .foregroundColor(.gray)
+                .frame(maxWidth: UIScreen.main.bounds.width * 0.9, alignment: .leading)
+                .font(.caption)
+            TextEditor(text : $viewModel.contentText)
+                .frame(width: UIScreen.main.bounds.width * 0.9, height : UIScreen.main.bounds.height * 0.3)
+                .padding(.horizontal)
         }
     }
     
@@ -101,9 +134,10 @@ struct LessonCreateView: View {
     
     var body: some View {
         VStack {
-            ImageArea
-            InputField
-            Spacer()
+            ScrollView {
+                ImageArea
+                InputField
+            }
             BottomToolbar
         }.navigationBarTitleDisplayMode(.inline)
         .navigationTitle(Text("클래스 생성"))

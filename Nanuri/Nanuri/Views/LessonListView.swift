@@ -88,21 +88,33 @@ struct LessonListView: View {
 //                    }
 //                }
                 LazyVStack {
+                    HStack {
+                        Spacer()
                     Button {
-                        
+                        viewModel.isSortBtnClicked = true
                     } label : {
                         HStack(spacing : 3) {
-                            Spacer()
                             Image(systemName : "arrow.up.arrow.down")
                             Text("정렬").fontWeight(.semibold)
+                            Text(viewModel.sort_OnlyAvailable ? "(모집중인 클래스만)" : "(최신순)")
                         }.foregroundColor(.black)
-                        .font(.system(size : 11))
-                        .padding(.horizontal)
+                        .padding(4)
+                        .font(.system(size : 13))
+                        .background(Color.systemDefaultGray)
+                        .cornerRadius(10)
+
                     }
+                    }.padding(.horizontal)
+                    .padding(.top, 5)
+                    
                     ForEach(viewModel.LessonList.filter {
                         if !viewModel.searchingText.isEmpty {
-                            return $0.lessonName.contains((viewModel.searchingText))
-                        } else { return true }
+                            return $0.lessonName.lowercased().contains((viewModel.searchingText.lowercased()))
+                        } else if viewModel.sort_OnlyAvailable {
+                            return $0.status == true
+                        } else {
+                            return true
+                        }
                     }, id : \.self) { lesson in
                         Button {
                             viewModel.selectedLesson = lesson
@@ -117,13 +129,13 @@ struct LessonListView: View {
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                 }.frame(maxWidth : .infinity, maxHeight : .infinity)
-                                    .overlay {
+                                    .overlay(
                                         LinearGradient(
                                             colors: [.black.opacity(0.01), .black.opacity(0.7)],
                                             startPoint: .top,
                                             endPoint: .bottom
                                         )
-                                    }
+                                    )
                                 } else {
                                     Color.blue
                                 }
@@ -132,10 +144,10 @@ struct LessonListView: View {
                                     HStack {
                                         Text(lesson.status ? "모집중" : "모집완료")
                                             .font(.footnote)
-                                            .fontWeight(.semibold)
+                                            .fontWeight(.bold)
                                             .foregroundColor(.white)
-                                            .padding(5)
-                                            .background(lesson.status ? Color.green.opacity(0.7) : Color.red.opacity(0.7))
+                                            .padding(7)
+                                            .background(lesson.status ? Color.green.opacity(0.8) : Color.red.opacity(0.8))
                                             .cornerRadius(20)
                                         Spacer()
                                     }
@@ -144,6 +156,7 @@ struct LessonListView: View {
                                     HStack {
                                         Spacer()
                                         Text("#" + lesson.category)
+                                            .fontWeight(.bold)
                                     }
                                     HStack {
                                         Spacer()
@@ -158,10 +171,10 @@ struct LessonListView: View {
                                             .foregroundColor(.white.opacity(0.8))
                                     }
                                 }.foregroundColor(.white)
-                                .frame(width :UIScreen.main.bounds.width * 0.85, height : UIScreen.main.bounds.height * 0.26)
+                                .frame(width :UIScreen.main.bounds.width * 0.9, height : UIScreen.main.bounds.height * 0.26)
                             }.frame(width: UIScreen.main.bounds.width * 0.95, height : UIScreen.main.bounds.height * 0.3)
                             .cornerRadius(20)
-                            .padding(5)
+                            .padding(3)
                         }
                     }
                 }
@@ -170,7 +183,23 @@ struct LessonListView: View {
         }.padding(.top)
         .navigationBarHidden(true)
         .navigationTitle(Text(""))
-        .fullScreenCover(isPresented: $viewModel.detailViewShow) { LessonInfoView(lesson : viewModel.selectedLesson) }
+        .actionSheet(isPresented: $viewModel.isSortBtnClicked) {
+            ActionSheet(title: Text("정렬"),
+                        //message: Text(""),
+                        buttons: [
+                            .default(Text("최신순")) {
+                                viewModel.sort_OnlyAvailable = false
+                            },
+                            .default(Text("모집중인 클래스만 보기")){
+                                viewModel.sort_OnlyAvailable = true
+                            },
+                            .cancel(Text("취소"))
+                        ]
+            )
+        }
+        .fullScreenCover(isPresented: $viewModel.detailViewShow, onDismiss : viewModel.fetchLessons ) {
+            LessonInfoView(lesson : viewModel.selectedLesson)
+        }
         .onAppear { viewModel.fetchLessons() }
         .onChange(of: District) { _ in
             //viewModel.selectedDistrict = District

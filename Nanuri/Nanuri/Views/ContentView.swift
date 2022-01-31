@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @AppStorage("District") var selectedDistrict = "District #1"
+    @AppStorage("District") var selectedDistrict = "지역 선택"
     
     @State var isLocationBtnClicked : Bool = false
     //@State var selectedDistrict : String = "District #1"
@@ -71,7 +71,7 @@ struct ContentView: View {
                 if isLocationBtnClicked {
                     VStack {
                         HStack {
-                            Text("지역 선택 : ")
+                            Text("지역 선택 (ㄱ-ㅎ) : ")
                                 .font(.headline)
                             Text(selectedDistrict)
                                 .fontWeight(.light)

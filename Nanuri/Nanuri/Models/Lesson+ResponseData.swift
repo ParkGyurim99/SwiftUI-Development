@@ -7,8 +7,10 @@
 
 import Foundation
 
-struct LessonList : Codable {
-    var lessonList : [Lesson]
+struct Lessons : Codable {
+    var count : Int
+    var status : Int
+    var body : [Lesson]
 }
 
 struct Lesson : Codable, Hashable {

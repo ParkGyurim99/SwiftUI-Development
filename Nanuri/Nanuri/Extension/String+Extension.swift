@@ -27,13 +27,13 @@ func convertReturnedDateString(_ timeString : String) -> String {
     let timetravel = korNow.timeIntervalSince(str.toDate() ?? Date())
     
     if Int(timetravel) < 60 {
-        return "\(Int(timetravel)) Seconds ago"
+        return "\(Int(timetravel))초 전"
     } else if (60 <= Int(timetravel)) && (Int(timetravel) < 3600) {
-        return "\(Int(timetravel) / 60) Minutes ago"
+        return "\(Int(timetravel) / 60)분 전"
     } else if (3600 <= Int(timetravel)) && (Int(timetravel) < 86400) {
-        return "\(Int(timetravel) / 3600) Hours ago"
+        return "\(Int(timetravel) / 3600)시간 전"
     } else if (86400 <= Int(timetravel)) && (Int(timetravel) < (86400 * 7)) { // 7일까지
-        return "\(Int(timetravel) / 86400) Days ago"
+        return "\(Int(timetravel) / 86400)일 전"
     } else {
         str.removeSubrange(str.index(str.endIndex, offsetBy: -9)..<str.endIndex)
         return str

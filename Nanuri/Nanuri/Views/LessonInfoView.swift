@@ -10,10 +10,7 @@ import URLImage
 
 struct LessonInfoView: View {
     @Environment(\.presentationMode) var presentationMode
-    
-    @State var seeMore : Bool = false
-    @State var viewOffset : CGFloat = 0
-    @State var isImageTap : Bool = false
+    @StateObject private var viewModel = LessonInfoViewModel()
     
     let lesson : Lesson
     
@@ -37,6 +34,7 @@ struct LessonInfoView: View {
                 .fontWeight(.semibold)
         }.padding(.horizontal)
     }
+    
     var MemberInfo : some View {
         VStack {
             Divider()
@@ -68,19 +66,25 @@ struct LessonInfoView: View {
     var body: some View {
         VStack {
             TabView {
-                ForEach(lesson.images, id : \.self) { image in
-                    URLImage(
-                        URL(string : image.lessonImgId.lessonImg)
-                        ?? URL(string : "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg")!
-                    ) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    }.edgesIgnoringSafeArea(.top)
+                if lesson.images.isEmpty {
+                    Color.blue
+                        .edgesIgnoringSafeArea(.top)
+                } else {
+                    ForEach(lesson.images, id : \.self) { image in
+                        URLImage(
+                            URL(string : image.lessonImgId.lessonImg)
+                            ?? URL(string : "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg")!
+                        ) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: viewModel.isImageTap ? .fit : .fill)
+                        }.edgesIgnoringSafeArea(.top)
+                    }
                 }
-            }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.45)
-            .overlay {
+            }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+                .frame(width: UIScreen.main.bounds.width, height: viewModel.isImageTap ? UIScreen.main.bounds.height * 0.9: UIScreen.main.bounds.height * 0.45)
+                .zIndex(5)
+            .overlay (
                 VStack {
                     Spacer().frame(height : UIScreen.main.bounds.height * 0.04)
                     HStack {
@@ -92,107 +96,119 @@ struct LessonInfoView: View {
                                 .font(.system(size: 24))
                                 .foregroundColor(.white)
                                 .padding(7)
-                                .background(Color.gray)
+                                .background(Color.black.opacity(0.7))
                                 .clipShape(Circle())
                                 .opacity(0.8)
                         }.padding()
                     }
                     Spacer()
+                    HStack {
+                        Spacer()
+                        Button {
+                            withAnimation(.spring()) { viewModel.isImageTap.toggle() }
+                        } label : {
+                            Image(systemName: viewModel.isImageTap ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right")
+                                .font(.system(size: 18))
+                                .foregroundColor(.white)
+                                .padding(7)
+                                .background(Color.black.opacity(0.7))
+                                .clipShape(Circle())
+                                .opacity(0.8)
+                        }.padding()
+                    }
                 }
-            }
+            )
             
-            
-//            Image("testImg")
-//                .resizable()
-//                .aspectRatio(contentMode: .fill)
-//                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.45)
-//                .overlay {
-//                    VStack {
-//                        Spacer().frame(height : UIScreen.main.bounds.height * 0.04)
-//                        HStack {
-//                            Spacer()
-//                            Button {
-//                                presentationMode.wrappedValue.dismiss()
-//                            } label : {
-//                                Image(systemName: "xmark")
-//                                    .font(.system(size: 24))
-//                                    .foregroundColor(.white)
-//                                    .padding(7)
-//                                    .background(Color.systemDefaultGray)
-//                                    .clipShape(Circle())
-//                                    .opacity(0.5)
-//                            }.padding()
-//                        }
-//                        Spacer()
-//                    }
-//                }.onTapGesture { isImageTap = true }
-//                .fullScreenCover(isPresented: $isImageTap) {
-//                    Image("testImg")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(width: UIScreen.main.bounds.width)
-//                        .gesture(
-//                            DragGesture()
-//                                .onEnded { gesture in
-//                                    if gesture.translation.height > 70 {
-//                                        isImageTap = false
-//                                    }
-//                                }
-//                        )
-//                }
-            
-            
-            Title
-            MemberInfo
-            Text(lesson.location)
-                .font(.footnote)
-                .fontWeight(.light)
-                .frame(maxWidth : .infinity, alignment : .trailing)
-                .padding(.horizontal)
+            if !viewModel.isImageTap {
+                Title
+                MemberInfo
+                Text(lesson.location)
+                    .font(.footnote)
+                    .fontWeight(.light)
+                    .frame(maxWidth : .infinity, alignment : .trailing)
+                    .padding(.horizontal)
 
-            ScrollView {
-                Text(lesson.content)
+                ScrollView {
+                    Text(lesson.content)
+                        .frame(maxWidth : .infinity, alignment : .leading)
+                        .padding(.horizontal)
+                        .lineLimit(viewModel.seeMore ? .max : 4)
+                        .font(.system(.body, design: .rounded))
+                    
+                    Button {
+                        viewModel.seeMore.toggle()
+                    } label : {
+                        Text(viewModel.seeMore ? "접기" : "> 더보기")
+                            .foregroundColor(.gray)
+                            .font(.callout)
+                            .frame(maxWidth : .infinity, alignment : .trailing)
+                            .padding(.horizontal)
+                    }
+                }
+                
+                Spacer()
+                Text("## TEMPORAL BUTTON")
+                    .fontWeight(.semibold)
                     .frame(maxWidth : .infinity, alignment : .leading)
                     .padding(.horizontal)
-                    .lineLimit(seeMore ? .max : 4)
-                    .font(.system(.body, design: .rounded))
-                
                 Button {
-                    seeMore.toggle()
+                    viewModel.updateLessonStatus(lesson.lessonId)
+                    presentationMode.wrappedValue.dismiss()
                 } label : {
-                    Text(seeMore ? "접기" : "> 더보기")
-                        .foregroundColor(.gray)
-                        .font(.callout)
-                        .frame(maxWidth : .infinity, alignment : .trailing)
-                        .padding(.horizontal)
+                    Text("상태 변경")
+                        .foregroundColor(.white)
+                        .frame(width : UIScreen.main.bounds.width * 0.9, height: 50)
+                        .background(Color.green)
+                        .cornerRadius(20)
                 }
+                Button {
+                    //viewModel.deleteLesson(lesson.lessonId)
+                    viewModel.showDeleteConfirmationMessage = true
+                } label : {
+                    Text("삭제")
+                        .foregroundColor(.white)
+                        .frame(width : UIScreen.main.bounds.width * 0.9, height: 50)
+                        .background(Color.red)
+                        .cornerRadius(20)
+                }
+                Button {
+                    print("Enroll")
+                } label : {
+                    Text("신청하기")
+                        .foregroundColor(.white)
+                        .frame(width : UIScreen.main.bounds.width * 0.9, height: 50)
+                        .background(Color.blue)
+                        .cornerRadius(20)
+                }
+                
             }
-            
-            Spacer()
-            Button {
-                print("Enroll")
-            } label : {
-                Text("신청하기")
-                    .foregroundColor(.white)
-                    .frame(width : UIScreen.main.bounds.width * 0.9, height: 50)
-                    .background(Color.blue)
-                    .cornerRadius(20)
-            }
-        }.offset(y : viewOffset)
+        }.offset(y : viewModel.viewOffset)
         .edgesIgnoringSafeArea(.top)
         .navigationBarTitleDisplayMode(.inline)
+        .actionSheet(isPresented: $viewModel.showDeleteConfirmationMessage) {
+            ActionSheet(title: Text("클래스 삭제"),
+                        message: Text("클래스를 삭제하시겠습니까?"),
+                        buttons: [
+                            .destructive(Text("삭제")) {
+                                viewModel.deleteLesson(lesson.lessonId)
+                                presentationMode.wrappedValue.dismiss()
+                            },
+                            .cancel(Text("취소"))
+                        ]
+            )
+        }
         .gesture(
             DragGesture()
                 .onChanged { gesture in
                     if 0 < gesture.translation.height && gesture.translation.height < 50 {
-                        withAnimation(.spring()) { viewOffset = gesture.translation.height }
+                        withAnimation(.spring()) { viewModel.viewOffset = gesture.translation.height }
                     }
                 }
                 .onEnded { gesture in
                     if gesture.translation.height > 70 {
                         withAnimation(.spring()) { presentationMode.wrappedValue.dismiss() }
                     } else {
-                        withAnimation(.spring())  { viewOffset = 0 }
+                        withAnimation(.spring())  { viewModel.viewOffset = 0 }
                     }
                 }
         )
