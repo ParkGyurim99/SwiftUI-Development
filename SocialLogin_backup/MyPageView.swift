@@ -13,8 +13,6 @@ import KakaoSDKUser
 import NaverThirdPartyLogin
 
 struct MyPageView: View {
-    @AppStorage("isSignIn") var isSignIn = false
-    
     @StateObject private var viewModel = MyPageViewModel()
     
     var Title : some View {
@@ -29,20 +27,20 @@ struct MyPageView: View {
     }
     var Profile : some View {
         VStack {
+            Spacer()
             Divider()
-            if !isSignIn {
-                //MARK: Kakao Auth API TEMP
-                Button {
-                    //카카오톡이 깔려있는지 확인하는 함수
-                    if (UserApi.isKakaoTalkLoginAvailable()) {
-                        //카카오톡이 설치되어있다면 카카오톡을 통한 로그인 진행
-                        UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
-                            //print(oauthToken)
-                            //print(error)
-                            viewModel.getUserInfo()
-                            //isSignIn = true
-                        }
-                    } else {
+            //MARK: Kakao Auth API TEMP
+            Button {
+                //카카오톡이 깔려있는지 확인하는 함수
+                if (UserApi.isKakaoTalkLoginAvailable()) {
+                    //카카오톡이 설치되어있다면 카카오톡을 통한 로그인 진행
+                    UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+                        //print(oauthToken)
+                        //print(error)
+                        viewModel.getUserInfo()
+                        //isSignIn = true
+                    }
+                } else {
 //                        //카카오톡이 설치되어있지 않다면 사파리에서 카카오 계정을 통한 로그인 진행
 //                        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
 //                            //print(oauthToken)
@@ -50,84 +48,65 @@ struct MyPageView: View {
 //                            viewModel.getUserInfo()
 //                            //isSignIn = true
 //                        }
-                        
-                        // Appstore에서 카카오톡 열기
-                        if let url = URL(string: "itms-apps://itunes.apple.com/app/id362057947"), UIApplication.shared.canOpenURL(url) {
-                            UIApplication.shared.open(url, options: [:])
-                        }
+                    
+                    // Appstore에서 카카오톡 열기
+                    if let url = URL(string: "itms-apps://itunes.apple.com/app/id362057947"), UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: [:])
                     }
-                } label : {
-                    Image("kakao_login")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(20)
-                }.frame(width: UIScreen.main.bounds.width * 0.9)
-                
-                Button {
-                    if NaverThirdPartyLoginConnection
+                }
+            } label : {
+                Image("kakao_login")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(20)
+            }.frame(width: UIScreen.main.bounds.width * 0.9)
+            
+            Button {
+                if NaverThirdPartyLoginConnection
+                    .getSharedInstance()
+                    .isPossibleToOpenNaverApp() // Naver App이 깔려있는지 확인하는 함수
+                {
+                    NaverThirdPartyLoginConnection.getSharedInstance().delegate = viewModel.self
+                    NaverThirdPartyLoginConnection
                         .getSharedInstance()
-                        .isPossibleToOpenNaverApp() // Naver App이 깔려있는지 확인하는 함수
-                    {
-                        NaverThirdPartyLoginConnection.getSharedInstance().delegate = viewModel.self
-                        NaverThirdPartyLoginConnection
-                            .getSharedInstance()
-                            .requestThirdPartyLogin()
-                    } else { // 네이버 앱 안깔려져 있을때
-                        // Appstore에서 네이버앱 열기
-                        //NaverThirdPartyLoginConnection.getSharedInstance().openAppStoreForNaverApp()
-                        
-                        // 브라우저로 네이버 로그인 열기
-                        UIApplication.shared.open(
-                            URL(string: "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" + kConsumerKey + "&redirect_uri=nanuri://naverAuth")!,
-                            options: [:]
-                        )
-                    }
-                } label : {
-                    Image("naver_login")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(20)
-                }.frame(width: UIScreen.main.bounds.width * 0.9)
-                
-                
-            } else {
-                HStack {
-                    if let profileImage = viewModel.profileImage {
-                        URLImage(profileImage) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 70, height: 70)
-                                .clipShape(Circle())
-                        }
-                    } else {
-                        Image(systemName: "person.fill")
-                            .font(.system(size: 25))
-                            .padding()
-                            .frame(width: 70, height: 70)
-                            .foregroundColor(.white)
-                            .background(Color.darkGray)
-                            .clipShape(Circle())
-                            .onTapGesture {
-                                isSignIn = false
-                            }
-                    }
-
-                    VStack(alignment : .leading, spacing : 10) {
-                        Text(viewModel.userName)
-                            .font(.system(.title2, design: .rounded))
-                            .fontWeight(.semibold)
-                            .foregroundColor(.black)
-                        Text(viewModel.userMail)
-                            .font(.system(.subheadline, design: .rounded))
-                            .foregroundColor(.gray)
-                    }.padding(.leading, 10)
-                    Spacer()
-                }.padding(.vertical, 10)
-            }
-        }.padding(.bottom, 20)
+                        .requestThirdPartyLogin()
+                } else { // 네이버 앱 안깔려져 있을때
+                    // Appstore에서 네이버앱 열기
+                    //NaverThirdPartyLoginConnection.getSharedInstance().openAppStoreForNaverApp()
+                    
+                    // 브라우저로 네이버 로그인 열기
+                    UIApplication.shared.open(
+                        URL(string: "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" + kConsumerKey + "&redirect_uri=nanuri://naverAuth")!,
+                        options: [:]
+                    )
+                }
+            } label : {
+                Image("naver_login")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(20)
+            }.frame(width: UIScreen.main.bounds.width * 0.9)
+        }
     }
-    
+    var TokenStatus : some View {
+        VStack {
+            Divider()
+            Text("Kakao login auth code : \n" + viewModel.authorizationCodeKakao)
+                .fontWeight(.semibold)
+                .frame(maxWidth : UIScreen.main.bounds.width * 0.9, alignment : .leading)
+                .padding()
+                .background(Color.yellow.opacity(0.7))
+                .cornerRadius(20)
+                
+            Text("Naver login auth code : \n" + viewModel.authorizationCodeNaver)
+                .fontWeight(.semibold)
+                .frame(maxWidth : UIScreen.main.bounds.width * 0.9, alignment : .leading)
+                .padding()
+                .background(Color.green.opacity(0.7))
+                .cornerRadius(20)
+            Divider()
+        }
+    }
     var body: some View {
         VStack {
             Title
@@ -145,40 +124,157 @@ struct MyPageView: View {
 //                    }
 //                }
 //            }
-            Divider()
-            Text("Kakao login auth code : \n" + viewModel.authorizationCodeKakao)
-                .fontWeight(.semibold)
-                .frame(maxWidth : UIScreen.main.bounds.width * 0.9, alignment : .leading)
-                .padding()
-                .background(Color.yellow.opacity(0.7))
-                .cornerRadius(20)
-                
-            Text("Naver login auth code : \n" + viewModel.authorizationCodeNaver)
-                .fontWeight(.semibold)
-                .frame(maxWidth : UIScreen.main.bounds.width * 0.9, alignment : .leading)
-                .padding()
-                .background(Color.green.opacity(0.7))
-                .cornerRadius(20)
-                
-            Divider()
-            Button {
-                viewModel.accountSignOut()
-            } label : {
-                Text("카카오 로그아웃")
-                    .fontWeight(.semibold)
-                    .foregroundColor(.red)
-                    .padding()
+            TokenStatus
+            
+            // Kakao
+            HStack {
+                if let profileImage = viewModel.profileImage {
+                    URLImage(profileImage) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 70, height: 70)
+                            .clipShape(Circle())
+                    }
+                } else {
+                    Color.white
+                        .frame(width: 70, height: 70)
+                        .clipShape(Circle())
+                }
+
+                VStack(alignment : .leading, spacing : 10) {
+                    Text(viewModel.userName)
+                        .font(.system(.title2, design: .rounded))
+                        .fontWeight(.semibold)
+                        .foregroundColor(.black)
+                    Text(viewModel.userMail)
+                        .font(.system(.subheadline, design: .rounded))
+                        .foregroundColor(.gray)
+                }.padding(.leading, 10)
+                Spacer()
+                if AuthApi.hasToken() {
+                    Image(systemName : "k.circle.fill")
+                        .foregroundColor(.yellow)
+                        .font(.system(size : 20))
+                }
             }
-            Button {
-                NaverThirdPartyLoginConnection.getSharedInstance().requestDeleteToken() // 연동 해제
-            } label : {
-                Text("네이버 로그아웃")
+            HStack {
+                Text("Kakao")
+                    .foregroundColor(.yellow)
                     .fontWeight(.semibold)
-                    .foregroundColor(.red)
-                    .padding()
+                Spacer()
+                Button {
+                    _ = AuthController.handleOpenUrl(
+                        url: URL(string : "kakaoc95be0b24be89d4167b238b296e8396d://oauth?code=" + String(viewModel.authorizationCodeKakao))!)
+                } label : {
+                    Text("토큰발급")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(20)
+                }
+                
+                Button {
+                    viewModel.accountSignOut()
+                } label : {
+                    Text("로그아웃")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.red)
+                        .cornerRadius(20)
+                }
+                
+                Button {
+                    viewModel.accountKakaoUnlink()
+                } label : {
+                    Text("연결끊기")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.darkGray)
+                        .cornerRadius(20)
+                }
             }
             
-            Spacer()
+            Divider()
+            // Naver
+            HStack {
+                if let profileImage = viewModel.profileImageNaver {
+                    URLImage(profileImage) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 70, height: 70)
+                            .clipShape(Circle())
+                    }
+                } else {
+                    Color.white
+                        .frame(width: 70, height: 70)
+                        .clipShape(Circle())
+                }
+
+                VStack(alignment : .leading, spacing : 10) {
+                    Text(viewModel.userNameNaver)
+                        .font(.system(.title2, design: .rounded))
+                        .fontWeight(.semibold)
+                        .foregroundColor(.black)
+                    Text(viewModel.userMailNaver)
+                        .font(.system(.subheadline, design: .rounded))
+                        .foregroundColor(.gray)
+                }.padding(.leading, 10)
+                Spacer()
+                if viewModel.isNaverLogined {
+                    Image(systemName : "n.circle.fill")
+                        .foregroundColor(.green)
+                        .font(.system(size : 20))
+                }
+            }
+            HStack {
+                Text("Naver")
+                    .foregroundColor(.green)
+                    .fontWeight(.semibold)
+                Spacer()
+                Button {
+                    NaverThirdPartyLoginConnection
+                        .getSharedInstance()
+                        .receiveAccessToken(
+                            URL(string : "nanuri://thirdPartyLoginResult?version=2&code=0&authCode=" + viewModel.authorizationCodeNaver)
+                        )
+                } label : {
+                    Text("토큰발급")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(20)
+                }
+                
+                Button {
+                    NaverThirdPartyLoginConnection.getSharedInstance().resetToken()
+                    viewModel.isNaverLogined = false
+                } label : {
+                    Text("로그아웃")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.red)
+                        .cornerRadius(20)
+                }
+                
+                Button {
+                    NaverThirdPartyLoginConnection.getSharedInstance().requestDeleteToken() // 연동 해제
+                    viewModel.isNaverLogined = false
+                } label : {
+                    Text("연결끊기")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.darkGray)
+                        .cornerRadius(20)
+                }
+            }
             Profile
         } // VStack
         .onAppear{ viewModel.getUserInfo() }
