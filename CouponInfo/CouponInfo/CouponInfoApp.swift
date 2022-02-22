@@ -11,7 +11,7 @@ import SwiftUI
 struct CouponInfoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LandingView()
                 .preferredColorScheme(.light)
         }
     }

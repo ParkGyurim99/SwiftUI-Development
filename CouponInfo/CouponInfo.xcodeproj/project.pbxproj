@@ -11,6 +11,7 @@
 		1AFF601B27C4DE0D00807F7D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFF601A27C4DE0D00807F7D /* ContentView.swift */; };
 		1AFF601D27C4DE0F00807F7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF601C27C4DE0F00807F7D /* Assets.xcassets */; };
 		1AFF602027C4DE0F00807F7D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF601F27C4DE0F00807F7D /* Preview Assets.xcassets */; };
+		1AFF602727C5255900807F7D /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFF602627C5255900807F7D /* LandingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		1AFF601A27C4DE0D00807F7D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1AFF601C27C4DE0F00807F7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AFF601F27C4DE0F00807F7D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1AFF602627C5255900807F7D /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				1AFF601827C4DE0D00807F7D /* CouponInfoApp.swift */,
+				1AFF602627C5255900807F7D /* LandingView.swift */,
 				1AFF601A27C4DE0D00807F7D /* ContentView.swift */,
 				1AFF601C27C4DE0F00807F7D /* Assets.xcassets */,
 				1AFF601E27C4DE0F00807F7D /* Preview Content */,
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AFF602727C5255900807F7D /* LandingView.swift in Sources */,
 				1AFF601B27C4DE0D00807F7D /* ContentView.swift in Sources */,
 				1AFF601927C4DE0D00807F7D /* CouponInfoApp.swift in Sources */,
 			);
