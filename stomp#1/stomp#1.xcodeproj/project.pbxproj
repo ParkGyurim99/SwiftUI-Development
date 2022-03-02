@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A19DD3827CF27560059FEA7 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A19DD3727CF27560059FEA7 /* UIDevice+Extension.swift */; };
 		1AB1853A278DAFF600764165 /* SignIn+ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB18539278DAFF600764165 /* SignIn+ResponseData.swift */; };
 		1AE2777C2779DDA300A28650 /* stomp_1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE2777B2779DDA300A28650 /* stomp_1App.swift */; };
 		1AE2777E2779DDA300A28650 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE2777D2779DDA300A28650 /* ContentView.swift */; };
@@ -25,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A19DD3527CF25C30059FEA7 /* stomp-1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "stomp-1-Info.plist"; sourceTree = SOURCE_ROOT; };
+		1A19DD3727CF27560059FEA7 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		1AB18539278DAFF600764165 /* SignIn+ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignIn+ResponseData.swift"; sourceTree = "<group>"; };
 		1AE277782779DDA300A28650 /* stomp#1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "stomp#1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AE2777B2779DDA300A28650 /* stomp_1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stomp_1App.swift; sourceTree = "<group>"; };
@@ -64,6 +67,14 @@
 				EE31F7A6C96396AF143E2060 /* Pods-stomp#1.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		1A19DD3627CF27440059FEA7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1A19DD3727CF27560059FEA7 /* UIDevice+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		1A74AEAE279045A600F97046 /* ViewModels */ = {
@@ -115,8 +126,10 @@
 		1AE2777A2779DDA300A28650 /* stomp#1 */ = {
 			isa = PBXGroup;
 			children = (
+				1A19DD3527CF25C30059FEA7 /* stomp-1-Info.plist */,
 				1AE2777B2779DDA300A28650 /* stomp_1App.swift */,
 				1AE277892779E60E00A28650 /* StompManager.swift */,
+				1A19DD3627CF27440059FEA7 /* Extensions */,
 				1A74AEAF279045B600F97046 /* Models */,
 				1A74AEB0279045CB00F97046 /* Views */,
 				1A74AEAE279045A600F97046 /* ViewModels */,
@@ -268,6 +281,7 @@
 				1AE2779E277B781300A28650 /* ChatroomViewModel.swift in Sources */,
 				1AE27793277AC76D00A28650 /* ContentViewModel.swift in Sources */,
 				1AE2777E2779DDA300A28650 /* ContentView.swift in Sources */,
+				1A19DD3827CF27560059FEA7 /* UIDevice+Extension.swift in Sources */,
 				1AE2778A2779E60E00A28650 /* StompManager.swift in Sources */,
 				1AE277A0277B7EBE00A28650 /* ChatContents+ResponseData.swift in Sources */,
 				1AE27795277AC95A00A28650 /* Chat+ResponseData.swift in Sources */,
@@ -408,6 +422,7 @@
 				DEVELOPMENT_TEAM = ZKRH5N6RGG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "stomp-1-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -438,6 +453,7 @@
 				DEVELOPMENT_TEAM = ZKRH5N6RGG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "stomp-1-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

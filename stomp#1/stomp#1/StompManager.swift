@@ -15,7 +15,7 @@ class StompManager {
     //static let shared : StompManager = StompManager(40) // TEMP
 
     //private let url = NSURL(string : "ws://3.36.233.180:8080/stomp/chat/websocket")!
-    private let url = URL(string: "ws://3.36.233.180:8080/stomp/chat/websocket")!
+    private let url = URL(string: "ws://3.36.23.26:8080/stomp/chat/websocket")!
     private let accessToken : String
     
     // Publish Payload (Data)

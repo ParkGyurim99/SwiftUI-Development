@@ -13,8 +13,8 @@ import SwiftUI
 final class ContentViewModel : ObservableObject {
     @Published var ChatList : [Chat] = []
     private var subscription = Set<AnyCancellable>()
-    private let signInUrl : String = "http://3.36.233.180:8080/sign-in"
-    private let url = "http://3.36.233.180:8080/chats"
+    private let signInUrl : String = "http://NLB-DEV-BRIDGE-BRIDGE-aa5fd40a1346d1ae.elb.ap-northeast-2.amazonaws.com/sign-in"
+    private let url = "http://NLB-DEV-BRIDGE-BRIDGE-aa5fd40a1346d1ae.elb.ap-northeast-2.amazonaws.com/chats"
     var signInResponse : SignInResponse?
     var token = ""
     
@@ -25,7 +25,11 @@ final class ContentViewModel : ObservableObject {
     func signIn() {
         AF.request(signInUrl,
                    method: .post,
-                   parameters: ["email" : "test@gmail.com", "password" : "test"],
+                   parameters: ["email" : "guy021898@naver.com",
+                                "password" : "1234",
+                                "deviceCode" : String(UIDevice.current.identifierForVendor!.uuidString),
+                                //MARK: TEMPORAL FCM TOKEN
+                                "fcmToken" : "dihWMDcUVUBCsRFyxSa078:APA91bG-jKjLllf5KtEBhMMksIjm8W3e6Nvswp783LVOQmYNXptN0-Swe-CWX2gAGUhamdgakpcKutKOQ5fW82lTrOFHVC237kGt0dKErCxU-bNEVXU6R6qy7V229oDcLVhdaWSVEJ8F"],
                    encoder: JSONParameterEncoder.prettyPrinted
         )
             .responseJSON { response in

@@ -12,7 +12,7 @@ import URLImage
 struct ContentView: View {
     @StateObject private var viewModel = ContentViewModel()
     
-    @State var chatId : String = "40"
+    @State var chatId : String = "11"
     @State var message : String = ""
     
     var body: some View {

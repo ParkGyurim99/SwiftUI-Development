@@ -59,7 +59,7 @@ struct ChatroomView: View {
             // Text Bar
             HStack {
                 Image(systemName : "camera")
-                TextField("", text: $text)
+                TextField("", text: $viewModel.messageText)
                     .padding(.horizontal, 10)
                     .frame(minWidth: UIScreen.main.bounds.width * 0.5, maxWidth: .infinity)
                     .frame(height : UIScreen.main.bounds.height * 0.04)
@@ -67,7 +67,7 @@ struct ChatroomView: View {
                     .cornerRadius(10)
                 Button {
                     print("Publish message " + text)
-                    viewModel.stompManager.sendMessage(message: text)
+                    viewModel.sendMessage()
                     
                     let newMsg = Message(
                         member:
@@ -103,6 +103,9 @@ struct ChatroomView: View {
             .background(Color(red: 247/255, green: 247/255, blue: 247/255))
         } // VStack
         //.edgesIgnoringSafeArea(.bottom)
+        .onAppear {
+            viewModel.registerSockect()
+        }
         .navigationTitle(Text(userWith))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(
