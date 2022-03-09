@@ -11,6 +11,7 @@
 		1AA7553F27D77FFC0076EB74 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7553E27D77FFC0076EB74 /* ContentView.swift */; };
 		1AA7554127D77FFE0076EB74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AA7554027D77FFE0076EB74 /* Assets.xcassets */; };
 		1AA7554427D77FFE0076EB74 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AA7554327D77FFE0076EB74 /* Preview Assets.xcassets */; };
+		1AA7554B27D898EF0076EB74 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7554A27D898EF0076EB74 /* UINavigationController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		1AA7553E27D77FFC0076EB74 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1AA7554027D77FFE0076EB74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AA7554327D77FFE0076EB74 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1AA7554A27D898EF0076EB74 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				1AA7553C27D77FFC0076EB74 /* SettingsTestApp.swift */,
 				1AA7553E27D77FFC0076EB74 /* ContentView.swift */,
+				1AA7554A27D898EF0076EB74 /* UINavigationController+Extension.swift */,
 				1AA7554027D77FFE0076EB74 /* Assets.xcassets */,
 				1AA7554227D77FFE0076EB74 /* Preview Content */,
 			);
@@ -139,6 +142,7 @@
 			files = (
 				1AA7553F27D77FFC0076EB74 /* ContentView.swift in Sources */,
 				1AA7553D27D77FFC0076EB74 /* SettingsTestApp.swift in Sources */,
+				1AA7554B27D898EF0076EB74 /* UINavigationController+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

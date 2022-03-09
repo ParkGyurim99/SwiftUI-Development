@@ -11,7 +11,7 @@ import SwiftUI
 struct SettingsTestApp: App {
     var body: some Scene {
         WindowGroup {
-            NavigationView { ContentView().preferredColorScheme(.light) }
+            NavigationView { ContentView().preferredColorScheme(.light) }.navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }
