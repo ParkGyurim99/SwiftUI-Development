@@ -15,6 +15,8 @@ struct ContentView: View {
     @State var showAccountInfo : Bool = false
     @State var showChagePasswordView : Bool = false
     @State var showDeleteAccountView : Bool = false
+    @State var password : String = ""
+    @State var showDeleteConfirm : Bool = false
     
     let mainTheme = Color(red : 248/255, green : 174/255, blue : 0) // yellow1
     
@@ -96,8 +98,18 @@ struct ContentView: View {
                     Image(systemName : "arrow.backward")
                         .foregroundColor(.black)
                 }
+                Spacer()
                 Text("Account Settings")
                     .fontWeight(.semibold)
+                Spacer()
+                Button {
+                    showAccountInfo.toggle()
+                } label : {
+                    Image(systemName : "arrow.backward")
+                        .foregroundColor(.black)
+                }.opacity(0)
+                .disabled(true)
+                
             }.padding()
             .frame(width : UIScreen.main.bounds.width, alignment: .leading)
             .background(Color.white.shadow(color: .black.opacity(0.2), radius: 1, x: 0, y: 2))
@@ -134,9 +146,8 @@ struct ContentView: View {
                     showChagePasswordView.toggle()
                 } label : {
                     Image(systemName : "arrow.backward")
-                    Text("Back")
-                        .fontWeight(.semibold)
-                }.foregroundColor(.black)
+                        .foregroundColor(.black)
+                }
             }.padding()
             .frame(width : UIScreen.main.bounds.width, alignment: .leading)
             .background(Color.white.shadow(color: .black.opacity(0.2), radius: 1, x: 0, y: 2))
@@ -155,19 +166,50 @@ struct ContentView: View {
                     showDeleteAccountView.toggle()
                 } label : {
                     Image(systemName : "arrow.backward")
-                    Text("Back")
-                        .fontWeight(.semibold)
-                }.foregroundColor(.black)
+                        .foregroundColor(.black)
+                }
             }.padding()
             .frame(width : UIScreen.main.bounds.width, alignment: .leading)
             .background(Color.white.shadow(color: .black.opacity(0.2), radius: 1, x: 0, y: 2))
             .padding(.bottom)
-            Text("Delete Account")
-                .font(.system(size : 24, weight : .bold))
-                .padding()
-                .frame(maxWidth : .infinity, alignment : .leading)
+            VStack(spacing : 8) {
+                Text("Delete Account")
+                    .font(.system(size : 24, weight : .bold))
+                    .frame(maxWidth : .infinity, alignment : .leading)
+                Text("Please enter your current password\nto verify it is your account. ")
+                    .font(.system(size : 16))
+                    .frame(maxWidth : .infinity, alignment : .leading)
+            }.padding()
+            
+            SecureField("Password", text : $password)
+                .padding(8)
+                .padding(.horizontal, 8)
+                .background(Color.gray.opacity(0.2)) // systemDefaultGray
+                .cornerRadius(8)
+                .padding(.horizontal)
+            
             Spacer()
+            Button {
+                showDeleteConfirm = true
+            } label : {
+                Text("Continue")
+                    .font(.system(size : 14, weight: .bold))
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth : .infinity)
+                    .background(RoundedRectangle(cornerRadius: 8).fill(Color.yellow))
+                    .padding()
+            }
         }.navigationBarHidden(true)
+        .alert(isPresented: $showDeleteConfirm) {
+            Alert(title: Text("Delete Account?"),
+                  message: Text("Are you sure you want to delete your account?"),
+                  primaryButton: .cancel(Text("Cancel")),
+                  secondaryButton: .destructive(Text("Delete")) {
+                                        // API CALL
+                                    }
+            )
+        }
     }
     
     var body: some View {
@@ -175,7 +217,7 @@ struct ContentView: View {
             Text("Settings")
                 .fontWeight(.medium)
                 .padding()
-                .frame(width : UIScreen.main.bounds.width, alignment: .leading)
+                .frame(width : UIScreen.main.bounds.width)
                 .background(Color.white.shadow(color: .black.opacity(0.2), radius: 1, x: 0, y: 2))
             alarmSetting
             accountSetting
