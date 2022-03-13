@@ -1,0 +1,6 @@
+framework module Pods_SendbirdChatPrac {
+  umbrella header "Pods-SendbirdChatPrac-umbrella.h"
+
+  export *
+  module * { export * }
+}
