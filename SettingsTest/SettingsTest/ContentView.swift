@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     // TEMP
     @State var tempToggle : Bool = false
     @State var showLogoutAlert : Bool = false

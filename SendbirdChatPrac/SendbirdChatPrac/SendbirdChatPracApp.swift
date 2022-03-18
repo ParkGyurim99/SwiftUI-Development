@@ -2,7 +2,7 @@
 //  SendbirdChatPracApp.swift
 //  SendbirdChatPrac
 //
-//  Created by Park Gyurim on 2022/03/11.
+//  Created by Park Gyurim on 2022/03/18.
 //
 
 import SwiftUI
@@ -10,26 +10,21 @@ import SendBirdSDK
 
 @main
 struct SendbirdChatPracApp: App {
-    let params = SBDOpenChannelParams()
-    var url = ""
-    
-    
     init() {
-        SBDMain.initWithApplicationId("1DE2EA6D-96CB-4497-8191-19FA7A8B7811")
-        SBDMain.connect(withUserId: "A") { user, error in
-            if let _ = error {
-                print(error?.localizedDescription)
-            }
-            
-            print(user?.nickname)
-            print(user?.userId)
+        SBDMain.initWithApplicationId("1DE2EA6D-96CB-4497-8191-19FA7A8B7811", useCaching: false) {
+            print("migrationStartHandler")
+        } completionHandler: { error in
+            print(error?.localizedDescription as Any)
         }
-        SBDOpenChannel.createChannel(with: params) { channel, error in
-            print(channel?.name)
-            print(channel?.participantCount)
-            SBDOpenChannel.getWithUrl(channel!.channelUrl) { ch, err in
-                print(ch?.name)
+        
+        SBDMain.connect(withUserId: "1") { user, error in
+            guard let user = user, error == nil else {
+                print("\(user!) got error : " + error!.localizedDescription)
+                return // Handle error.
             }
+
+            // The user is connected to the Sendbird server.
+            print("\(user) is connected to server")
         }
     }
     
