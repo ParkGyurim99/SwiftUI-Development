@@ -126,7 +126,8 @@ struct ContentView: View {
                     Image(systemName: "arrow.right")
                 }.padding()
             }
-        }.sheet(isPresented: $viewModel.showImagePicker) {
+        }.onAppear { viewModel.addDelegate() }
+        .sheet(isPresented: $viewModel.showImagePicker) {
             ImagePicker(image: $viewModel.selectedImage).edgesIgnoringSafeArea(.bottom)
         }
     }
