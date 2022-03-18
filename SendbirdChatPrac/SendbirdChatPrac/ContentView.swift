@@ -10,6 +10,8 @@ import SendBirdSDK
 
 struct ContentView: View {
     @State var text : String = ""
+    @State var showImagePicker : Bool = false
+    @State var selectedImage : UIImage? = nil
     let channelUrl = "sendbird_open_channel_5033_c32caf026cb3ce977317fc82a05790baf3e00a8f"
     
     func createChannel() -> SBDOpenChannelParams {
@@ -20,6 +22,7 @@ struct ContentView: View {
     }
     
     var body: some View {
+        VStack {
         Button {
             // iOS Test Channel
             SBDOpenChannel.getWithUrl(channelUrl) { openChannel, error in
@@ -92,6 +95,16 @@ struct ContentView: View {
         }
         
         Spacer()
+        Button {
+            showImagePicker = true
+        } label : {
+            Text("Select Image")
+        }
+        if selectedImage != nil {
+            Text("Image is selected")
+                .fontWeight(.semibold)
+        }
+        Spacer()
         HStack {
             TextField("Text to send", text : $text)
             Button {
@@ -100,30 +113,59 @@ struct ContentView: View {
                             return // Handle error.
                     }
                     // Call the instance method of the result object in the "openChannel" parameter of the callback method.
-                    openChannel.enter(completionHandler: { error in
+                    openChannel.enter { error in
                         guard error == nil else { return }
                         
                         // The current user successfully enters the open channel,
                         // and can chat with other users in the channel by using APIs.
                         print("Successfully Enter the channel : " + openChannel.name)
-                        openChannel.sendUserMessage(text) { userMessage, error in
+
+                        // Send Message with File
+                        openChannel.sendFileMessage(with: SBDFileMessageParams(file: selectedImage!.jpegData(compressionQuality: 0.5)!)!) { userMessage, error in
+                            
                             guard let userMessage = userMessage, error == nil else {
                                 print(error?.localizedDescription as Any)
                                 return // Handle error.
+
+                                
                             }
-                            print("Created At", userMessage.createdAt)
-                            print("Message ID", userMessage.messageId)
-                            print("Sender", userMessage.sender)
-                            // The message is successfully sent to the channel.
-                            // The current user can receive messages from other users through the channel:didReceiveMessage: method of an event delegate.
-                            print("Enter Channel and Send Message Done")
-                            text = ""
+                            print(userMessage)
+                            print("Send Message with File Done")
                         }
-                    })
+                        
+//                         //Send Message with File URL
+//                        openChannel.sendFileMessage(with: SBDFileMessageParams(fileUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKnYw86g4j7hJMRQzJGNVdspKkLoqqbARAxQ&usqp=CAU")!) { userMessage, error in
+//                            guard let userMessage = userMessage, error == nil else {
+//                                print(error?.localizedDescription as Any)
+//                                return // Handle error.
+//
+//                                print("Send Message with File Done")
+//                            }
+//                        }
+                    
+//                        // Send Message with Text
+//                        openChannel.sendUserMessage(text) { userMessage, error in
+//                            guard let userMessage = userMessage, error == nil else {
+//                                print(error?.localizedDescription as Any)
+//                                return // Handle error.
+//                            }
+//                            print("Created At", userMessage.createdAt)
+//                            print("Message ID", userMessage.messageId)
+//                            print("Sender", userMessage.sender)
+//                            // The message is successfully sent to the channel.
+//                            // The current user can receive messages from other users through the channel:didReceiveMessage: method of an event delegate.
+//                            print("Enter Channel and Send Message Done")
+//                            text = ""
+//                        }
+                    }
                 }
             } label : {
                 Image(systemName: "arrow.right")
             }.padding()
+        }
+        }.sheet(isPresented: $showImagePicker) {
+            ImagePicker(image: $selectedImage)
+                .edgesIgnoringSafeArea(.bottom)
         }
     }
 }
