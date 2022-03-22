@@ -20,7 +20,7 @@ struct SendbirdChatPracApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView { ContentView() }
         }
     }
 }

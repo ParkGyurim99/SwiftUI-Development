@@ -12,14 +12,15 @@ class ContentViewModel : NSObject, ObservableObject {
     @Published var text : String = ""
     @Published var showImagePicker : Bool = false
     @Published var selectedImage : UIImage? = nil
-
+    @Published var messages : [SBDBaseMessage] = []
+    
     func addDelegate() { SBDMain.add(self, identifier: "channel:didReceiveMessage:") }
     
     func groupChannelParams() -> SBDGroupChannelParams {
         let params = SBDGroupChannelParams()
         params.name = "iOS Test Channel"
-        params.isDistinct = true
-        params.isPublic = false
+        params.isDistinct = false
+        params.isPublic = true
 
         return params
     }
@@ -41,6 +42,10 @@ class ContentViewModel : NSObject, ObservableObject {
             //self.channelList.append(contentsOf: groupChannels)
         }
     }
+    
+//    func fetchPreviousMessages() {
+//        
+//    }
 }
 
 // Sendbird Channel Delegate
@@ -50,12 +55,15 @@ extension ContentViewModel : SBDChannelDelegate {
         print("Sender :", sender.name)
         if message is SBDUserMessage {
             print("UserMessage", message.message)
+            print("From", message.channelUrl)
         }
         else if message is SBDFileMessage {
             print("FileMessage", message.message)
+            print("From", message.channelUrl)
         }
         else if message is SBDAdminMessage {
             print("AdminMessage", message.message)
+            print("From", message.channelUrl)
         }
     }
 }
