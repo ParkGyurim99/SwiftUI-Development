@@ -14,6 +14,8 @@ class ContentViewModel : NSObject, ObservableObject {
     @Published var selectedImage : UIImage? = nil
     @Published var messages : [SBDBaseMessage] = []
     
+    let staticChannelUrl = "sendbird_group_channel_68133564_196c3c0ce6f9a2f30fcaf84e2f06b3b2f398e0b7"
+    
     func addDelegate() { SBDMain.add(self, identifier: "channel:didReceiveMessage:") }
     
     func groupChannelParams() -> SBDGroupChannelParams {
@@ -52,18 +54,27 @@ class ContentViewModel : NSObject, ObservableObject {
 extension ContentViewModel : SBDChannelDelegate {
     func channel(_ sender: SBDBaseChannel, didReceive message: SBDBaseMessage) {
         // You can customize how to display the different types of messages with the result object in the "message" parameter.
-        print("Sender :", sender.name)
-        if message is SBDUserMessage {
-            print("UserMessage", message.message)
-            print("From", message.channelUrl)
-        }
-        else if message is SBDFileMessage {
-            print("FileMessage", message.message)
-            print("From", message.channelUrl)
-        }
-        else if message is SBDAdminMessage {
-            print("AdminMessage", message.message)
-            print("From", message.channelUrl)
+        if message.channelUrl == staticChannelUrl {
+            print("Sender :", sender.name)
+            if message is SBDUserMessage {
+                print("UserMessage", message.message)
+                print("From", message.channelUrl)
+                messages.append(message)
+            }
+            else if message is SBDFileMessage {
+                print("FileMessage", message.message)
+                print("From", message.channelUrl)
+                let msg : SBDFileMessage = message as! SBDFileMessage
+                print(msg.url)
+                messages.append(message)
+            }
+            else if message is SBDAdminMessage {
+                print("AdminMessage", message.message)
+                print("From", message.channelUrl)
+                messages.append(message)
+            }
+        } else {
+            print("Receive message from another channel.")
         }
     }
 }
