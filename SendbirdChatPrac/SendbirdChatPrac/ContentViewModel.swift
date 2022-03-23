@@ -18,6 +18,7 @@ class ContentViewModel : NSObject, ObservableObject {
     
     func addDelegate() { SBDMain.add(self, identifier: "channel:didReceiveMessage:") }
     
+    // Channel 생성시 필요
     func groupChannelParams() -> SBDGroupChannelParams {
         let params = SBDGroupChannelParams()
         params.name = "iOS Test Channel"
@@ -27,6 +28,57 @@ class ContentViewModel : NSObject, ObservableObject {
         return params
     }
     
+    
+    func fetchMessages() {
+        SBDGroupChannel.getWithUrl(staticChannelUrl) { groupChannel, error in
+            guard let groupChannel = groupChannel, error == nil else { return }
+            
+            let listQuery = groupChannel.createPreviousMessageListQuery()
+            // Retrieve a list of messages along with their metaarrays.
+            listQuery?.includeMetaArray = false
+            // Retrieve a list of messages along with their reactions.
+            listQuery?.includeReactions = false
+
+            listQuery?.loadPreviousMessages(withLimit: 100, reverse: false) { [weak self] (messages, error) in
+                guard error == nil else { return }
+                self?.messages = messages ?? []
+                
+                print("Fecthing Message Done")
+            }
+        }
+    }
+    
+    func sendMessage() {
+        SBDGroupChannel.getWithUrl(staticChannelUrl) { groupChannel, error in
+            guard let groupChannel = groupChannel, error == nil else { return }
+            
+            groupChannel.sendUserMessage(self.text) { [weak self] (userMessage, error) in
+                guard let message = userMessage, error == nil else { return }
+                
+                self?.messages.append(message)
+                self?.text = ""
+                
+                print("Send Message Done")
+            }
+        }
+    }
+    func sendImage() {
+        SBDGroupChannel.getWithUrl(staticChannelUrl) { groupChannel, error in
+            guard let image = self.selectedImage, let groupChannel = groupChannel, error == nil else { return }
+            
+            groupChannel.sendFileMessage(with: SBDFileMessageParams(file: image.jpegData(compressionQuality: 0.8)!)!) { [weak self] (fileMessage, error) in
+                guard let message = fileMessage, error == nil else { return }
+                
+                self?.messages.append(message)
+                self?.selectedImage = nil
+                self?.text = ""
+                
+                print("Send Image Message Done")
+            }
+        }
+    }
+    
+    // Not gonna use.
     func fetchChannelList() {
         let listQuery = SBDGroupChannel.createMyGroupChannelListQuery()
         listQuery?.limit = 15
@@ -45,9 +97,24 @@ class ContentViewModel : NSObject, ObservableObject {
         }
     }
     
-//    func fetchPreviousMessages() {
-//        
-//    }
+    func checkChatDay(index : Int) -> Bool {
+        if index == 0 { return true }
+        else {
+            if convertReturnedDateStringToDay(timeInteravlToDate(messages[index].createdAt)) == convertReturnedDateStringToDay(timeInteravlToDate(messages[index - 1].createdAt)) {
+                return false
+            } else { return true }
+        }
+    }
+
+    func checkChatTime(index : Int) -> Bool {
+        if index == messages.count - 1 { return true }
+        else {
+            if convertReturnedDateStringTime(timeInteravlToDate(messages[index].createdAt)) == convertReturnedDateStringTime(timeInteravlToDate(messages[index + 1].createdAt)) {
+                return false
+            } else { return true }
+        }
+    }
+
 }
 
 // Sendbird Channel Delegate

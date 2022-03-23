@@ -15,13 +15,6 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Button {
-                viewModel.fetchChannelList()
-            } label : {
-                Text("Fetch Channel List")
-                    .padding()
-            }
-            
-            Button {
                 // Create Channel
 //                SBDGroupChannel.createChannel(with: viewModel.groupChannelParams()) { groupChannel, error in
 //                    guard let channelUrl = groupChannel?.channelUrl, error == nil else {
@@ -53,102 +46,31 @@ struct ContentView: View {
 //                        }
 //                    }
 //                }
-                
-                // Send Text Message to Existing Channel
-                SBDGroupChannel.getWithUrl(viewModel.staticChannelUrl) { groupChannel, error in
-                    guard let groupChannel = groupChannel, error == nil else {
-                        return // Handle error.
-                    }
-                    
-                    // There should be only one single instance per channel.
-                    let listQuery = groupChannel.createPreviousMessageListQuery()
-                    listQuery?.includeMetaArray = true  // Retrieve a list of messages along with their metaarrays.
-                    listQuery?.includeReactions = true  // Retrieve a list of messages along with their reactions.
-
-                    // Retrieving previous messages.
-                    listQuery?.loadPreviousMessages(withLimit: 100, reverse: false) { (messages, error) in
-                        guard error == nil else { return }
-                        
-                        viewModel.messages = messages ?? []
-                        
-                        let dateFormatter = DateFormatter()
-                            // 2021-10-03T21:34:20.209447
-                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.000000"
-                        dateFormatter.timeZone = NSTimeZone(name: "KST") as TimeZone?
-
-                        //let date:Date = dateFormatter.date(from: dateString)!
-                        
-                        for message in messages! {
-                            let dateString : String = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(message.createdAt / 1000)))
-                            
-                            print(message.sender?.userId , " : ",
-                                  message.message,
-                                  dateString
-                                  //Date(timeIntervalSince1970: TimeInterval(message.createdAt / 1000 + 32400))
-                            )
-                        }
-                    }
-                    
-//                    groupChannel.sendUserMessage("Placeholder") { userMessage, error in
-//                    //groupChannel.sendUserMessage(viewModel.text) { userMessage, error in
-//                        guard let _ = userMessage, error == nil else {
-//                            print(error?.localizedDescription as Any)
-//                            return // Handle error.
-//                        }
-//
-//                        // The message is successfully sent to the channel.
-//                        // The current user can receive messages from other users through the channel:didReceiveMessage: method of an event delegate.
-//                        print("Enter Channel and Send Message Done")
-//                    }
-                }
+                viewModel.fetchMessages()
             } label : {
-                Text("Create and Enter the Chat channel")
-                    .padding()
-            }
+                Text("Fetch Channel Messages")
+            }.padding()
             
-            Spacer()
-            
-            Button {
-                viewModel.showImagePicker = true
-            } label : {
-                Text("Select Image")
-            }
-            if viewModel.selectedImage != nil {
-                Text("Image is selected")
-                    .fontWeight(.semibold)
-                Button {
-                    SBDGroupChannel.getWithUrl(viewModel.staticChannelUrl) { groupChannel, error in
-                        guard let groupChannel = groupChannel, error == nil else {
-                            return // Handle error.
-                        }
-                        
-                        groupChannel.sendFileMessage(with: SBDFileMessageParams(file: viewModel.selectedImage!.jpegData(compressionQuality: 0.8)!)!) { fileMessage, error in
-                            guard let message = fileMessage, error == nil else {
-                                print(error?.localizedDescription as Any)
-                                return // Handle error.
-                            }
-                            
-                            viewModel.messages.append(message)
-                            viewModel.selectedImage = nil
-                            viewModel.text = ""
-                            print("Send Message with File Done")
-                        }
-                    }
-                } label : {
-                    Text("Send Image")
-                }
-            }
             Spacer()
             
             NavigationLink {
-                VStack {
+                VStack(spacing : 0) {
                     ScrollView {
                         ScrollViewReader { proxy in
                             LazyVStack {
-                                ForEach(viewModel.messages, id : \.self) { message in
-                                    MessageBox(message, mine: message.sender?.userId == "1")
-                                        .id(message.messageId)
-                                        //.rotationEffect(Angle(degrees: 180))
+                                ForEach(0..<viewModel.messages.count, id : \.self) { index in
+                                    if viewModel.checkChatDay(index: index) {
+                                        Text(convertReturnedDateStringToDay(timeInteravlToDate(viewModel.messages[index].createdAt)))
+                                            .foregroundColor(.gray)
+                                            .font(.system(size : 13, design: .rounded))
+                                            .padding()
+                                    }
+                                    MessageBox(
+                                        viewModel.messages[index],
+                                        mine: viewModel.messages[index].sender?.userId == "1",
+                                        time : viewModel.checkChatTime(index: index)
+                                    ).id(viewModel.messages[index].messageId)
+                                    .padding(.bottom, viewModel.checkChatTime(index: index) ? 5 : -5)
                                 }
 
                             }.onAppear{
@@ -157,106 +79,105 @@ struct ContentView: View {
                                 withAnimation { proxy.scrollTo(newValue.last?.messageId) }
                             }
                         }
-                    }//.rotationEffect(Angle(degrees: 180))
+                    }
                     
+                    if viewModel.selectedImage != nil {
+                        Text("Image is selected")
+                            .padding(8)
+                            .frame(maxWidth : .infinity)
+                            .background(Color.black.opacity(0.3))
+                    }
                     
                     HStack {
+                        Button {
+                            viewModel.showImagePicker = true
+                        } label : {
+                            Image(systemName: "camera")
+                                .foregroundColor(.gray)
+                        }
                         TextField("Text to send", text : $viewModel.text)
                         Button {
-                            SBDGroupChannel.getWithUrl(viewModel.staticChannelUrl) { groupChannel, error in
-                                guard let groupChannel = groupChannel, error == nil else {
-                                    return // Handle error.
-                                }
-                                
-                                groupChannel.sendUserMessage(viewModel.text) { userMessage, error in
-                                    guard let message = userMessage, error == nil else {
-                                        print(error?.localizedDescription as Any)
-                                        return // Handle error.
-                                    }
-                                    viewModel.messages.append(message)
-                                    viewModel.text = ""
-                                    // The message is successfully sent to the channel.
-                                    // The current user can receive messages from other users through the channel:didReceiveMessage: method of an event delegate.
-                                    print("Enter Channel and Send Message Done")
-                                }
+                            viewModel.sendMessage()
+                            if viewModel.selectedImage != nil {
+                                viewModel.sendImage()
                             }
                         } label : {
                             Image(systemName: "arrow.right")
                         }.padding()
-                    }.padding(.horizontal)
+                    }.padding(.horizontal, 4)
                     .background(
                         Color.white
+                            .edgesIgnoringSafeArea(.bottom)
                             .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: -1)
                     )
                 }.frame(maxWidth : .infinity)
+                .sheet(isPresented: $viewModel.showImagePicker) { ImagePicker(image: $viewModel.selectedImage).edgesIgnoringSafeArea(.bottom) }
                 .background(Color.white)
                 .navigationBarTitleDisplayMode(.inline)
+                .onDisappear {
+                    viewModel.text = ""
+                    viewModel.selectedImage = nil
+                }
             } label : {
-                Text("Test Chat Room")
+                Text("Enter Test Chat Room")
             }
         }.onAppear { viewModel.addDelegate() }
-        .sheet(isPresented: $viewModel.showImagePicker) {
-            ImagePicker(image: $viewModel.selectedImage).edgesIgnoringSafeArea(.bottom)
-        }
     }
 }
 
 struct MessageBox : View {
     var message : SBDBaseMessage
     var mine : Bool = false
+    var time : Bool
     
-    init(_ message : SBDBaseMessage, mine : Bool) {
+    init(_ message : SBDBaseMessage, time : Bool) {
+        self.message = message
+        self.time = time
+    }
+    
+    init(_ message : SBDBaseMessage, mine : Bool, time : Bool) {
         self.message = message
         self.mine = mine
+        self.time = time
     }
   
     var body : some View {
-        VStack {
-            Text(convertReturnedDateStringToDay(timeInteravlToDate(message.createdAt)))
-                VStack(alignment : mine ? .trailing : .leading, spacing : 3) {
-                    VStack(alignment : .trailing) {
-                        // -- message w/o image
-                        if message is SBDUserMessage {
-                            if let message = message.message {
-                                Text(message)
-                            }
-                        } else if message is SBDFileMessage {
-                            if let message = message as! SBDFileMessage {
-                                KFImage(URL(string : message.url)!)
-                                    .placeholder { ProgressView() }
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(maxWidth : UIScreen.main.bounds.width * 0.6)
-                                    .cornerRadius(10)
-                                    
-                            }
-                        } else {
-                            Text("Admin :" + message.message)
-                        }
-                        // -- message w/ image
-    //                    if message.image != "null" {
-    //                        KFImage(URL(string : message.image ?? imagePlaceHolder)!)
-    //                            .resizable()
-    //                            .aspectRatio(contentMode: .fill)
-    //                            .frame(maxWidth : UIScreen.main.bounds.width * 0.6)
-    //                            .cornerRadius(10)
-    //                    }
+        VStack(alignment : mine ? .trailing : .leading, spacing : 3) {
+            VStack(alignment : .trailing) {
+                if message is SBDUserMessage { // -- message w/o image
+                    if let message = message.message {
+                        Text(message)
                     }
-                    .padding(10)
-                    .background(mine ? Color.yellow : Color.gray)
-                    .cornerRadius(15)
-                    .frame(maxWidth : .infinity, alignment: mine ? .trailing : .leading)
-                    
-                    Text(convertReturnedDateStringTime(timeInteravlToDate(message.createdAt)))
-                        .foregroundColor(.black.opacity(0.7))
-                        .font(.system(size : 12, design: .rounded))
-                        .frame(maxWidth : .infinity, alignment: mine ? .trailing : .leading)
+                } else if message is SBDFileMessage { // -- message w/ image
+                    if let message = message as? SBDFileMessage {
+                        KFImage(URL(string : message.url)!)
+                            .placeholder { ProgressView() }
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(maxWidth : UIScreen.main.bounds.width * 0.6)
+                            .cornerRadius(10)
+                            
+                    }
+                } else { // -- message from Admin
+                    Text("Admin :" + message.message)
                 }
+            }.padding(message is SBDFileMessage ? 0 : 10)
+            .background(mine ? Color.yellow : Color.gray)
+            .cornerRadius(15)
+            .shadow(radius: message is SBDFileMessage ? 1 : 0)
+            .frame(maxWidth : .infinity, alignment: mine ? .trailing : .leading)
+            
+            if time {
+                Text(convertReturnedDateStringTime(timeInteravlToDate(message.createdAt)))
+                    .foregroundColor(.black.opacity(0.7))
+                    .font(.system(size : 12, design: .rounded))
+                    .frame(maxWidth : .infinity, alignment: mine ? .trailing : .leading)
+            }
         }.padding(.horizontal, 10)
     }
 }
 
-
+// NEW
 func timeInteravlToDate(_ t : Int64) -> String {
     let dateFormatter = DateFormatter() // 2021-10-03T21:34:20.209447
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.000000"
@@ -266,6 +187,7 @@ func timeInteravlToDate(_ t : Int64) -> String {
     return dateString
 }
     
+// TEMP
 func convertReturnedDateStringTime(_ timeString : String) -> String {
     var str = timeString // 2021-10-03T21:34:20.209447
     str.removeSubrange(str.startIndex..<str.index(str.startIndex, offsetBy: 11)) // 21:34:20.209447

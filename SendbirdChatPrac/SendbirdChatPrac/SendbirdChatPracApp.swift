@@ -13,14 +13,14 @@ struct SendbirdChatPracApp: App {
     init() {
         SBDMain.initWithApplicationId("1DE2EA6D-96CB-4497-8191-19FA7A8B7811")
         SBDMain.connect(withUserId: "1") { user, error in
-            guard let _ = user, error == nil else { return } // Handle error.
+            guard let user = user, error == nil else { return } // Handle error.
             print("User : \(user) is connected to Sendbird server")
         }
     }
     
     var body: some Scene {
         WindowGroup {
-            NavigationView { ContentView() }
+            NavigationView { ContentView().preferredColorScheme(.light) }
         }
     }
 }
