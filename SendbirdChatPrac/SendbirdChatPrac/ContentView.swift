@@ -15,7 +15,13 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Button {
-                // Create Channel
+                SBDMain.updateCurrentUserInfo(withNickname: "iOS test user", profileUrl: "http://cdn.cnn.com/cnnnext/dam/assets/160621115931-seoul-after.jpg")
+            } label : {
+                Text("Get Current User")
+            }
+            
+            Button {
+//                // Create Channel
 //                SBDGroupChannel.createChannel(with: viewModel.groupChannelParams()) { groupChannel, error in
 //                    guard let channelUrl = groupChannel?.channelUrl, error == nil else {
 //                        return // Handle error.
@@ -23,7 +29,7 @@ struct ContentView: View {
 //
 //                    // 채팅 생성시 상대방 초대
 //                    var userIds: [String] = []
-//                    userIds.append("2")
+//                    userIds.append("64")
 //
 //                    groupChannel!.inviteUserIds(userIds) { (error) in
 //                        guard error == nil else { return }
@@ -97,10 +103,8 @@ struct ContentView: View {
                         }
                         TextField("Text to send", text : $viewModel.text)
                         Button {
-                            viewModel.sendMessage()
-                            if viewModel.selectedImage != nil {
-                                viewModel.sendImage()
-                            }
+                            if viewModel.text != "" { viewModel.sendMessage() }
+                            if viewModel.selectedImage != nil { viewModel.sendImage() }
                         } label : {
                             Image(systemName: "arrow.right")
                         }.padding()

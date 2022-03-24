@@ -14,7 +14,7 @@ class ContentViewModel : NSObject, ObservableObject {
     @Published var selectedImage : UIImage? = nil
     @Published var messages : [SBDBaseMessage] = []
     
-    let staticChannelUrl = "sendbird_group_channel_68133564_196c3c0ce6f9a2f30fcaf84e2f06b3b2f398e0b7"
+    let staticChannelUrl = "sendbird_group_channel_68133564_f31db89ca6f0333272cee22ada8e459b1986d3bc"
     
     func addDelegate() { SBDMain.add(self, identifier: "channel:didReceiveMessage:") }
     
