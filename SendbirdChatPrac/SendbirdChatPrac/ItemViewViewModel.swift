@@ -18,7 +18,9 @@ final class ItemViewViewModel : ObservableObject {
     
     func isChatExist(memberId : Int, postId : Int) {
         let url = "http://alb-dev-bridge-bridge-266265895.ap-northeast-2.elb.amazonaws.com/chats"
-        let header : HTTPHeaders = ["X-AUTH-TOKEN" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJndXkwMjE4OThAbmF2ZXIuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY0ODE3MjQzOSwiZXhwIjoxNjQ4MTc0MjM5fQ.kX81b-r_bQV9QGuUXNQ8DXSap1k5QBvb6RZmdbCObhI"]
+        let header : HTTPHeaders = [
+            "X-AUTH-TOKEN" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJndXkwMjE4OThAbmF2ZXIuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY0ODE3MjQzOSwiZXhwIjoxNjQ4MTc0MjM5fQ.kX81b-r_bQV9QGuUXNQ8DXSap1k5QBvb6RZmdbCObhI"
+        ]
         
             AF.request(url,
                    method: .get,
@@ -44,10 +46,10 @@ final class ItemViewViewModel : ObservableObject {
                     self?.showChatRoom = true
                 
                 case .failure(let error): // 존재하지 않는 채팅 -> 생성
-                    print("존재하지 않는 채팅 :", error)
+                    print("존재하지 않는 채팅 :", error.localizedDescription)
                     
                     let params = SBDGroupChannelParams()
-                    params.name = "Chat btw 63 and \(memberId) about \(postId)"
+                    params.name = "Chat btw 63 and \(memberId) about Post \(postId)"
                     params.isDistinct = false
                     params.isPublic = true
                     
