@@ -12,119 +12,94 @@ import Kingfisher
 struct ContentView: View {
     @StateObject private var viewModel = ContentViewModel()
     
-    var body: some View {
-        VStack {
-            Button {
-                SBDMain.updateCurrentUserInfo(withNickname: "iOS test user", profileUrl: "http://cdn.cnn.com/cnnnext/dam/assets/160621115931-seoul-after.jpg")
-            } label : {
-                Text("Get Current User")
+    var TestChatRoom : some View {
+        VStack(spacing : 0) {
+            ScrollView {
+                ScrollViewReader { proxy in
+                    LazyVStack {
+                        ForEach(0..<viewModel.messages.count, id : \.self) { index in
+                            if viewModel.checkChatDay(index: index) {
+                                Text(convertReturnedDateStringToDay(timeInteravlToDate(viewModel.messages[index].createdAt)))
+                                    .foregroundColor(.gray)
+                                    .font(.system(size : 13, design: .rounded))
+                                    .padding()
+                            }
+                            MessageBox(
+                                viewModel.messages[index],
+                                mine: viewModel.messages[index].sender?.userId == "1",
+                                time : viewModel.checkChatTime(index: index)
+                            ).id(viewModel.messages[index].messageId)
+                            .padding(.bottom, viewModel.checkChatTime(index: index) ? 5 : -5)
+                        }
+
+                    }.onAppear{
+                        withAnimation { proxy.scrollTo(viewModel.messages.last?.messageId) }
+                    }.onChange(of: viewModel.messages) { newValue in
+                        withAnimation { proxy.scrollTo(newValue.last?.messageId) }
+                    }
+                }
             }
             
+            if viewModel.selectedImage != nil {
+                Text("Image is selected")
+                    .padding(8)
+                    .frame(maxWidth : .infinity)
+                    .background(Color.black.opacity(0.3))
+            }
+            
+            HStack {
+                Button {
+                    viewModel.showImagePicker = true
+                } label : {
+                    Image(systemName: "camera")
+                        .foregroundColor(.gray)
+                }
+                TextField("Text to send", text : $viewModel.text)
+                Button {
+                    if viewModel.text != "" { viewModel.sendMessage() }
+                    if viewModel.selectedImage != nil { viewModel.sendImage() }
+                } label : {
+                    Image(systemName: "arrow.right")
+                }.padding()
+            }.padding(.horizontal, 4)
+            .background(
+                Color.white
+                    .edgesIgnoringSafeArea(.bottom)
+                    .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: -1)
+            )
+        }.frame(maxWidth : .infinity)
+        .sheet(isPresented: $viewModel.showImagePicker) { ImagePicker(image: $viewModel.selectedImage).edgesIgnoringSafeArea(.bottom) }
+        .background(Color.white)
+        .navigationBarTitleDisplayMode(.inline)
+        .onDisappear {
+            viewModel.text = ""
+            viewModel.selectedImage = nil
+        }
+    }
+    
+    var body: some View {
+        VStack {
+//            Button {
+//                SBDMain.updateCurrentUserInfo(withNickname: "iOS test user", profileUrl: "http://cdn.cnn.com/cnnnext/dam/assets/160621115931-seoul-after.jpg")
+//            } label : {
+//                Text("Get Current User")
+//            }
+            
             Button {
-//                // Create Channel
-//                SBDGroupChannel.createChannel(with: viewModel.groupChannelParams()) { groupChannel, error in
-//                    guard let channelUrl = groupChannel?.channelUrl, error == nil else {
-//                        return // Handle error.
-//                    }
-//
-//                    // 채팅 생성시 상대방 초대
-//                    var userIds: [String] = []
-//                    userIds.append("64")
-//
-//                    groupChannel!.inviteUserIds(userIds) { (error) in
-//                        guard error == nil else { return }
-//                    }
-//
-//                    SBDGroupChannel.getWithUrl(channelUrl) { groupChannel, error in
-//                        guard let groupChannel = groupChannel, error == nil else {
-//                            return // Handle error.
-//                        }
-//
-//                        groupChannel.sendUserMessage("Test Message") { userMessage, error in
-//                            guard let _ = userMessage, error == nil else {
-//                                print(error?.localizedDescription as Any)
-//                                return // Handle error.
-//                            }
-//
-//                            // The message is successfully sent to the channel.
-//                            // The current user can receive messages from other users through the channel:didReceiveMessage: method of an event delegate.
-//                            print("Enter Channel and Send Message Done")
-//                        }
-//                    }
-//                }
                 viewModel.fetchMessages()
             } label : {
                 Text("Fetch Channel Messages")
-            }.padding()
+            }
+            
+            NavigationLink {
+                ItemInfoView()
+            } label: {
+                Text("Item Info")
+            }
             
             Spacer()
             
-            NavigationLink {
-                VStack(spacing : 0) {
-                    ScrollView {
-                        ScrollViewReader { proxy in
-                            LazyVStack {
-                                ForEach(0..<viewModel.messages.count, id : \.self) { index in
-                                    if viewModel.checkChatDay(index: index) {
-                                        Text(convertReturnedDateStringToDay(timeInteravlToDate(viewModel.messages[index].createdAt)))
-                                            .foregroundColor(.gray)
-                                            .font(.system(size : 13, design: .rounded))
-                                            .padding()
-                                    }
-                                    MessageBox(
-                                        viewModel.messages[index],
-                                        mine: viewModel.messages[index].sender?.userId == "1",
-                                        time : viewModel.checkChatTime(index: index)
-                                    ).id(viewModel.messages[index].messageId)
-                                    .padding(.bottom, viewModel.checkChatTime(index: index) ? 5 : -5)
-                                }
-
-                            }.onAppear{
-                                withAnimation { proxy.scrollTo(viewModel.messages.last?.messageId) }
-                            }.onChange(of: viewModel.messages) { newValue in
-                                withAnimation { proxy.scrollTo(newValue.last?.messageId) }
-                            }
-                        }
-                    }
-                    
-                    if viewModel.selectedImage != nil {
-                        Text("Image is selected")
-                            .padding(8)
-                            .frame(maxWidth : .infinity)
-                            .background(Color.black.opacity(0.3))
-                    }
-                    
-                    HStack {
-                        Button {
-                            viewModel.showImagePicker = true
-                        } label : {
-                            Image(systemName: "camera")
-                                .foregroundColor(.gray)
-                        }
-                        TextField("Text to send", text : $viewModel.text)
-                        Button {
-                            if viewModel.text != "" { viewModel.sendMessage() }
-                            if viewModel.selectedImage != nil { viewModel.sendImage() }
-                        } label : {
-                            Image(systemName: "arrow.right")
-                        }.padding()
-                    }.padding(.horizontal, 4)
-                    .background(
-                        Color.white
-                            .edgesIgnoringSafeArea(.bottom)
-                            .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: -1)
-                    )
-                }.frame(maxWidth : .infinity)
-                .sheet(isPresented: $viewModel.showImagePicker) { ImagePicker(image: $viewModel.selectedImage).edgesIgnoringSafeArea(.bottom) }
-                .background(Color.white)
-                .navigationBarTitleDisplayMode(.inline)
-                .onDisappear {
-                    viewModel.text = ""
-                    viewModel.selectedImage = nil
-                }
-            } label : {
-                Text("Enter Test Chat Room")
-            }
+            NavigationLink(destination : TestChatRoom)  { Text("Enter Test Chat Room") }
         }.onAppear { viewModel.addDelegate() }
     }
 }

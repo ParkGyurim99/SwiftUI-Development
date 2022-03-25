@@ -10,6 +10,10 @@
 		1A085CAF27E42EA40010E630 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A085CAE27E42EA40010E630 /* ImagePicker.swift */; };
 		1A085CB427E4515B0010E630 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A085CB327E4515B0010E630 /* ContentViewModel.swift */; };
 		1AE7B53227EA151900222FCF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1AE7B53127EA151900222FCF /* Kingfisher */; };
+		1AE7B53727ED40FC00222FCF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1AE7B53627ED40FC00222FCF /* Alamofire */; };
+		1AE7B53927ED438600222FCF /* Chat+ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE7B53827ED438600222FCF /* Chat+ResponseData.swift */; };
+		1AE7B53C27ED4C7000222FCF /* ItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE7B53B27ED4C7000222FCF /* ItemInfoView.swift */; };
+		1AE7B53E27ED4C9500222FCF /* ItemViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE7B53D27ED4C9500222FCF /* ItemViewViewModel.swift */; };
 		1AFB6CF727E40E1100B9D0A9 /* SendbirdChatPracApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFB6CF627E40E1100B9D0A9 /* SendbirdChatPracApp.swift */; };
 		1AFB6CF927E40E1100B9D0A9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFB6CF827E40E1100B9D0A9 /* ContentView.swift */; };
 		1AFB6CFB27E40E1300B9D0A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AFB6CFA27E40E1300B9D0A9 /* Assets.xcassets */; };
@@ -20,6 +24,10 @@
 /* Begin PBXFileReference section */
 		1A085CAE27E42EA40010E630 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		1A085CB327E4515B0010E630 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		1AE7B53827ED438600222FCF /* Chat+ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+ResponseData.swift"; sourceTree = "<group>"; };
+		1AE7B53A27ED45EE00222FCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1AE7B53B27ED4C7000222FCF /* ItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoView.swift; sourceTree = "<group>"; };
+		1AE7B53D27ED4C9500222FCF /* ItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewViewModel.swift; sourceTree = "<group>"; };
 		1AFB6CF327E40E1100B9D0A9 /* SendbirdChatPrac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SendbirdChatPrac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AFB6CF627E40E1100B9D0A9 /* SendbirdChatPracApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendbirdChatPracApp.swift; sourceTree = "<group>"; };
 		1AFB6CF827E40E1100B9D0A9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AE7B53727ED40FC00222FCF /* Alamofire in Frameworks */,
 				1AE7B53227EA151900222FCF /* Kingfisher in Frameworks */,
 				783B63A7E766FA3D9B036DC6 /* Pods_SendbirdChatPrac.framework in Frameworks */,
 			);
@@ -64,9 +73,13 @@
 		1AFB6CF527E40E1100B9D0A9 /* SendbirdChatPrac */ = {
 			isa = PBXGroup;
 			children = (
+				1AE7B53A27ED45EE00222FCF /* Info.plist */,
 				1AFB6CF627E40E1100B9D0A9 /* SendbirdChatPracApp.swift */,
 				1AFB6CF827E40E1100B9D0A9 /* ContentView.swift */,
 				1A085CB327E4515B0010E630 /* ContentViewModel.swift */,
+				1AE7B53B27ED4C7000222FCF /* ItemInfoView.swift */,
+				1AE7B53D27ED4C9500222FCF /* ItemViewViewModel.swift */,
+				1AE7B53827ED438600222FCF /* Chat+ResponseData.swift */,
 				1A085CAE27E42EA40010E630 /* ImagePicker.swift */,
 				1AFB6CFA27E40E1300B9D0A9 /* Assets.xcassets */,
 				1AFB6CFC27E40E1300B9D0A9 /* Preview Content */,
@@ -119,6 +132,7 @@
 			name = SendbirdChatPrac;
 			packageProductDependencies = (
 				1AE7B53127EA151900222FCF /* Kingfisher */,
+				1AE7B53627ED40FC00222FCF /* Alamofire */,
 			);
 			productName = SendbirdChatPrac;
 			productReference = 1AFB6CF327E40E1100B9D0A9 /* SendbirdChatPrac.app */;
@@ -150,6 +164,7 @@
 			mainGroup = 1AFB6CEA27E40E1100B9D0A9;
 			packageReferences = (
 				1AE7B53027EA151800222FCF /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				1AE7B53527ED40FB00222FCF /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 1AFB6CF427E40E1100B9D0A9 /* Products */;
 			projectDirPath = "";
@@ -222,7 +237,10 @@
 				1A085CB427E4515B0010E630 /* ContentViewModel.swift in Sources */,
 				1A085CAF27E42EA40010E630 /* ImagePicker.swift in Sources */,
 				1AFB6CF927E40E1100B9D0A9 /* ContentView.swift in Sources */,
+				1AE7B53927ED438600222FCF /* Chat+ResponseData.swift in Sources */,
+				1AE7B53E27ED4C9500222FCF /* ItemViewViewModel.swift in Sources */,
 				1AFB6CF727E40E1100B9D0A9 /* SendbirdChatPracApp.swift in Sources */,
+				1AE7B53C27ED4C7000222FCF /* ItemInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +373,7 @@
 				DEVELOPMENT_TEAM = ZKRH5N6RGG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SendbirdChatPrac/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -386,6 +405,7 @@
 				DEVELOPMENT_TEAM = ZKRH5N6RGG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SendbirdChatPrac/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -437,6 +457,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		1AE7B53527ED40FB00222FCF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.4.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -444,6 +472,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1AE7B53027EA151800222FCF /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		1AE7B53627ED40FC00222FCF /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1AE7B53527ED40FB00222FCF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

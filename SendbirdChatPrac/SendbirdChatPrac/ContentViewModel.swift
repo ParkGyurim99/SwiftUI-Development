@@ -13,21 +13,10 @@ class ContentViewModel : NSObject, ObservableObject {
     @Published var showImagePicker : Bool = false
     @Published var selectedImage : UIImage? = nil
     @Published var messages : [SBDBaseMessage] = []
-    
-    let staticChannelUrl = "sendbird_group_channel_68133564_f31db89ca6f0333272cee22ada8e459b1986d3bc"
+
+    let staticChannelUrl = "sendbird_group_channel_68133564_99e1a1e7db586afc335ee383f09026ca5f83c1e0"
     
     func addDelegate() { SBDMain.add(self, identifier: "channel:didReceiveMessage:") }
-    
-    // Channel 생성시 필요
-    func groupChannelParams() -> SBDGroupChannelParams {
-        let params = SBDGroupChannelParams()
-        params.name = "iOS Test Channel"
-        params.isDistinct = false
-        params.isPublic = true
-
-        return params
-    }
-    
     
     func fetchMessages() {
         SBDGroupChannel.getWithUrl(staticChannelUrl) { groupChannel, error in
