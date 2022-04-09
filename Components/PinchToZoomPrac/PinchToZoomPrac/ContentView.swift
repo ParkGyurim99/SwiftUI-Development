@@ -112,7 +112,7 @@ struct ZoomGesture : UIViewRepresentable {
                 if let view = sender.view {
                     // getting translation
                     let translation = sender.translation(in: view)
-                    parent.offset = translation
+                    withAnimation { parent.offset = translation }
                 }
             } else {
                 // setting State to back to normal
@@ -129,16 +129,17 @@ struct ZoomGesture : UIViewRepresentable {
         func handlePinch(sender : UIPinchGestureRecognizer) {
             // Calculate Scale
             if sender.state == .began || sender.state == .changed {
-                // setting scale // removing added 1
-                parent.scale = sender.scale - 1
-                
                 // getting the position where the user pinched and apply scale at that position
                 let scalePoint = CGPoint(
                     x : sender.location(in: sender.view).x / sender.view!.frame.size.width,
                     y : sender.location(in: sender.view).y / sender.view!.frame.size.height)
 
-                // so the result will be ((0...1), (0...1))
-                parent.scalePosition = (parent.scalePosition == .zero ? scalePoint : parent.scalePosition)
+                withAnimation {
+                    // setting scale // removing added 1
+                    parent.scale = sender.scale - 1
+                    // so the result will be ((0...1), (0...1))
+                    parent.scalePosition = (parent.scalePosition == .zero ? scalePoint : parent.scalePosition)
+                }
             } else {
                 // Setting scale to 0
                 withAnimation(.easeInOut(duration: 0.35)) {
