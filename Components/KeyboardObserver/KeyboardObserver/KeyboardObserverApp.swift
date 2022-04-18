@@ -12,8 +12,16 @@ struct KeyboardObserverApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView()
+                HStack {
+                    NavigationLink { SignInView() } label : {
+                        Text("SignIn")
+                    }
+                    NavigationLink { SignUpView() } label : {
+                        Text("SignUp")
+                    }
+                }.navigationTitle(Text(""))
             }.navigationViewStyle(.stack)
+            .accentColor(.black)
         }
     }
 }

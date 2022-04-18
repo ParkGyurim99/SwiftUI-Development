@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  SignInView.swift
 //  KeyboardObserver
 //
 //  Created by Park Gyurim on 2022/04/17.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @StateObject private var viewModel = ContentViewModel()
+struct SignInView: View {
+    @StateObject private var viewModel = SignInViewModel()
     
     var titleField : some View {
         Text("Title")
@@ -20,11 +20,14 @@ struct ContentView: View {
     var emailField : some View {
         HStack {
             Image(systemName: "envelope")
-            TextField("Email", text: $viewModel.email, onEditingChanged: { editStatus in
-                withAnimation { viewModel.isEditing = editStatus }
-            }).autocapitalization(.none)
+            TextField("Email", text: $viewModel.email, onCommit: {
+                withAnimation { viewModel.isEditing = false }
+            }).disableAutocorrection(true)
+            .autocapitalization(.none)
             .accentColor(.yellow)
             .keyboardType(.emailAddress)
+            .onTapGesture { withAnimation { viewModel.isEditing = true } }
+            .onChange(of: viewModel.email) { _ in withAnimation { viewModel.isEditing = true } }
         }.frame(width : UIScreen.main.bounds.width * 0.8)
         .padding()
         .background(Color.white)
@@ -117,8 +120,8 @@ struct ContentView: View {
 }
 
 
-struct ContentView_Previews: PreviewProvider {
+struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        SignInView()
     }
 }
