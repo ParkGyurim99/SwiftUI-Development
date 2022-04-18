@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var password = ""
-    @State var email = ""
-    @State var isEditing = false
+    @StateObject private var viewModel = ContentViewModel()
     
     var titleField : some View {
         Text("Title")
@@ -22,12 +20,11 @@ struct ContentView: View {
     var emailField : some View {
         HStack {
             Image(systemName: "envelope")
-            TextField("Email", text: $email, onEditingChanged: { editStatus in
-                withAnimation { isEditing = editStatus }
+            TextField("Email", text: $viewModel.email, onEditingChanged: { editStatus in
+                withAnimation { viewModel.isEditing = editStatus }
             }).autocapitalization(.none)
             .accentColor(.yellow)
             .keyboardType(.emailAddress)
-            
         }.frame(width : UIScreen.main.bounds.width * 0.8)
         .padding()
         .background(Color.white)
@@ -37,18 +34,12 @@ struct ContentView: View {
     var passwordField : some View {
         HStack {
             Image(systemName: "lock")
-//            TextField("Password", text: $password, onEditingChanged: { editStatus in
-//                withAnimation {isEditing = editStatus
-//                } })
-//                .autocapitalization(.none)
-//                .accentColor(.yellow)
-            SecureField("Password", text: $password, onCommit: {
-                withAnimation { isEditing = false }
-            } )
+            SecureField("Password", text: $viewModel.password,
+                        onCommit: { withAnimation { viewModel.isEditing = false } } )
                 .autocapitalization(.none)
                 .accentColor(.yellow)
-                .onTapGesture { withAnimation { isEditing = true } }
-                .onChange(of: password) { _ in withAnimation { isEditing = true } }
+                .onTapGesture { withAnimation { viewModel.isEditing = true } }
+                .onChange(of: viewModel.password) { _ in withAnimation { viewModel.isEditing = true } }
             Button {
                 
             } label : {
@@ -113,13 +104,13 @@ struct ContentView: View {
             }
             .frame(width : UIScreen.main.bounds.width, height : UIScreen.main.bounds.height * 0.8)
             .background(Color.white.onTapGesture {
-                    withAnimation { isEditing = false }
+                    withAnimation { viewModel.isEditing = false }
                     hideKeyboard()
                 }
             )
             .cornerRadius(15)
             .shadow(radius: 15)
-            .padding(.bottom, isEditing ? UIScreen.main.bounds.height * 0.08 : 0)
+            .padding(.bottom, viewModel.isEditing ? viewModel.paddingHeight : 0)
         }.edgesIgnoringSafeArea(.vertical)
         .navigationTitle(Text(""))
     }
