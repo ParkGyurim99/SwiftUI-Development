@@ -16,7 +16,7 @@ enum OperationType : String, CaseIterable {
     func title() -> String {
         switch self {
             case .Plus : return "Addition"
-            case .Minus : return "Substraction"
+            case .Minus : return "Subtraction"
             case .Multiply : return "Multiplication"
             case .Divide : return "Division"
         }
