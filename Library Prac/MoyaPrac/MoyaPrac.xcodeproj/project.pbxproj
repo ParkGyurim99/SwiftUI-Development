@@ -13,7 +13,9 @@
 		1A3930CD285B604000E48F9C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A3930CC285B604000E48F9C /* Preview Assets.xcassets */; };
 		1A3930D5285B606E00E48F9C /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3930D4285B606E00E48F9C /* CombineMoya */; };
 		1A3930D7285B606E00E48F9C /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3930D6285B606E00E48F9C /* Moya */; };
-		1A3930D9285B612700E48F9C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3930D8285B612700E48F9C /* Service.swift */; };
+		1A3930D9285B612700E48F9C /* ServiceAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3930D8285B612700E48F9C /* ServiceAPIs.swift */; };
+		1A3930DE285CA45D00E48F9C /* ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3930DD285CA45D00E48F9C /* ResponseData.swift */; };
+		1A3930E4285CC35500E48F9C /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3930E3285CC35500E48F9C /* ContentViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,8 +24,10 @@
 		1A3930C7285B603E00E48F9C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1A3930C9285B604000E48F9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A3930CC285B604000E48F9C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1A3930D8285B612700E48F9C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		1A3930D8285B612700E48F9C /* ServiceAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAPIs.swift; sourceTree = "<group>"; };
 		1A3930DA285B637100E48F9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1A3930DD285CA45D00E48F9C /* ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseData.swift; sourceTree = "<group>"; };
+		1A3930E3285CC35500E48F9C /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +64,10 @@
 			children = (
 				1A3930DA285B637100E48F9C /* Info.plist */,
 				1A3930C5285B603E00E48F9C /* MoyaPracApp.swift */,
-				1A3930C7285B603E00E48F9C /* ContentView.swift */,
-				1A3930D8285B612700E48F9C /* Service.swift */,
+				1A3930E5285CC6B800E48F9C /* Model */,
+				1A3930E7285CC6C700E48F9C /* ViewModel */,
+				1A3930E6285CC6BF00E48F9C /* View */,
+				1A3930E9285CC6E800E48F9C /* Service */,
 				1A3930C9285B604000E48F9C /* Assets.xcassets */,
 				1A3930CB285B604000E48F9C /* Preview Content */,
 			);
@@ -74,6 +80,46 @@
 				1A3930CC285B604000E48F9C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1A3930E5285CC6B800E48F9C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1A3930E8285CC6DA00E48F9C /* Response+Data */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1A3930E6285CC6BF00E48F9C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1A3930C7285B603E00E48F9C /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1A3930E7285CC6C700E48F9C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1A3930E3285CC35500E48F9C /* ContentViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1A3930E8285CC6DA00E48F9C /* Response+Data */ = {
+			isa = PBXGroup;
+			children = (
+				1A3930DD285CA45D00E48F9C /* ResponseData.swift */,
+			);
+			path = "Response+Data";
+			sourceTree = "<group>";
+		};
+		1A3930E9285CC6E800E48F9C /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1A3930D8285B612700E48F9C /* ServiceAPIs.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,7 +200,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A3930C8285B603E00E48F9C /* ContentView.swift in Sources */,
-				1A3930D9285B612700E48F9C /* Service.swift in Sources */,
+				1A3930E4285CC35500E48F9C /* ContentViewModel.swift in Sources */,
+				1A3930DE285CA45D00E48F9C /* ResponseData.swift in Sources */,
+				1A3930D9285B612700E48F9C /* ServiceAPIs.swift in Sources */,
 				1A3930C6285B603E00E48F9C /* MoyaPracApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
