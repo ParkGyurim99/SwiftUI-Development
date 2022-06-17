@@ -16,6 +16,7 @@
 		1A3930D9285B612700E48F9C /* ServiceAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3930D8285B612700E48F9C /* ServiceAPIs.swift */; };
 		1A3930DE285CA45D00E48F9C /* ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3930DD285CA45D00E48F9C /* ResponseData.swift */; };
 		1A3930E4285CC35500E48F9C /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3930E3285CC35500E48F9C /* ContentViewModel.swift */; };
+		1A3930EB285CCE4F00E48F9C /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3930EA285CCE4F00E48F9C /* UserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		1A3930DA285B637100E48F9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1A3930DD285CA45D00E48F9C /* ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseData.swift; sourceTree = "<group>"; };
 		1A3930E3285CC35500E48F9C /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		1A3930EA285CCE4F00E48F9C /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				1A3930D8285B612700E48F9C /* ServiceAPIs.swift */,
+				1A3930EA285CCE4F00E48F9C /* UserService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			files = (
 				1A3930C8285B603E00E48F9C /* ContentView.swift in Sources */,
 				1A3930E4285CC35500E48F9C /* ContentViewModel.swift in Sources */,
+				1A3930EB285CCE4F00E48F9C /* UserService.swift in Sources */,
 				1A3930DE285CA45D00E48F9C /* ResponseData.swift in Sources */,
 				1A3930D9285B612700E48F9C /* ServiceAPIs.swift in Sources */,
 				1A3930C6285B603E00E48F9C /* MoyaPracApp.swift in Sources */,

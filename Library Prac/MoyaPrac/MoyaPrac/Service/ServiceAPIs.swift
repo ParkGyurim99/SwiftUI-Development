@@ -48,6 +48,8 @@ extension ServiceAPIs: TargetType {
             case .refreshToken : return [ "Content-type": "application/json", "X-AUTH-TOKEN" : "" ]
             default : return ["Content-type": "application/json"]
         }
-        
     }
+    
+    var validationType: ValidationType { .successCodes } // .successCodes : Validate success codes (only 2xx).
+    // MARK: Moya validationType reference - https://github.com/Moya/Moya/blob/development/Sources/Moya/ValidationType.swift
 }

@@ -12,7 +12,7 @@ import Moya
 import CombineMoya
 
 final class ContentViewModel : ObservableObject {
-    private let provider = MoyaProvider<ServiceAPIs>()
+    private let provider = MoyaProvider<ServiceAPIs>(session : Moya.Session(interceptor: Interceptor()))
     private var subscription = Set<AnyCancellable>()
     
     func getFloodingPrediction() {
