@@ -28,12 +28,36 @@ extension UIImage {
         return formatter.string(fromByteCount: Int64(imageData.count))
     }
     
-    func resized(withPercentage percentage: CGFloat) -> UIImage? {
+    // Using UIGraphicsBeginImageContext
+    // → use average 1s per every iteration (with 62.5MB sample image)
+    func resizedV1(withPercentage percentage: CGFloat) -> UIImage? {
+        let startTime = CFAbsoluteTimeGetCurrent()
+        
         let canvasSize = CGSize(width: size.width * percentage, height: size.height * percentage)
         UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
         defer { UIGraphicsEndImageContext() }
         draw(in: CGRect(origin: .zero, size: canvasSize))
+        
+        let durationTime = CFAbsoluteTimeGetCurrent() - startTime
+        print("Consumed Time : \(durationTime)")
+        
         return UIGraphicsGetImageFromCurrentImageContext()
+    }
+    
+    // Using UIGraphicsImageRenderer
+    // → use average 15s per every iteration (with 62.5MB sample image)
+    func resizedV2(withPercentage percentage: CGFloat) -> UIImage? {
+        let startTime = CFAbsoluteTimeGetCurrent()
+
+        let size = CGSize(width: size.width * percentage, height: size.height * percentage)
+        let render = UIGraphicsImageRenderer(size: size)
+        let renderedImage = render.image { context in
+            self.draw(in: CGRect(origin: .zero, size: size))
+        }
+
+        let durationTime = CFAbsoluteTimeGetCurrent() - startTime
+        print("Consumed Time : \(durationTime)")
+        return renderedImage
     }
     
     func resizedTo15MB() -> UIImage? {
@@ -41,9 +65,12 @@ extension UIImage {
         
         var resizingImage = self
         var imageSizeKB = Double(imageData.count) / 1024
+        var i = 0
         
         while imageSizeKB > 15 * 1024 {
-            guard let resizedImage = resizingImage.resized(withPercentage: 0.5),
+            print("iteration \(i)")
+            i += 1
+            guard let resizedImage = resizingImage.resizedV1(withPercentage: 0.5),
                   let imageData = resizedImage.pngData()
             else { return nil }
             
