@@ -11,6 +11,12 @@
 		1AAD805F29B8F41700EBAD9A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD805E29B8F41700EBAD9A /* ContentView.swift */; };
 		1AAD806129B8F41800EBAD9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AAD806029B8F41800EBAD9A /* Assets.xcassets */; };
 		1AAD806429B8F41800EBAD9A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AAD806329B8F41800EBAD9A /* Preview Assets.xcassets */; };
+		1AD9078629BE11C400B3008C /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1AD9078129BE101D00B3008C /* OpenSans-ExtraBold.ttf */; };
+		1AD9078729BE11C400B3008C /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1AD9078229BE101D00B3008C /* OpenSans-Light.ttf */; };
+		1AD9078829BE11C400B3008C /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1AD9078029BE101D00B3008C /* OpenSans-SemiBold.ttf */; };
+		1AD9078929BE11C400B3008C /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1AD9077E29BE101D00B3008C /* OpenSans-Medium.ttf */; };
+		1AD9078A29BE11C400B3008C /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1AD9077F29BE101D00B3008C /* OpenSans-Regular.ttf */; };
+		1AD9078B29BE11C400B3008C /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1AD9078329BE101D00B3008C /* OpenSans-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,13 @@
 		1AAD805E29B8F41700EBAD9A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1AAD806029B8F41800EBAD9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AAD806329B8F41800EBAD9A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1AD9077E29BE101D00B3008C /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Medium.ttf"; sourceTree = "<group>"; };
+		1AD9077F29BE101D00B3008C /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		1AD9078029BE101D00B3008C /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		1AD9078129BE101D00B3008C /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		1AD9078229BE101D00B3008C /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		1AD9078329BE101D00B3008C /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		1AD9078429BE105500B3008C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +64,9 @@
 		1AAD805B29B8F41700EBAD9A /* UIViewRepresentableTest */ = {
 			isa = PBXGroup;
 			children = (
+				1AD9078429BE105500B3008C /* Info.plist */,
 				1AAD805C29B8F41700EBAD9A /* UIViewRepresentableTestApp.swift */,
+				1AD9077D29BE0FF700B3008C /* Fonts */,
 				1AAD805E29B8F41700EBAD9A /* ContentView.swift */,
 				1AAD806029B8F41800EBAD9A /* Assets.xcassets */,
 				1AAD806229B8F41800EBAD9A /* Preview Content */,
@@ -65,6 +80,27 @@
 				1AAD806329B8F41800EBAD9A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1AD9077D29BE0FF700B3008C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1AD9078529BE11A100B3008C /* OpenSans */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		1AD9078529BE11A100B3008C /* OpenSans */ = {
+			isa = PBXGroup;
+			children = (
+				1AD9078329BE101D00B3008C /* OpenSans-Bold.ttf */,
+				1AD9078129BE101D00B3008C /* OpenSans-ExtraBold.ttf */,
+				1AD9078229BE101D00B3008C /* OpenSans-Light.ttf */,
+				1AD9077E29BE101D00B3008C /* OpenSans-Medium.ttf */,
+				1AD9077F29BE101D00B3008C /* OpenSans-Regular.ttf */,
+				1AD9078029BE101D00B3008C /* OpenSans-SemiBold.ttf */,
+			);
+			path = OpenSans;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +161,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AD9078929BE11C400B3008C /* OpenSans-Medium.ttf in Resources */,
 				1AAD806429B8F41800EBAD9A /* Preview Assets.xcassets in Resources */,
+				1AD9078B29BE11C400B3008C /* OpenSans-Bold.ttf in Resources */,
 				1AAD806129B8F41800EBAD9A /* Assets.xcassets in Resources */,
+				1AD9078A29BE11C400B3008C /* OpenSans-Regular.ttf in Resources */,
+				1AD9078829BE11C400B3008C /* OpenSans-SemiBold.ttf in Resources */,
+				1AD9078729BE11C400B3008C /* OpenSans-Light.ttf in Resources */,
+				1AD9078629BE11C400B3008C /* OpenSans-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +311,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UIViewRepresentableTest/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UIViewRepresentableTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -297,6 +340,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UIViewRepresentableTest/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UIViewRepresentableTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
