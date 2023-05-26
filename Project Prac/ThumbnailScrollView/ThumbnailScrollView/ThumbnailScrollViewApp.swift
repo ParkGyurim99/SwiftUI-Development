@@ -1,6 +1,6 @@
 //
-//  AdvancedScrollViewApp.swift
-//  AdvancedScrollView
+//  ThumbnailScrollViewApp.swift
+//  ThumbnailScrollView
 //
 //  Created by Park Gyurim on 2023/02/25.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct AdvancedScrollViewApp: App {
+struct ThumbnailScrollViewApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
